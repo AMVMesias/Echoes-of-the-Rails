@@ -26,6 +26,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.027440071, 0.009611845, 0.
 
 [node name="RouteScenery" type="Node3D" parent="." unique_id=550645340]
 script = ExtResource("9_scenery")
+tree_count = 620
+rock_count = 130
 
 [node name="StationManager" type="Node3D" parent="." unique_id=1132930423]
 script = ExtResource("7_station_manager")

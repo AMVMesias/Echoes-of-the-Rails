@@ -5,4 +5,4 @@
 [node name="TrackPath" type="Path3D"]
 script = ExtResource("1_track")
 generate_placeholder_rails = true
-rail_segment_count = 64
+rail_segment_count = 120

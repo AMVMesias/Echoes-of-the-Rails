@@ -2,10 +2,16 @@ class_name RouteSceneryBuilder
 extends Node3D
 
 @export var track_path: NodePath = NodePath("../TrackPath")
-@export var tree_count: int = 150
-@export var rock_count: int = 48
+@export var tree_count: int = 620
+@export var rock_count: int = 130
 @export var passenger_count_near_start: int = 8
 @export var generate_ground: bool = true
+@export var ground_y: float = -0.12
+@export var tree_spacing_min: float = 5.0
+@export var tree_spacing_max: float = 11.0
+@export var forest_near_offset: float = 7.0
+@export var forest_far_offset: float = 70.0
+@export var extra_forest_length: float = 160.0
 
 var rng := RandomNumberGenerator.new()
 var ground_material: StandardMaterial3D
@@ -57,14 +63,14 @@ func _make_material(color: Color, roughness: float, metallic: float = 0.0) -> St
 func _create_ground(track: Path3D) -> void:
 	var length: float = track.curve.get_baked_length()
 	var ground_mesh := PlaneMesh.new()
-	ground_mesh.size = Vector2(190.0, length + 180.0)
+	ground_mesh.size = Vector2(210.0, length + extra_forest_length * 2.0)
 	ground_mesh.surface_set_material(0, ground_material)
 
 	var ground := MeshInstance3D.new()
 	ground.name = "FoggyGround"
 	ground.mesh = ground_mesh
 	add_child(ground)
-	ground.global_position = track.to_global(Vector3(0.0, -0.12, -length * 0.48))
+	ground.global_position = track.to_global(Vector3(0.0, ground_y, -length * 0.48))
 
 
 func _create_rail_highlights(track: Path3D) -> void:
@@ -89,33 +95,33 @@ func _create_rail_highlights(track: Path3D) -> void:
 
 func _create_forest(track: Path3D) -> void:
 	var length: float = track.curve.get_baked_length()
-	for i in range(tree_count):
-		var distance: float = rng.randf_range(12.0, max(length - 20.0, 20.0))
-		var point: Vector3 = track.curve.sample_baked(distance)
-		var next_point: Vector3 = track.curve.sample_baked(min(distance + 2.0, length))
-		var direction: Vector3 = (next_point - point).normalized()
-		var side: Vector3 = direction.cross(Vector3.UP).normalized()
-		if side.length() < 0.01:
-			side = Vector3.RIGHT
+	var created: int = 0
+	var distance: float = 8.0
+	while distance < length + extra_forest_length and created < tree_count:
+		for side_sign in [-1.0, 1.0]:
+			if created >= tree_count:
+				break
 
-		var side_sign: float = -1.0 if rng.randf() < 0.5 else 1.0
-		var offset: float = rng.randf_range(8.0, 58.0) * side_sign
-		var tree_position: Vector3 = track.to_global(point + side * offset + Vector3.UP * rng.randf_range(-0.3, 0.2))
-		_create_tree(tree_position, rng.randf_range(0.75, 1.8))
+			var offset: float = rng.randf_range(forest_near_offset, forest_far_offset) * side_sign
+			var tree_position: Vector3 = _grounded_side_position(track, clampf(distance, 0.0, length), offset, rng.randf_range(-0.04, 0.08))
+			_create_tree(tree_position, rng.randf_range(0.75, 1.95))
+			created += 1
+
+			if rng.randf() < 0.38 and created < tree_count:
+				var second_offset: float = rng.randf_range(forest_near_offset + 10.0, forest_far_offset + 18.0) * side_sign
+				var second_position: Vector3 = _grounded_side_position(track, clampf(distance + rng.randf_range(1.5, 5.5), 0.0, length), second_offset, rng.randf_range(-0.04, 0.08))
+				_create_tree(second_position, rng.randf_range(0.6, 1.55))
+				created += 1
+
+		distance += rng.randf_range(tree_spacing_min, tree_spacing_max)
 
 
 func _create_rocks(track: Path3D) -> void:
 	var length: float = track.curve.get_baked_length()
 	for i in range(rock_count):
 		var distance: float = rng.randf_range(20.0, max(length - 25.0, 25.0))
-		var point: Vector3 = track.curve.sample_baked(distance)
-		var next_point: Vector3 = track.curve.sample_baked(min(distance + 2.0, length))
-		var direction: Vector3 = (next_point - point).normalized()
-		var side: Vector3 = direction.cross(Vector3.UP).normalized()
-		if side.length() < 0.01:
-			side = Vector3.RIGHT
 		var offset: float = rng.randf_range(7.0, 38.0) * (-1.0 if rng.randf() < 0.5 else 1.0)
-		var rock_position: Vector3 = track.to_global(point + side * offset + Vector3.UP * 0.55)
+		var rock_position: Vector3 = _grounded_side_position(track, distance, offset, 0.45)
 		_create_rock(rock_position, rng.randf_range(0.8, 2.4))
 
 
@@ -129,10 +135,28 @@ func _create_station_silhouettes(track: Path3D) -> void:
 		if side.length() < 0.01:
 			side = Vector3.RIGHT
 		var offset: float = -rng.randf_range(5.2, 8.8)
-		var position: Vector3 = track.to_global(point + side * offset)
+		var position: Vector3 = _grounded_side_position(track, distance, offset, 0.0)
 		_create_passenger_silhouette(position, rng.randf_range(0.85, 1.15))
 
-	_create_lamp(track.to_global(track.curve.sample_baked(95.0) + Vector3(-4.6, 0.0, 0.0)))
+	_create_lamp(_grounded_side_position(track, 95.0, -4.6, 0.0))
+
+
+func _grounded_side_position(track: Path3D, distance: float, side_offset: float, vertical_offset: float = 0.0) -> Vector3:
+	var length: float = track.curve.get_baked_length()
+	var sample_distance: float = clampf(distance, 0.0, length)
+	var point: Vector3 = track.curve.sample_baked(sample_distance)
+	var next_point: Vector3 = track.curve.sample_baked(min(sample_distance + 2.0, length))
+	var direction: Vector3 = (next_point - point).normalized()
+	if direction.length() < 0.01:
+		direction = Vector3.FORWARD
+
+	var side: Vector3 = direction.cross(Vector3.UP).normalized()
+	if side.length() < 0.01:
+		side = Vector3.RIGHT
+
+	var world_position: Vector3 = track.to_global(point + side * side_offset)
+	world_position.y = ground_y + vertical_offset
+	return world_position
 
 
 func _create_tree(position: Vector3, scale_factor: float) -> void:

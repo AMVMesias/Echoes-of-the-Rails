@@ -25,6 +25,8 @@ var red_zone_material: StandardMaterial3D
 var white_tick_material: StandardMaterial3D
 var cream_face_material: StandardMaterial3D
 var metal_material: StandardMaterial3D
+var grime_material: StandardMaterial3D
+var shadow_material: StandardMaterial3D
 
 
 func _ready() -> void:
@@ -45,10 +47,10 @@ func _load_materials() -> void:
 
 func _create_procedural_materials() -> void:
 	# Brass – muted gold, not too bright
-	brass_material = _mat(Color(0.50, 0.38, 0.20), 0.55, 0.25)
+	brass_material = _mat(Color(0.42, 0.31, 0.16), 0.62, 0.25)
 
 	# Panel metal surface (procedural, darker than PSX version)
-	metal_material = _mat(Color(0.32, 0.29, 0.24), 0.78, 0.25)
+	metal_material = _mat(Color(0.27, 0.25, 0.22), 0.82, 0.18)
 
 	# Dark gauge face – nearly black
 	dark_face_material = _mat(Color(0.06, 0.055, 0.05), 0.90, 0.0)
@@ -57,7 +59,7 @@ func _create_procedural_materials() -> void:
 	cream_face_material = _mat(Color(0.85, 0.80, 0.68), 0.85, 0.0)
 
 	# Label background plates
-	label_bg_material = _mat(Color(0.03, 0.025, 0.02), 0.88, 0.0)
+	label_bg_material = _mat(Color(0.018, 0.016, 0.014), 0.9, 0.0)
 
 	# Needle – dark reddish brown
 	needle_material = _mat(Color(0.10, 0.04, 0.025), 0.7, 0.0)
@@ -84,6 +86,9 @@ func _create_procedural_materials() -> void:
 	lamp_glow_material.emission = Color(1.0, 0.56, 0.18)
 	lamp_glow_material.emission_energy_multiplier = 1.8
 
+	grime_material = _mat(Color(0.12, 0.10, 0.08), 0.95, 0.0)
+	shadow_material = _mat(Color(0.015, 0.014, 0.013), 0.96, 0.0)
+
 
 func _mat(color: Color, roughness: float, metallic: float) -> StandardMaterial3D:
 	var material := StandardMaterial3D.new()
@@ -109,9 +114,9 @@ func _add_interior_lighting() -> void:
 	# Panel accent light – subtle
 	var panel_light := OmniLight3D.new()
 	panel_light.name = "PanelAccentLight"
-	panel_light.position = Vector3(0.0, 1.60, -2.10)
+	panel_light.position = Vector3(0.0, 1.45, -1.25)
 	panel_light.light_color = Color(1.0, 0.90, 0.75)
-	panel_light.light_energy = 1.0
+	panel_light.light_energy = 0.65
 	panel_light.omni_range = 2.5
 	panel_light.shadow_enabled = false
 	add_child(panel_light)
@@ -120,8 +125,8 @@ func _add_interior_lighting() -> void:
 # ─── Oil Lamps ───────────────────────────────────────────────────────
 
 func _add_oil_lamps() -> void:
-	_create_oil_lamp(Vector3(-2.05, 1.55, -2.50))
-	_create_oil_lamp(Vector3(2.05, 1.55, -2.50))
+	_create_oil_lamp(Vector3(-2.05, 1.55, -2.58))
+	_create_oil_lamp(Vector3(2.05, 1.55, -2.58))
 
 
 func _create_oil_lamp(pos: Vector3) -> void:
@@ -164,20 +169,21 @@ func _create_oil_lamp(pos: Vector3) -> void:
 func _build_instrument_panel() -> void:
 	var panel := Node3D.new()
 	panel.name = "HeroInstrumentPanel"
-	panel.position = Vector3(0.0, 1.20, -1.55)
-	panel.rotation_degrees.x = -6.0
-	panel.scale = Vector3(1.06, 1.06, 1.06)
+	panel.position = Vector3(0.0, 1.08, -1.48)
+	panel.rotation_degrees.x = -8.0
+	panel.scale = Vector3(1.0, 1.0, 1.0)
 	add_child(panel)
 
 	# ── Main metal plate ──
-	_create_box_child(panel, "MainPlate", Vector3(0, 0.22, 0), Vector3(4.35, 1.05, 0.12), metal_material)
+	_create_box_child(panel, "MainPlate", Vector3(0, 0.20, 0), Vector3(4.45, 0.98, 0.12), metal_material)
+	_add_panel_grime(panel)
 
 	# ── Lower desk plate ──
-	var lower_desk := _create_box_child(panel, "LowerDesk", Vector3(0, -0.55, 0.46), Vector3(4.35, 0.14, 1.08), metal_material)
-	lower_desk.rotation_degrees.x = -16.0
+	var lower_desk := _create_box_child(panel, "LowerDesk", Vector3(0, -0.50, 0.50), Vector3(4.45, 0.16, 1.02), metal_material)
+	lower_desk.rotation_degrees.x = -18.0
 
 	# ── Gauges: VAPOR, VAPOR, CARBÓN ──
-	var gauge_x: Array[float] = [-1.55, -0.72, 0.12]
+	var gauge_x: Array[float] = [-1.58, -0.86, -0.14]
 	var gauge_labels: Array[String] = ["VAPOR", "VAPOR", "CARBÓN"]
 	var needle_angles: Array[float] = [-32.0, -10.0, 42.0]
 	var has_red: Array[bool] = [false, false, true]
@@ -186,14 +192,14 @@ func _build_instrument_panel() -> void:
 		_create_gauge(panel, Vector3(gauge_x[i], 0.42, 0.09), gauge_labels[i], needle_angles[i], has_red[i])
 
 	# ── Station Clock (right side, larger) ──
-	_create_station_clock(panel, Vector3(1.25, 0.42, 0.09))
+	_create_station_clock(panel, Vector3(1.58, 0.42, 0.09))
 
 	# ── Supply Buttons ──
-	_create_supply_buttons(panel, Vector3(0.78, 0.42, 0.12))
+	_create_supply_buttons(panel, Vector3(0.70, 0.43, 0.12))
 
 	# ── Lever labels on lower desk ──
-	_create_label(panel, Vector3(-1.35, -0.76, 0.88), "REGULADOR DE VAPOR", 0.0048)
-	_create_label(panel, Vector3(1.10, -0.76, 0.88), "FRENO NEUMÁTICO", 0.0048)
+	_create_label(panel, Vector3(-1.35, -0.75, 0.88), "REGULADOR DE VAPOR", 0.0036)
+	_create_label(panel, Vector3(1.10, -0.75, 0.88), "FRENO NEUMATICO", 0.0036)
 
 	# ── Visual lever slots on lower desk ──
 	_create_visual_lever(panel, Vector3(-1.35, -0.67, 0.64), "REGULADOR")
@@ -201,6 +207,19 @@ func _build_instrument_panel() -> void:
 
 	# ── Rivets ──
 	_create_rivets(panel)
+
+
+func _add_panel_grime(parent: Node3D) -> void:
+	var stain_data: Array[Dictionary] = [
+		{"pos": Vector3(-1.95, 0.46, 0.075), "size": Vector3(0.34, 0.09, 0.012)},
+		{"pos": Vector3(-1.25, -0.04, 0.076), "size": Vector3(0.44, 0.07, 0.012)},
+		{"pos": Vector3(-0.30, 0.70, 0.077), "size": Vector3(0.56, 0.06, 0.012)},
+		{"pos": Vector3(0.35, -0.12, 0.078), "size": Vector3(0.34, 0.10, 0.012)},
+		{"pos": Vector3(1.25, 0.07, 0.079), "size": Vector3(0.42, 0.08, 0.012)},
+		{"pos": Vector3(1.85, 0.66, 0.080), "size": Vector3(0.28, 0.07, 0.012)}
+	]
+	for data in stain_data:
+		_create_box_child(parent, "PanelGrime", data["pos"], data["size"], grime_material)
 
 
 # ─── Gauge ──────────────────────────────────────────────────────────
@@ -231,7 +250,7 @@ func _create_gauge(parent: Node3D, pos: Vector3, label_text: String, needle_angl
 	face.mesh = face_mesh
 	face.position = pos + Vector3(0.0, 0.0, 0.030)
 	face.rotation_degrees.x = 90.0
-	face.material_override = dark_face_material
+	face.material_override = cream_face_material
 	parent.add_child(face)
 
 	# Green zone (small indicator)
@@ -243,10 +262,10 @@ func _create_gauge(parent: Node3D, pos: Vector3, label_text: String, needle_angl
 	var green_inst := MeshInstance3D.new()
 	green_inst.name = "%sGreen" % label_text
 	green_inst.mesh = green_mesh
-	green_inst.position = pos + Vector3(-0.04, 0.0, 0.040)
+	green_inst.position = pos + Vector3(-0.045, 0.035, 0.043)
 	green_inst.rotation_degrees.x = 90.0
 	green_inst.material_override = green_zone_material
-	green_inst.scale = Vector3(0.28, 0.28, 1.0)
+	green_inst.scale = Vector3(0.20, 0.12, 1.0)
 	parent.add_child(green_inst)
 
 	# Red zone on CARBÓN gauge
@@ -259,10 +278,10 @@ func _create_gauge(parent: Node3D, pos: Vector3, label_text: String, needle_angl
 		var red_inst := MeshInstance3D.new()
 		red_inst.name = "%sRed" % label_text
 		red_inst.mesh = red_mesh
-		red_inst.position = pos + Vector3(0.08, 0.0, 0.044)
+		red_inst.position = pos + Vector3(0.080, 0.010, 0.047)
 		red_inst.rotation_degrees.x = 90.0
 		red_inst.material_override = red_zone_material
-		red_inst.scale = Vector3(0.22, 0.22, 1.0)
+		red_inst.scale = Vector3(0.18, 0.13, 1.0)
 		parent.add_child(red_inst)
 
 	# Center pivot cap
@@ -289,7 +308,7 @@ func _create_gauge(parent: Node3D, pos: Vector3, label_text: String, needle_angl
 		var tick_r := 0.175
 		var tx := pos.x + cos(angle) * tick_r
 		var ty := pos.y + sin(angle) * tick_r
-		_create_box_child(parent, "%sTick%d" % [label_text, t], Vector3(tx, ty, pos.z + 0.078), Vector3(0.010, 0.028, 0.008), white_tick_material)
+		_create_box_child(parent, "%sTick%d" % [label_text, t], Vector3(tx, ty, pos.z + 0.078), Vector3(0.010, 0.028, 0.008), needle_material)
 
 	# Glass dome
 	var dome_mesh := CylinderMesh.new()
@@ -306,7 +325,7 @@ func _create_gauge(parent: Node3D, pos: Vector3, label_text: String, needle_angl
 	parent.add_child(dome)
 
 	# Label under gauge
-	_create_label(parent, pos + Vector3(0.0, -0.34, 0.095), label_text, 0.0048)
+	_create_label(parent, pos + Vector3(0.0, -0.34, 0.095), label_text, 0.0033)
 
 
 # ─── Station Clock ──────────────────────────────────────────────────
@@ -370,17 +389,17 @@ func _create_station_clock(parent: Node3D, pos: Vector3) -> void:
 	parent.add_child(cap)
 
 	# Label
-	_create_label(parent, pos + Vector3(0.0, -0.40, 0.10), "RELOJ DE ESTACIÓN", 0.0042)
+	_create_label(parent, pos + Vector3(0.0, -0.40, 0.10), "RELOJ DE ESTACION", 0.0031)
 
 
 # ─── Supply Buttons ─────────────────────────────────────────────────
 
 func _create_supply_buttons(parent: Node3D, pos: Vector3) -> void:
-	_create_box_child(parent, "SupplyBG", pos + Vector3(0.0, 0.0, 0.0), Vector3(0.96, 0.06, 0.22), dark_slot_material)
+	_create_box_child(parent, "SupplyBG", pos + Vector3(0.0, 0.0, 0.025), Vector3(0.86, 0.58, 0.060), label_bg_material)
 
-	_create_label(parent, Vector3(pos.x, pos.y + 0.16, pos.z + 0.08), "COMPRAR CARBÓN", 0.006)
-	_create_label(parent, Vector3(pos.x, pos.y - 0.02, pos.z + 0.08), "COMPRAR", 0.006)
-	_create_label(parent, Vector3(pos.x, pos.y - 0.20, pos.z + 0.08), "RECONTRAER", 0.006)
+	_create_label(parent, Vector3(pos.x, pos.y + 0.18, pos.z + 0.08), "COMPRAR CARBON", 0.0030)
+	_create_label(parent, Vector3(pos.x, pos.y, pos.z + 0.08), "COMPRAR", 0.0030)
+	_create_label(parent, Vector3(pos.x, pos.y - 0.18, pos.z + 0.08), "REINICIAR", 0.0030)
 
 
 # ─── Visual Lever (decorative slots on lower desk) ──────────────────
@@ -445,11 +464,11 @@ func _create_rivet(parent: Node3D, pos: Vector3) -> void:
 # ─── Label ──────────────────────────────────────────────────────────
 
 func _create_label(parent: Node3D, pos: Vector3, text: String, pixel_size: float) -> void:
-	_create_box_child(parent, "%sPlate" % text, pos + Vector3(0.0, 0.0, 0.030), Vector3(max(0.34, float(text.length()) * 0.058), 0.070, 0.045), label_bg_material)
+	_create_box_child(parent, "%sPlate" % text, pos + Vector3(0.0, 0.0, 0.030), Vector3(max(0.24, float(text.length()) * 0.036), 0.052, 0.040), label_bg_material)
 	var label := Label3D.new()
 	label.name = "%sLabel" % text
 	label.text = text
-	label.font_size = 24
+	label.font_size = 16
 	label.pixel_size = pixel_size
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.modulate = Color(0.92, 0.82, 0.64)

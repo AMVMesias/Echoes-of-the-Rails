@@ -7,7 +7,7 @@ const STATION_CONFIG_PATH := "res://resources/configs/StationConfig.tres"
 @export var train_path: NodePath
 @export var station_scene: PackedScene
 @export var station_config: StationConfig
-@export var generated_station_distances: Array[float] = [160.0, 340.0, 525.0, 715.0, 910.0]
+@export var generated_station_distances: Array[float] = [180.0, 470.0, 790.0, 1190.0, 1620.0]
 @export var base_passengers_per_station: int = 3
 
 var stations: Array[Station] = []

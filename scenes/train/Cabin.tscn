@@ -44,7 +44,7 @@ size = Vector3(0.18, 1.9, 0.18)
 [node name="Floor" type="MeshInstance3D" parent="."]
 position = Vector3(0, 0, 0)
 mesh = SubResource("BoxMesh_floor")
-material_override = ExtResource("7_iron")
+material_override = ExtResource("11_rusted")
 
 [node name="BackWall" type="MeshInstance3D" parent="."]
 position = Vector3(0, 1.55, 3.0)
@@ -72,9 +72,9 @@ mesh = SubResource("BoxMesh_front_top")
 material_override = ExtResource("10_dark_wood")
 
 [node name="FrontSill" type="MeshInstance3D" parent="."]
-position = Vector3(0, 0.82, -3.0)
+position = Vector3(0, 0.70, -3.0)
 mesh = SubResource("BoxMesh_front_sill")
-material_override = ExtResource("7_iron")
+material_override = ExtResource("10_dark_wood")
 
 [node name="FrontLeftPost" type="MeshInstance3D" parent="."]
 position = Vector3(-2.45, 2.0, -3.0)

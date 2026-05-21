@@ -2,7 +2,7 @@ class_name TrackPathBuilder
 extends Path3D
 
 @export var generate_placeholder_rails: bool = true
-@export var rail_segment_count: int = 48
+@export var rail_segment_count: int = 96
 
 
 func _ready() -> void:
@@ -20,7 +20,10 @@ func _build_curve() -> void:
 	curve.add_point(Vector3(-26.0, 4.0, -345.0), Vector3(28.0, 0.0, 60.0), Vector3(-28.0, 0.0, -60.0))
 	curve.add_point(Vector3(36.0, 7.5, -535.0), Vector3(-35.0, 0.0, 55.0), Vector3(35.0, 0.0, -55.0))
 	curve.add_point(Vector3(-18.0, 11.0, -725.0), Vector3(30.0, 0.0, 60.0), Vector3(-30.0, 0.0, -60.0))
-	curve.add_point(Vector3(8.0, 14.0, -960.0), Vector3(-10.0, 0.0, 70.0), Vector3.ZERO)
+	curve.add_point(Vector3(8.0, 14.0, -960.0), Vector3(-10.0, 0.0, 70.0), Vector3(28.0, 0.0, -85.0))
+	curve.add_point(Vector3(55.0, 17.0, -1240.0), Vector3(-38.0, 0.0, 85.0), Vector3(32.0, 0.0, -80.0))
+	curve.add_point(Vector3(-35.0, 20.0, -1510.0), Vector3(44.0, 0.0, 80.0), Vector3(-38.0, 0.0, -92.0))
+	curve.add_point(Vector3(12.0, 23.0, -1810.0), Vector3(-24.0, 0.0, 90.0), Vector3.ZERO)
 
 
 func _build_placeholder_rails() -> void:

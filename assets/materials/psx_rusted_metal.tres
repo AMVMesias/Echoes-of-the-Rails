@@ -4,6 +4,6 @@
 
 [resource]
 shader = ExtResource("1_psx")
-shader_parameter/albedo_color = Color(0.26, 0.22, 0.18, 1)
+shader_parameter/albedo_color = Color(0.23, 0.21, 0.18, 1)
 shader_parameter/vertex_snap_strength = 0.06
-shader_parameter/color_steps = 22.0
+shader_parameter/color_steps = 18.0
