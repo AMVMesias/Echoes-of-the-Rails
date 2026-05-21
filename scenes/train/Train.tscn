@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3]
+[gd_scene load_steps=16 format=3]
 
 [ext_resource type="Script" path="res://scripts/train/TrainController.gd" id="1_train_controller"]
 [ext_resource type="Script" path="res://scripts/train/FuelSystem.gd" id="2_fuel"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" path="res://scenes/audio/TrainAudioController.tscn" id="7_audio"]
 [ext_resource type="Material" path="res://assets/materials/psx_iron.tres" id="8_iron"]
 [ext_resource type="Material" path="res://assets/materials/steam_material.tres" id="9_steam"]
+[ext_resource type="Script" path="res://scripts/train/SteamPlumeController.gd" id="10_steam_controller"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_base"]
 size = Vector3(2.0, 0.55, 5.4)
@@ -26,13 +27,13 @@ height = 1.1
 radial_segments = 10
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_steam"]
-direction = Vector3(0, 1, -0.25)
-spread = 18.0
-initial_velocity_min = 1.0
-initial_velocity_max = 2.4
-gravity = Vector3(0, 0.25, 0)
-scale_min = 0.6
-scale_max = 1.4
+direction = Vector3(0, 1.65, -0.45)
+spread = 12.0
+initial_velocity_min = 1.5
+initial_velocity_max = 3.8
+gravity = Vector3(0, 0.55, -0.15)
+scale_min = 0.3
+scale_max = 0.9
 
 [sub_resource type="QuadMesh" id="QuadMesh_steam"]
 material = ExtResource("9_steam")
@@ -61,12 +62,49 @@ mesh = SubResource("CylinderMesh_chimney")
 material_override = ExtResource("8_iron")
 
 [node name="SteamParticles" type="GPUParticles3D" parent="LocomotiveModel"]
-position = Vector3(0, 2.22, -3.85)
-amount = 36
-lifetime = 2.4
+position = Vector3(0, 3.18, -4.45)
+amount = 24
+lifetime = 1.55
 preprocess = 0.4
+local_coords = true
+visibility_aabb = AABB(-10, -2, -10, 20, 12, 20)
 process_material = SubResource("ParticleProcessMaterial_steam")
 draw_pass_1 = SubResource("QuadMesh_steam")
+script = ExtResource("10_steam_controller")
+vertical_lift = 1.75
+forward_push = -0.55
+cabin_guard_front_z = -1.25
+minimum_safe_forward_push = -0.22
+
+[node name="SideSteamLeft" type="GPUParticles3D" parent="LocomotiveModel"]
+position = Vector3(-1.02, 1.55, -2.35)
+amount = 8
+lifetime = 0.8
+preprocess = 0.2
+local_coords = true
+visibility_aabb = AABB(-10, -2, -10, 20, 12, 20)
+process_material = SubResource("ParticleProcessMaterial_steam")
+draw_pass_1 = SubResource("QuadMesh_steam")
+script = ExtResource("10_steam_controller")
+plume_side_bias = -1.0
+is_side_vent = true
+cabin_guard_front_z = -1.25
+minimum_safe_forward_push = -0.22
+
+[node name="SideSteamRight" type="GPUParticles3D" parent="LocomotiveModel"]
+position = Vector3(1.02, 1.55, -2.35)
+amount = 8
+lifetime = 0.8
+preprocess = 0.2
+local_coords = true
+visibility_aabb = AABB(-10, -2, -10, 20, 12, 20)
+process_material = SubResource("ParticleProcessMaterial_steam")
+draw_pass_1 = SubResource("QuadMesh_steam")
+script = ExtResource("10_steam_controller")
+plume_side_bias = 1.0
+is_side_vent = true
+cabin_guard_front_z = -1.25
+minimum_safe_forward_push = -0.22
 
 [node name="Cabin" parent="." instance=ExtResource("6_cabin")]
 position = Vector3(0, 0.35, 2.0)
