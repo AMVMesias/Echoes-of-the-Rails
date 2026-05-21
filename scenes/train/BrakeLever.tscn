@@ -1,13 +1,29 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource type="Script" path="res://scripts/interaction/LeverInteractable.gd" id="1_lever"]
 [ext_resource type="Material" path="res://assets/materials/psx_iron.tres" id="2_iron"]
+[ext_resource type="Material" path="res://assets/materials/psx_rusted_metal.tres" id="3_rusted"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_brake"]
-size = Vector3(0.35, 1.1, 0.35)
+size = Vector3(0.85, 0.30, 0.35)
 
-[sub_resource type="BoxMesh" id="BoxMesh_handle"]
-size = Vector3(0.24, 1.0, 0.24)
+[sub_resource type="BoxMesh" id="BoxMesh_slot"]
+size = Vector3(0.70, 0.06, 0.20)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bar"]
+top_radius = 0.032
+bottom_radius = 0.032
+height = 0.62
+radial_segments = 10
+
+[sub_resource type="SphereMesh" id="SphereMesh_handle"]
+radius = 0.088
+height = 0.16
+radial_segments = 14
+
+[sub_resource type="StandardMaterial3D" id="Mat_red_handle"]
+albedo_color = Color(0.58, 0.06, 0.035, 1)
+roughness = 0.62
 
 [node name="BrakeLever" type="Area3D"]
 script = ExtResource("1_lever")
@@ -19,7 +35,18 @@ shape = SubResource("BoxShape3D_brake")
 
 [node name="Pivot" type="Node3D" parent="."]
 
-[node name="Handle" type="MeshInstance3D" parent="Pivot"]
-position = Vector3(0, 0.5, 0)
-mesh = SubResource("BoxMesh_handle")
+[node name="Slot" type="MeshInstance3D" parent="Pivot"]
+position = Vector3(0, -0.02, 0)
+mesh = SubResource("BoxMesh_slot")
+material_override = ExtResource("3_rusted")
+
+[node name="Bar" type="MeshInstance3D" parent="Pivot"]
+position = Vector3(0.18, 0.04, 0)
+rotation_degrees = Vector3(0, 0, 90)
+mesh = SubResource("CylinderMesh_bar")
 material_override = ExtResource("2_iron")
+
+[node name="Handle" type="MeshInstance3D" parent="Pivot"]
+position = Vector3(0.48, 0.04, 0)
+mesh = SubResource("SphereMesh_handle")
+material_override = SubResource("Mat_red_handle")

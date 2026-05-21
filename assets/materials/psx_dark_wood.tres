@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+
+[ext_resource type="Shader" path="res://assets/shaders/psx_retro_shader.gdshader" id="1_psx"]
+
+[resource]
+shader = ExtResource("1_psx")
+shader_parameter/albedo_color = Color(0.38, 0.26, 0.18, 1)
+shader_parameter/vertex_snap_strength = 0.10
+shader_parameter/color_steps = 18.0

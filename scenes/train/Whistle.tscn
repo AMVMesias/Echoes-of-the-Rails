@@ -1,14 +1,32 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="Script" path="res://scripts/interaction/ButtonInteractable.gd" id="1_button"]
 [ext_resource type="Material" path="res://assets/materials/psx_iron.tres" id="2_iron"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_whistle"]
-radius = 0.25
-
-[sub_resource type="SphereMesh" id="SphereMesh_whistle"]
 radius = 0.18
-height = 0.36
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_chain"]
+top_radius = 0.012
+bottom_radius = 0.012
+height = 0.55
+radial_segments = 8
+
+[sub_resource type="SphereMesh" id="SphereMesh_pull"]
+radius = 0.06
+height = 0.10
+radial_segments = 10
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_valve"]
+top_radius = 0.04
+bottom_radius = 0.055
+height = 0.12
+radial_segments = 10
+
+[sub_resource type="StandardMaterial3D" id="Mat_chain"]
+albedo_color = Color(0.35, 0.28, 0.18, 1)
+roughness = 0.65
+metallic = 0.2
 
 [node name="Whistle" type="Area3D"]
 script = ExtResource("1_button")
@@ -17,6 +35,17 @@ command_name = "WHISTLE"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_whistle")
 
-[node name="BellPull" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_whistle")
+[node name="Valve" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.32, 0)
+mesh = SubResource("CylinderMesh_valve")
 material_override = ExtResource("2_iron")
+
+[node name="Chain" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.0, 0)
+mesh = SubResource("CylinderMesh_chain")
+material_override = SubResource("Mat_chain")
+
+[node name="PullHandle" type="MeshInstance3D" parent="."]
+position = Vector3(0, -0.30, 0)
+mesh = SubResource("SphereMesh_pull")
+material_override = SubResource("Mat_chain")
