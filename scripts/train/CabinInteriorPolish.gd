@@ -47,46 +47,47 @@ func _mat(color: Color, roughness: float, metallic: float) -> StandardMaterial3D
 func _add_interior_light() -> void:
 	var light := OmniLight3D.new()
 	light.name = "WarmCabinLight"
-	light.position = Vector3(0.0, 2.05, 0.15)
+	light.position = Vector3(0.0, 2.85, 0.0)
 	light.light_color = Color(1.0, 0.82, 0.58)
-	light.light_energy = 3.8
-	light.omni_range = 5.5
+	light.light_energy = 4.6
+	light.omni_range = 7.5
 	light.shadow_enabled = false
 	add_child(light)
 
 
 func _add_oil_lamps() -> void:
-	_create_oil_lamp(Vector3(-1.52, 1.12, -1.18))
-	_create_oil_lamp(Vector3(1.52, 1.12, -1.18))
+	_create_oil_lamp(Vector3(-2.05, 1.55, -2.50))
+	_create_oil_lamp(Vector3(2.05, 1.55, -2.50))
 
 
 func _build_reference_panel() -> void:
 	var panel := Node3D.new()
 	panel.name = "HeroInstrumentPanel"
-	panel.position = Vector3(0.0, 0.88, -0.84)
-	panel.rotation_degrees.x = -18.0
+	panel.position = Vector3(0.0, 1.35, -2.25)
+	panel.rotation_degrees.x = -20.0
+	panel.scale = Vector3(1.16, 1.16, 1.16)
 	add_child(panel)
 
-	_create_box_child(panel, "MainPlate", Vector3(0, 0, 0), Vector3(3.65, 0.12, 0.88), metal_material)
-	_create_box_child(panel, "LowerDesk", Vector3(0, -0.40, 0.32), Vector3(3.65, 0.16, 0.92), metal_material)
+	_create_box_child(panel, "MainPlate", Vector3(0, 0, 0), Vector3(4.25, 0.12, 0.92), metal_material)
+	_create_box_child(panel, "LowerDesk", Vector3(0, -0.40, 0.34), Vector3(4.25, 0.16, 0.98), metal_material)
 
 	var gauge_positions: Array[Vector3] = [
-		Vector3(-1.28, 0.10, -0.08),
-		Vector3(-0.55, 0.10, -0.08),
-		Vector3(0.18, 0.10, -0.08),
-		Vector3(1.08, 0.10, -0.08)
+		Vector3(-1.55, 0.10, -0.08),
+		Vector3(-0.72, 0.10, -0.08),
+		Vector3(0.12, 0.10, -0.08),
+		Vector3(1.25, 0.10, -0.08)
 	]
 	var gauge_labels: Array[String] = ["VAPOR", "PRESION", "CARBON", "RELOJ"]
 	for i in range(gauge_positions.size()):
 		_create_gauge(panel, gauge_positions[i], gauge_labels[i], i)
 
-	_create_label(panel, Vector3(0.68, 0.22, -0.51), "COMPRAR CARBON", 0.006)
-	_create_label(panel, Vector3(0.68, 0.02, -0.51), "COMPRAR", 0.006)
-	_create_label(panel, Vector3(0.68, -0.18, -0.51), "REINICIAR", 0.006)
-	_create_box_child(panel, "CoalButtonPlate", Vector3(0.68, 0.02, -0.50), Vector3(0.86, 0.06, 0.22), dark_material)
+	_create_label(panel, Vector3(0.78, 0.22, -0.51), "COMPRAR CARBON", 0.006)
+	_create_label(panel, Vector3(0.78, 0.02, -0.51), "COMPRAR", 0.006)
+	_create_label(panel, Vector3(0.78, -0.18, -0.51), "REINICIAR", 0.006)
+	_create_box_child(panel, "CoalButtonPlate", Vector3(0.78, 0.02, -0.50), Vector3(0.96, 0.06, 0.22), dark_material)
 
-	_create_visual_lever(panel, Vector3(-1.15, -0.53, 0.14), "REGULADOR DE VAPOR", Color(0.78, 0.18, 0.09))
-	_create_visual_lever(panel, Vector3(0.85, -0.53, 0.14), "FRENO NEUMATICO", Color(0.70, 0.10, 0.08))
+	_create_visual_lever(panel, Vector3(-1.35, -0.53, 0.15), "REGULADOR DE VAPOR", Color(0.78, 0.18, 0.09))
+	_create_visual_lever(panel, Vector3(1.10, -0.53, 0.15), "FRENO NEUMATICO", Color(0.70, 0.10, 0.08))
 	_create_rivets(panel)
 
 

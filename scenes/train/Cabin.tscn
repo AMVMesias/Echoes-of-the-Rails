@@ -11,31 +11,31 @@
 [ext_resource type="Script" path="res://scripts/train/CabinInteriorPolish.gd" id="9_polish"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_floor"]
-size = Vector3(3.8, 0.18, 3.2)
+size = Vector3(5.2, 0.18, 6.2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_wall"]
-size = Vector3(3.8, 2.4, 0.16)
+size = Vector3(5.2, 2.8, 0.16)
 
 [sub_resource type="BoxMesh" id="BoxMesh_side_wall"]
-size = Vector3(0.16, 0.95, 3.2)
+size = Vector3(0.16, 1.15, 6.2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_glass"]
-size = Vector3(2.55, 0.04, 0.88)
+size = Vector3(3.55, 0.04, 1.15)
 
 [sub_resource type="BoxMesh" id="BoxMesh_roof"]
-size = Vector3(3.8, 0.18, 3.2)
+size = Vector3(5.2, 0.18, 6.2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_front_top"]
-size = Vector3(3.8, 0.28, 0.18)
+size = Vector3(5.2, 0.32, 0.18)
 
 [sub_resource type="BoxMesh" id="BoxMesh_front_sill"]
-size = Vector3(3.8, 0.22, 0.18)
+size = Vector3(5.2, 0.24, 0.18)
 
 [sub_resource type="BoxMesh" id="BoxMesh_front_post"]
-size = Vector3(0.22, 1.55, 0.18)
+size = Vector3(0.24, 2.05, 0.18)
 
 [sub_resource type="BoxMesh" id="BoxMesh_side_post"]
-size = Vector3(0.18, 1.5, 0.18)
+size = Vector3(0.18, 1.9, 0.18)
 
 [node name="Cabin" type="Node3D"]
 
@@ -45,57 +45,57 @@ mesh = SubResource("BoxMesh_floor")
 material_override = ExtResource("7_iron")
 
 [node name="BackWall" type="MeshInstance3D" parent="."]
-position = Vector3(0, 1.25, 1.45)
+position = Vector3(0, 1.55, 3.0)
 mesh = SubResource("BoxMesh_wall")
 material_override = ExtResource("7_iron")
 
 [node name="LeftWall" type="MeshInstance3D" parent="."]
-position = Vector3(-1.9, 0.58, 0)
+position = Vector3(-2.6, 0.68, 0)
 mesh = SubResource("BoxMesh_side_wall")
 material_override = ExtResource("7_iron")
 
 [node name="RightWall" type="MeshInstance3D" parent="."]
-position = Vector3(1.9, 0.58, 0)
+position = Vector3(2.6, 0.68, 0)
 mesh = SubResource("BoxMesh_side_wall")
 material_override = ExtResource("7_iron")
 
 [node name="Roof" type="MeshInstance3D" parent="."]
-position = Vector3(0, 2.36, 0)
+position = Vector3(0, 3.25, 0)
 mesh = SubResource("BoxMesh_roof")
 material_override = ExtResource("7_iron")
 
 [node name="FrontTopBeam" type="MeshInstance3D" parent="."]
-position = Vector3(0, 2.18, -1.45)
+position = Vector3(0, 3.05, -3.0)
 mesh = SubResource("BoxMesh_front_top")
 material_override = ExtResource("7_iron")
 
 [node name="FrontSill" type="MeshInstance3D" parent="."]
-position = Vector3(0, 0.88, -1.45)
+position = Vector3(0, 1.02, -3.0)
 mesh = SubResource("BoxMesh_front_sill")
 material_override = ExtResource("7_iron")
 
 [node name="FrontLeftPost" type="MeshInstance3D" parent="."]
-position = Vector3(-1.76, 1.53, -1.45)
+position = Vector3(-2.45, 2.0, -3.0)
 mesh = SubResource("BoxMesh_front_post")
 material_override = ExtResource("7_iron")
 
 [node name="FrontRightPost" type="MeshInstance3D" parent="."]
-position = Vector3(1.76, 1.53, -1.45)
+position = Vector3(2.45, 2.0, -3.0)
 mesh = SubResource("BoxMesh_front_post")
 material_override = ExtResource("7_iron")
 
 [node name="LeftFrontWindowPost" type="MeshInstance3D" parent="."]
-position = Vector3(-1.9, 1.55, -1.05)
+position = Vector3(-2.6, 2.0, -2.05)
 mesh = SubResource("BoxMesh_side_post")
 material_override = ExtResource("7_iron")
 
 [node name="RightFrontWindowPost" type="MeshInstance3D" parent="."]
-position = Vector3(1.9, 1.55, -1.05)
+position = Vector3(2.6, 2.0, -2.05)
 mesh = SubResource("BoxMesh_side_post")
 material_override = ExtResource("7_iron")
 
 [node name="DirtyGlass" type="MeshInstance3D" parent="."]
-position = Vector3(0, 1.55, -1.52)
+position = Vector3(0, 2.02, -3.08)
 mesh = SubResource("BoxMesh_glass")
 material_override = ExtResource("8_glass")
 
@@ -105,11 +105,11 @@ position = Vector3(0, 0.83, -0.54)
 rotation_degrees = Vector3(-34, 0, 0)
 
 [node name="SteamRegulator" parent="." instance=ExtResource("2_regulator")]
-position = Vector3(-1.08, 0.78, -0.22)
+position = Vector3(-1.42, 1.08, -1.35)
 rotation_degrees = Vector3(0, 0, -18)
 
 [node name="BrakeLever" parent="." instance=ExtResource("3_brake")]
-position = Vector3(1.08, 0.78, -0.22)
+position = Vector3(1.42, 1.08, -1.35)
 rotation_degrees = Vector3(0, 0, 18)
 
 [node name="SupplyPanel" parent="." instance=ExtResource("4_supply")]
@@ -118,10 +118,10 @@ position = Vector3(0, 0.63, 0.18)
 rotation_degrees = Vector3(-28, 0, 0)
 
 [node name="Whistle" parent="." instance=ExtResource("5_whistle")]
-position = Vector3(0.0, 1.58, -0.48)
+position = Vector3(0.0, 2.22, -1.75)
 
 [node name="XROrigin" parent="." instance=ExtResource("6_xr")]
-position = Vector3(0, 0.02, 0.82)
+position = Vector3(0, 0.02, 0.22)
 
 [node name="CabinInteriorPolish" type="Node3D" parent="."]
 script = ExtResource("9_polish")
