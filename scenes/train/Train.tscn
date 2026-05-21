@@ -11,12 +11,12 @@
 [ext_resource type="Material" path="res://assets/materials/steam_material.tres" id="9_steam"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_base"]
-size = Vector3(2.2, 0.7, 4.2)
+size = Vector3(2.0, 0.55, 5.4)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_boiler"]
-top_radius = 0.62
-bottom_radius = 0.62
-height = 2.8
+top_radius = 0.52
+bottom_radius = 0.52
+height = 3.2
 radial_segments = 12
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_chimney"]
@@ -45,23 +45,23 @@ progress_loop = false
 [node name="LocomotiveModel" type="Node3D" parent="."]
 
 [node name="Base" type="MeshInstance3D" parent="LocomotiveModel"]
-position = Vector3(0, 0.55, 0)
+position = Vector3(0, 0.32, -1.55)
 mesh = SubResource("BoxMesh_base")
 material_override = ExtResource("8_iron")
 
 [node name="Boiler" type="MeshInstance3D" parent="LocomotiveModel"]
-position = Vector3(0, 1.05, -1.0)
+position = Vector3(0, 0.92, -2.55)
 rotation_degrees = Vector3(90, 0, 0)
 mesh = SubResource("CylinderMesh_boiler")
 material_override = ExtResource("8_iron")
 
 [node name="Chimney" type="MeshInstance3D" parent="LocomotiveModel"]
-position = Vector3(0, 1.95, -2.0)
+position = Vector3(0, 1.62, -3.85)
 mesh = SubResource("CylinderMesh_chimney")
 material_override = ExtResource("8_iron")
 
 [node name="SteamParticles" type="GPUParticles3D" parent="LocomotiveModel"]
-position = Vector3(0, 2.7, -2.0)
+position = Vector3(0, 2.22, -3.85)
 amount = 36
 lifetime = 2.4
 preprocess = 0.4
@@ -69,7 +69,7 @@ process_material = SubResource("ParticleProcessMaterial_steam")
 draw_pass_1 = SubResource("QuadMesh_steam")
 
 [node name="Cabin" parent="." instance=ExtResource("6_cabin")]
-position = Vector3(0, 0.45, 1.0)
+position = Vector3(0, 0.35, 2.0)
 
 [node name="FuelSystem" type="Node" parent="."]
 script = ExtResource("2_fuel")

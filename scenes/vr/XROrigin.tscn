@@ -1,17 +1,21 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/vr/VRController.tscn" id="1_controller"]
+[ext_resource type="Script" path="res://scripts/vr/DesktopLookCamera.gd" id="2_desktop_look"]
 
 [node name="XROrigin" type="XROrigin3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 current = true
-position = Vector3(0, 1.55, 0)
+position = Vector3(0, 1.35, 0.38)
+rotation_degrees = Vector3(-4, 0, 0)
+fov = 82.0
+script = ExtResource("2_desktop_look")
 
 [node name="LeftController" parent="." instance=ExtResource("1_controller")]
 tracker = &"left_hand"
-position = Vector3(-0.32, 1.25, -0.35)
+position = Vector3(-0.42, 1.08, -0.42)
 
 [node name="RightController" parent="." instance=ExtResource("1_controller")]
 tracker = &"right_hand"
-position = Vector3(0.32, 1.25, -0.35)
+position = Vector3(0.42, 1.08, -0.42)

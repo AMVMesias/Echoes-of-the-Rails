@@ -114,13 +114,13 @@ func _on_lever_value_changed(control_name: String, value: float) -> void:
 
 func _update_desktop_test_controls(delta: float) -> void:
 	if Input.is_key_pressed(KEY_W):
-		set_throttle(acceleration_input + delta)
+		EventBus.lever_value_changed.emit("SteamRegulator", clampf(acceleration_input + delta, 0.0, 1.0))
 	if Input.is_key_pressed(KEY_S):
-		set_throttle(acceleration_input - delta)
+		EventBus.lever_value_changed.emit("SteamRegulator", clampf(acceleration_input - delta, 0.0, 1.0))
 	if Input.is_key_pressed(KEY_D):
-		set_brake(brake_input + delta)
+		EventBus.lever_value_changed.emit("BrakeLever", clampf(brake_input + delta, 0.0, 1.0))
 	if Input.is_key_pressed(KEY_A):
-		set_brake(brake_input - delta)
+		EventBus.lever_value_changed.emit("BrakeLever", clampf(brake_input - delta, 0.0, 1.0))
 	if Input.is_key_pressed(KEY_B):
 		EventBus.buy_coal_requested.emit()
 	if Input.is_key_pressed(KEY_H):

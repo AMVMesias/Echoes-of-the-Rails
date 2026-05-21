@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://scripts/main/MainGame.gd" id="1_main"]
 [ext_resource type="PackedScene" path="res://scenes/environment/FogWorld.tscn" id="2_fog"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" path="res://scenes/train/Train.tscn" id="6_train"]
 [ext_resource type="Script" path="res://scripts/station/StationManager.gd" id="7_station_manager"]
 [ext_resource type="PackedScene" path="res://scenes/station/Station.tscn" id="8_station"]
+[ext_resource type="Script" path="res://scripts/environment/RouteSceneryBuilder.gd" id="9_scenery"]
 
 [node name="MainGame" type="Node3D"]
 script = ExtResource("1_main")
@@ -21,6 +22,10 @@ script = ExtResource("1_main")
 [node name="TrackPath" parent="." instance=ExtResource("5_track")]
 
 [node name="Train" parent="TrackPath" instance=ExtResource("6_train")]
+
+[node name="RouteScenery" type="Node3D" parent="."]
+script = ExtResource("9_scenery")
+track_path = NodePath("../TrackPath")
 
 [node name="StationManager" type="Node3D" parent="."]
 script = ExtResource("7_station_manager")

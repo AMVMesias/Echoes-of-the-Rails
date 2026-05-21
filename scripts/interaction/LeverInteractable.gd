@@ -19,6 +19,8 @@ func _ready() -> void:
 	super()
 	_visual_pivot = get_node_or_null("Pivot") as Node3D
 	set_value(current_value)
+	if not EventBus.lever_value_changed.is_connected(_on_external_lever_value_changed):
+		EventBus.lever_value_changed.connect(_on_external_lever_value_changed)
 
 
 func interact() -> void:
@@ -39,3 +41,11 @@ func set_value(value: float) -> void:
 
 func _set_value_internal(value: float) -> void:
 	_current_value = clamp(value, min_value, max_value)
+
+
+func _on_external_lever_value_changed(changed_control_name: String, value: float) -> void:
+	if changed_control_name != control_name:
+		return
+	_set_value_internal(lerpf(min_value, max_value, clampf(value, 0.0, 1.0)))
+	if _visual_pivot != null:
+		_visual_pivot.rotation_degrees.x = lerpf(-35.0, 35.0, clampf(value, 0.0, 1.0))

@@ -2,19 +2,19 @@
 
 [sub_resource type="Environment" id="Environment_fog"]
 background_mode = 1
-background_color = Color(0.39, 0.43, 0.46, 1)
+background_color = Color(0.52, 0.59, 0.63, 1)
 ambient_light_source = 2
-ambient_light_color = Color(0.5, 0.56, 0.6, 1)
-ambient_light_energy = 0.55
+ambient_light_color = Color(0.64, 0.67, 0.65, 1)
+ambient_light_energy = 0.85
 fog_enabled = true
-fog_light_color = Color(0.62, 0.68, 0.72, 1)
-fog_density = 0.035
+fog_light_color = Color(0.70, 0.74, 0.76, 1)
+fog_density = 0.008
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.025
+volumetric_fog_density = 0.006
 tonemap_mode = 2
 
 [sub_resource type="FogMaterial" id="FogMaterial_local"]
-density = 0.035
+density = 0.012
 albedo = Color(0.62, 0.68, 0.72, 1)
 
 [node name="FogWorld" type="Node3D"]
