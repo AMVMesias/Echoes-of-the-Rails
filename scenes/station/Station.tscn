@@ -1,0 +1,84 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scripts/station/Station.gd" id="1_station"]
+[ext_resource type="PackedScene" path="res://scenes/station/Platform.tscn" id="2_platform"]
+[ext_resource type="PackedScene" path="res://scenes/station/Passenger.tscn" id="3_passenger"]
+[ext_resource type="PackedScene" path="res://scenes/audio/StationBell.tscn" id="4_bell"]
+[ext_resource type="Material" path="res://assets/materials/fog_dissolve_material.tres" id="5_fog_mat"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_stop"]
+size = Vector3(10.0, 3.0, 5.0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_roof"]
+size = Vector3(9.6, 0.22, 2.7)
+
+[sub_resource type="BoxMesh" id="BoxMesh_post"]
+size = Vector3(0.18, 2.0, 0.18)
+
+[sub_resource type="FogMaterial" id="FogMaterial_station"]
+density = 0.08
+albedo = Color(0.62, 0.68, 0.72, 1)
+
+[node name="Station" type="Node3D"]
+script = ExtResource("1_station")
+
+[node name="Platform" parent="." instance=ExtResource("2_platform")]
+
+[node name="StopArea" type="Area3D" parent="."]
+monitoring = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StopArea"]
+position = Vector3(0, 1.5, 0)
+shape = SubResource("BoxShape3D_stop")
+
+[node name="Roof" type="MeshInstance3D" parent="."]
+position = Vector3(0, 2.3, 0)
+mesh = SubResource("BoxMesh_roof")
+material_override = ExtResource("5_fog_mat")
+
+[node name="PostA" type="MeshInstance3D" parent="."]
+position = Vector3(-4.2, 1.2, -0.9)
+mesh = SubResource("BoxMesh_post")
+material_override = ExtResource("5_fog_mat")
+
+[node name="PostB" type="MeshInstance3D" parent="."]
+position = Vector3(4.2, 1.2, -0.9)
+mesh = SubResource("BoxMesh_post")
+material_override = ExtResource("5_fog_mat")
+
+[node name="PostC" type="MeshInstance3D" parent="."]
+position = Vector3(-4.2, 1.2, 0.9)
+mesh = SubResource("BoxMesh_post")
+material_override = ExtResource("5_fog_mat")
+
+[node name="PostD" type="MeshInstance3D" parent="."]
+position = Vector3(4.2, 1.2, 0.9)
+mesh = SubResource("BoxMesh_post")
+material_override = ExtResource("5_fog_mat")
+
+[node name="Passengers" type="Node3D" parent="."]
+position = Vector3(0, 0.45, 0.65)
+
+[node name="Passenger1" parent="Passengers" instance=ExtResource("3_passenger")]
+position = Vector3(-2.8, 0, 0)
+
+[node name="Passenger2" parent="Passengers" instance=ExtResource("3_passenger")]
+position = Vector3(-1.4, 0, 0.1)
+
+[node name="Passenger3" parent="Passengers" instance=ExtResource("3_passenger")]
+position = Vector3(0.0, 0, -0.05)
+
+[node name="Passenger4" parent="Passengers" instance=ExtResource("3_passenger")]
+position = Vector3(1.4, 0, 0.15)
+
+[node name="Passenger5" parent="Passengers" instance=ExtResource("3_passenger")]
+position = Vector3(2.8, 0, -0.08)
+
+[node name="StationBell" parent="." instance=ExtResource("4_bell")]
+position = Vector3(0, 2.45, 0)
+
+[node name="FogEffect" type="FogVolume" parent="."]
+visible = false
+position = Vector3(0, 1.5, 0)
+size = Vector3(11, 4, 7)
+material = SubResource("FogMaterial_station")

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="DiaryEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/DiaryEntry.gd" id="1_diary"]
+
+[resource]
+script = ExtResource("1_diary")
+diary_id = "diary_001"
+title = "Ticket sin regreso"
+content = "El primer anden todavia conserva voces. Nadie pregunta por que el tren viene tarde; todos miran la niebla como si fuera una puerta."
+station_id = 1

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/interaction/LaserPointer.gd" id="1_laser"]
+[ext_resource type="Material" path="res://assets/materials/coal_warning_material.tres" id="2_laser_mat"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_laser"]
+size = Vector3(0.025, 0.025, 6.0)
+
+[node name="LaserPointer" type="Node3D"]
+script = ExtResource("1_laser")
+raycast_path = NodePath("RayCast3D")
+pointer_mesh_path = NodePath("LaserMesh")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -7)
+collide_with_areas = true
+
+[node name="LaserMesh" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0, -3)
+mesh = SubResource("BoxMesh_laser")
+material_override = ExtResource("2_laser_mat")

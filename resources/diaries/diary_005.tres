@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="DiaryEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/DiaryEntry.gd" id="1_diary"]
+
+[resource]
+script = ExtResource("1_diary")
+diary_id = "diary_005"
+title = "El ultimo maquinista"
+content = "Si llegas a la quinta estacion, dicen que el tren deja de contar minutos y empieza a contar nombres."
+station_id = 5

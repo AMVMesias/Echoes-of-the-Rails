@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Material" path="res://assets/materials/fog_dissolve_material.tres" id="1_rock"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mountain_a"]
+top_radius = 0.0
+bottom_radius = 45.0
+height = 58.0
+radial_segments = 6
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mountain_b"]
+top_radius = 0.0
+bottom_radius = 34.0
+height = 42.0
+radial_segments = 5
+
+[node name="MountainEnvironment" type="Node3D"]
+
+[node name="MountainA" type="MeshInstance3D" parent="."]
+position = Vector3(-72, 28, -280)
+mesh = SubResource("CylinderMesh_mountain_a")
+material_override = ExtResource("1_rock")
+
+[node name="MountainB" type="MeshInstance3D" parent="."]
+position = Vector3(82, 22, -510)
+mesh = SubResource("CylinderMesh_mountain_b")
+material_override = ExtResource("1_rock")
+
+[node name="MountainC" type="MeshInstance3D" parent="."]
+position = Vector3(-95, 21, -760)
+mesh = SubResource("CylinderMesh_mountain_b")
+material_override = ExtResource("1_rock")

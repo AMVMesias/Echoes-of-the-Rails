@@ -19,7 +19,7 @@ func _ready() -> void:
 
 
 func update_engine_audio(speed: float) -> void:
-	var normalized := clamp(speed / max(max_speed, 0.1), 0.0, 1.0)
+	var normalized: float = clampf(speed / max(max_speed, 0.1), 0.0, 1.0)
 	if engine_audio != null:
 		engine_audio.pitch_scale = lerp(0.8, 1.6, normalized)
 		engine_audio.volume_db = lerp(-18.0, -3.0, normalized)

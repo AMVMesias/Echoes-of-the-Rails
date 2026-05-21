@@ -1,0 +1,71 @@
+[gd_scene load_steps=13 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/ui_diegetic/Dashboard.tscn" id="1_dashboard"]
+[ext_resource type="PackedScene" path="res://scenes/train/SteamRegulator.tscn" id="2_regulator"]
+[ext_resource type="PackedScene" path="res://scenes/train/BrakeLever.tscn" id="3_brake"]
+[ext_resource type="PackedScene" path="res://scenes/ui_diegetic/SupplyPanel.tscn" id="4_supply"]
+[ext_resource type="PackedScene" path="res://scenes/train/Whistle.tscn" id="5_whistle"]
+[ext_resource type="PackedScene" path="res://scenes/vr/XROrigin.tscn" id="6_xr"]
+[ext_resource type="Material" path="res://assets/materials/psx_iron.tres" id="7_iron"]
+[ext_resource type="Material" path="res://assets/materials/dirty_glass_material.tres" id="8_glass"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_floor"]
+size = Vector3(3.8, 0.18, 3.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wall"]
+size = Vector3(3.8, 2.4, 0.16)
+
+[sub_resource type="BoxMesh" id="BoxMesh_side_wall"]
+size = Vector3(0.16, 2.4, 3.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_glass"]
+size = Vector3(2.0, 0.04, 0.8)
+
+[node name="Cabin" type="Node3D"]
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0, 0)
+mesh = SubResource("BoxMesh_floor")
+material_override = ExtResource("7_iron")
+
+[node name="BackWall" type="MeshInstance3D" parent="."]
+position = Vector3(0, 1.25, 1.45)
+mesh = SubResource("BoxMesh_wall")
+material_override = ExtResource("7_iron")
+
+[node name="LeftWall" type="MeshInstance3D" parent="."]
+position = Vector3(-1.9, 1.25, 0)
+mesh = SubResource("BoxMesh_side_wall")
+material_override = ExtResource("7_iron")
+
+[node name="RightWall" type="MeshInstance3D" parent="."]
+position = Vector3(1.9, 1.25, 0)
+mesh = SubResource("BoxMesh_side_wall")
+material_override = ExtResource("7_iron")
+
+[node name="DirtyGlass" type="MeshInstance3D" parent="."]
+position = Vector3(0, 1.55, -1.42)
+mesh = SubResource("BoxMesh_glass")
+material_override = ExtResource("8_glass")
+
+[node name="Dashboard" parent="." instance=ExtResource("1_dashboard")]
+position = Vector3(0, 0.86, -1.05)
+rotation_degrees = Vector3(-18, 0, 0)
+
+[node name="SteamRegulator" parent="." instance=ExtResource("2_regulator")]
+position = Vector3(-1.08, 0.52, -0.25)
+rotation_degrees = Vector3(0, 0, -18)
+
+[node name="BrakeLever" parent="." instance=ExtResource("3_brake")]
+position = Vector3(1.08, 0.52, -0.25)
+rotation_degrees = Vector3(0, 0, 18)
+
+[node name="SupplyPanel" parent="." instance=ExtResource("4_supply")]
+position = Vector3(0, 0.55, 0.72)
+rotation_degrees = Vector3(-18, 0, 0)
+
+[node name="Whistle" parent="." instance=ExtResource("5_whistle")]
+position = Vector3(0.0, 1.58, -0.48)
+
+[node name="XROrigin" parent="." instance=ExtResource("6_xr")]
+position = Vector3(0, 0.06, 0.35)

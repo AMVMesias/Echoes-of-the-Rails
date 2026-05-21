@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="GameBalanceConfig" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/GameBalanceConfig.gd" id="1_balance"]
+
+[resource]
+script = ExtResource("1_balance")
+starting_coal = 100.0
+max_coal = 100.0
+coal_warning_level = 15.0
+points_per_passenger = 10
+punctuality_bonus = 25
+coal_purchase_cost = 30
+coal_purchase_amount = 25.0
+required_routes_to_win = 5
+required_station_success_rate = 0.6

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/GaugeController.gd" id="1_gauge"]
+[ext_resource type="Material" path="res://assets/materials/psx_wood.tres" id="2_wood"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_face"]
+top_radius = 0.48
+bottom_radius = 0.48
+height = 0.08
+radial_segments = 32
+
+[sub_resource type="BoxMesh" id="BoxMesh_needle"]
+size = Vector3(0.06, 0.70, 0.04)
+
+[node name="StationClock" type="Node3D"]
+script = ExtResource("1_gauge")
+signal_name = "station_timer"
+needle_path = NodePath("Needle")
+min_value = 0.0
+max_value = 125.0
+min_angle = 115.0
+max_angle = -115.0
+
+[node name="Face" type="MeshInstance3D" parent="."]
+rotation_degrees = Vector3(90, 0, 0)
+mesh = SubResource("CylinderMesh_face")
+material_override = ExtResource("2_wood")
+
+[node name="Needle" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0, -0.06)
+mesh = SubResource("BoxMesh_needle")

@@ -1,0 +1,86 @@
+[gd_scene load_steps=15 format=3]
+
+[ext_resource type="Script" path="res://scripts/train/TrainController.gd" id="1_train_controller"]
+[ext_resource type="Script" path="res://scripts/train/FuelSystem.gd" id="2_fuel"]
+[ext_resource type="Script" path="res://scripts/train/BrakeSystem.gd" id="3_brake"]
+[ext_resource type="Script" path="res://scripts/train/PressureSystem.gd" id="4_pressure"]
+[ext_resource type="Script" path="res://scripts/train/DerailmentSystem.gd" id="5_derailment"]
+[ext_resource type="PackedScene" path="res://scenes/train/Cabin.tscn" id="6_cabin"]
+[ext_resource type="PackedScene" path="res://scenes/audio/TrainAudioController.tscn" id="7_audio"]
+[ext_resource type="Material" path="res://assets/materials/psx_iron.tres" id="8_iron"]
+[ext_resource type="Material" path="res://assets/materials/steam_material.tres" id="9_steam"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_base"]
+size = Vector3(2.2, 0.7, 4.2)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_boiler"]
+top_radius = 0.62
+bottom_radius = 0.62
+height = 2.8
+radial_segments = 12
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_chimney"]
+top_radius = 0.25
+bottom_radius = 0.32
+height = 1.1
+radial_segments = 10
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_steam"]
+direction = Vector3(0, 1, -0.25)
+spread = 18.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.4
+gravity = Vector3(0, 0.25, 0)
+scale_min = 0.6
+scale_max = 1.4
+
+[sub_resource type="QuadMesh" id="QuadMesh_steam"]
+material = ExtResource("9_steam")
+size = Vector2(1.0, 1.0)
+
+[node name="Train" type="PathFollow3D"]
+script = ExtResource("1_train_controller")
+progress_loop = false
+
+[node name="LocomotiveModel" type="Node3D" parent="."]
+
+[node name="Base" type="MeshInstance3D" parent="LocomotiveModel"]
+position = Vector3(0, 0.55, 0)
+mesh = SubResource("BoxMesh_base")
+material_override = ExtResource("8_iron")
+
+[node name="Boiler" type="MeshInstance3D" parent="LocomotiveModel"]
+position = Vector3(0, 1.05, -1.0)
+rotation_degrees = Vector3(90, 0, 0)
+mesh = SubResource("CylinderMesh_boiler")
+material_override = ExtResource("8_iron")
+
+[node name="Chimney" type="MeshInstance3D" parent="LocomotiveModel"]
+position = Vector3(0, 1.95, -2.0)
+mesh = SubResource("CylinderMesh_chimney")
+material_override = ExtResource("8_iron")
+
+[node name="SteamParticles" type="GPUParticles3D" parent="LocomotiveModel"]
+position = Vector3(0, 2.7, -2.0)
+amount = 36
+lifetime = 2.4
+preprocess = 0.4
+process_material = SubResource("ParticleProcessMaterial_steam")
+draw_pass_1 = SubResource("QuadMesh_steam")
+
+[node name="Cabin" parent="." instance=ExtResource("6_cabin")]
+position = Vector3(0, 0.45, 1.0)
+
+[node name="FuelSystem" type="Node" parent="."]
+script = ExtResource("2_fuel")
+
+[node name="BrakeSystem" type="Node" parent="."]
+script = ExtResource("3_brake")
+
+[node name="PressureSystem" type="Node" parent="."]
+script = ExtResource("4_pressure")
+
+[node name="DerailmentSystem" type="Node" parent="."]
+script = ExtResource("5_derailment")
+
+[node name="TrainAudioController" parent="." instance=ExtResource("7_audio")]

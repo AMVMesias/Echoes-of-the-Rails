@@ -16,12 +16,12 @@ func _ready() -> void:
 
 func evaluate(speed: float, in_curve: bool, delta: float) -> void:
 	if in_curve and speed > train_config.derailment_curve_speed:
-		var excess := (speed - train_config.derailment_curve_speed) / max(train_config.derailment_curve_speed, 0.1)
+		var excess: float = (speed - train_config.derailment_curve_speed) / max(train_config.derailment_curve_speed, 0.1)
 		risk += (0.45 + excess) * delta
 	else:
 		risk = max(0.0, risk - risk_decay * delta)
 
-	var normalized_risk := clamp(risk / max(train_config.derailment_time_limit, 0.1), 0.0, 1.0)
+	var normalized_risk: float = clampf(risk / max(train_config.derailment_time_limit, 0.1), 0.0, 1.0)
 	EventBus.derailment_risk_changed.emit(normalized_risk)
 
 	if risk >= train_config.derailment_time_limit:

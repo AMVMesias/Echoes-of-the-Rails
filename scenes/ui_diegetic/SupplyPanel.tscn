@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/SupplyPanel.gd" id="1_supply"]
+[ext_resource type="PackedScene" path="res://scenes/train/BuyCoalButton.tscn" id="2_button"]
+[ext_resource type="Material" path="res://assets/materials/psx_iron.tres" id="3_iron"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_panel"]
+size = Vector3(1.4, 0.08, 0.75)
+
+[sub_resource type="BoxMesh" id="BoxMesh_plate"]
+size = Vector3(0.95, 0.04, 0.24)
+
+[node name="SupplyPanel" type="Node3D"]
+script = ExtResource("1_supply")
+
+[node name="PanelBody" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_panel")
+material_override = ExtResource("3_iron")
+
+[node name="BuyCoalButton" parent="." instance=ExtResource("2_button")]
+position = Vector3(-0.42, 0.08, 0)
+rotation_degrees = Vector3(90, 0, 0)
+
+[node name="FeedbackBackplate" type="MeshInstance3D" parent="."]
+position = Vector3(0.25, 0.08, 0)
+mesh = SubResource("BoxMesh_plate")
+material_override = ExtResource("3_iron")
+
+[node name="FeedbackPlate" type="Label3D" parent="."]
+position = Vector3(0.25, 0.13, -0.01)
+rotation_degrees = Vector3(-90, 0, 0)
+text = "COAL 100"
+font_size = 24
+pixel_size = 0.006
+horizontal_alignment = 1

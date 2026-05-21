@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3]
+
+[sub_resource type="BoxMesh" id="BoxMesh_needle"]
+size = Vector3(0.06, 0.7, 0.04)
+
+[node name="AnalogNeedle" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_needle")

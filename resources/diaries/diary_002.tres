@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="DiaryEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/DiaryEntry.gd" id="1_diary"]
+
+[resource]
+script = ExtResource("1_diary")
+diary_id = "diary_002"
+title = "Carbon en las manos"
+content = "La mujer del abrigo gris dejo una marca negra en el pasamanos. Dijo que el carbon tambien recuerda, solo que nadie lo escucha arder."
+station_id = 2

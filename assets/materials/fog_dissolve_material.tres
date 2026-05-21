@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+
+[ext_resource type="Shader" path="res://assets/shaders/fog_dissolve_shader.gdshader" id="1_fog"]
+
+[resource]
+shader = ExtResource("1_fog")
+shader_parameter/albedo_color = Color(0.42, 0.46, 0.48, 1)
+shader_parameter/fog_color = Color(0.66, 0.70, 0.74, 1)
+shader_parameter/dissolve_amount = 0.0
+shader_parameter/edge_softness = 0.12
+shader_parameter/noise_scale = 4.0

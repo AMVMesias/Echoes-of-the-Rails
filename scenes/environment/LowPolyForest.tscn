@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Material" path="res://assets/materials/psx_wood.tres" id="1_wood"]
+[ext_resource type="Material" path="res://assets/materials/fog_dissolve_material.tres" id="2_foliage"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_trunk"]
+top_radius = 0.14
+bottom_radius = 0.18
+height = 1.8
+radial_segments = 6
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_crown"]
+top_radius = 0.0
+bottom_radius = 1.0
+height = 2.2
+radial_segments = 6
+
+[node name="LowPolyForest" type="Node3D"]
+
+[node name="TreeA" type="Node3D" parent="."]
+position = Vector3(-11, 0, -90)
+
+[node name="Trunk" type="MeshInstance3D" parent="TreeA"]
+position = Vector3(0, 0.9, 0)
+mesh = SubResource("CylinderMesh_trunk")
+material_override = ExtResource("1_wood")
+
+[node name="Crown" type="MeshInstance3D" parent="TreeA"]
+position = Vector3(0, 2.35, 0)
+mesh = SubResource("CylinderMesh_crown")
+material_override = ExtResource("2_foliage")
+
+[node name="TreeB" type="Node3D" parent="."]
+position = Vector3(14, 1.2, -210)
+
+[node name="Trunk" type="MeshInstance3D" parent="TreeB"]
+position = Vector3(0, 0.9, 0)
+mesh = SubResource("CylinderMesh_trunk")
+material_override = ExtResource("1_wood")
+
+[node name="Crown" type="MeshInstance3D" parent="TreeB"]
+position = Vector3(0, 2.35, 0)
+mesh = SubResource("CylinderMesh_crown")
+material_override = ExtResource("2_foliage")
+
+[node name="TreeC" type="Node3D" parent="."]
+position = Vector3(-17, 3.0, -420)
+
+[node name="Trunk" type="MeshInstance3D" parent="TreeC"]
+position = Vector3(0, 0.9, 0)
+mesh = SubResource("CylinderMesh_trunk")
+material_override = ExtResource("1_wood")
+
+[node name="Crown" type="MeshInstance3D" parent="TreeC"]
+position = Vector3(0, 2.35, 0)
+mesh = SubResource("CylinderMesh_crown")
+material_override = ExtResource("2_foliage")
+
+[node name="TreeD" type="Node3D" parent="."]
+position = Vector3(19, 5.2, -650)
+
+[node name="Trunk" type="MeshInstance3D" parent="TreeD"]
+position = Vector3(0, 0.9, 0)
+mesh = SubResource("CylinderMesh_trunk")
+material_override = ExtResource("1_wood")
+
+[node name="Crown" type="MeshInstance3D" parent="TreeD"]
+position = Vector3(0, 2.35, 0)
+mesh = SubResource("CylinderMesh_crown")
+material_override = ExtResource("2_foliage")

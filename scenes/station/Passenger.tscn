@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/station/Passenger.gd" id="1_passenger"]
+[ext_resource type="Material" path="res://assets/materials/passenger_fade_material.tres" id="2_fade"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_body"]
+radius = 0.22
+height = 1.25
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_head"]
+radius = 0.18
+height = 0.36
+radial_segments = 8
+rings = 4
+
+[node name="Passenger" type="Node3D"]
+script = ExtResource("1_passenger")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.65, 0)
+mesh = SubResource("CapsuleMesh_body")
+material_override = ExtResource("2_fade")
+
+[node name="Head" type="MeshInstance3D" parent="."]
+position = Vector3(0, 1.38, 0)
+mesh = SubResource("SphereMesh_head")
+material_override = ExtResource("2_fade")

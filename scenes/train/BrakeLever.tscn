@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/interaction/LeverInteractable.gd" id="1_lever"]
+[ext_resource type="Material" path="res://assets/materials/psx_iron.tres" id="2_iron"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_brake"]
+size = Vector3(0.35, 1.1, 0.35)
+
+[sub_resource type="BoxMesh" id="BoxMesh_handle"]
+size = Vector3(0.24, 1.0, 0.24)
+
+[node name="BrakeLever" type="Area3D"]
+script = ExtResource("1_lever")
+control_name = "BrakeLever"
+value_step = 0.15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_brake")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Handle" type="MeshInstance3D" parent="Pivot"]
+position = Vector3(0, 0.5, 0)
+mesh = SubResource("BoxMesh_handle")
+material_override = ExtResource("2_iron")

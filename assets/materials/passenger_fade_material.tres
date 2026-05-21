@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+
+[ext_resource type="Shader" path="res://assets/shaders/passenger_fade_shader.gdshader" id="1_passenger_fade"]
+
+[resource]
+shader = ExtResource("1_passenger_fade")
+shader_parameter/albedo_color = Color(0.34, 0.30, 0.27, 1)
+shader_parameter/fog_color = Color(0.65, 0.69, 0.73, 1)
+shader_parameter/fade_amount = 0.0
+shader_parameter/vertical_bias = 0.4

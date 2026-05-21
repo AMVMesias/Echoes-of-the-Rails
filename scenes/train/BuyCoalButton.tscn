@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/interaction/ButtonInteractable.gd" id="1_button"]
+[ext_resource type="Material" path="res://assets/materials/coal_warning_material.tres" id="2_coal"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_button"]
+height = 0.18
+radius = 0.22
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_button"]
+top_radius = 0.22
+bottom_radius = 0.22
+height = 0.16
+radial_segments = 24
+
+[node name="BuyCoalButton" type="Area3D"]
+script = ExtResource("1_button")
+command_name = "BUY_COAL"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_button")
+
+[node name="ButtonCap" type="MeshInstance3D" parent="."]
+rotation_degrees = Vector3(90, 0, 0)
+mesh = SubResource("CylinderMesh_button")
+material_override = ExtResource("2_coal")

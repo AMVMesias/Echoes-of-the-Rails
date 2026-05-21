@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PassengerData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/PassengerData.gd" id="1_passenger"]
+
+[resource]
+script = ExtResource("1_passenger")
+passenger_id = "passenger_template"
+display_name = "Passenger"
+diary_id = "diary_001"
+memory_hint = "A quiet traveler waiting for the last steam route."

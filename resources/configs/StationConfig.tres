@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="StationConfig" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/StationConfig.gd" id="1_station_config"]
+
+[resource]
+script = ExtResource("1_station_config")
+min_wait_time = 65.0
+max_wait_time = 125.0
+stop_speed_threshold = 1.0
+stop_distance_threshold = 8.0
+approach_distance = 70.0

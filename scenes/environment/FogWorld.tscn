@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3]
+
+[sub_resource type="Environment" id="Environment_fog"]
+background_mode = 1
+background_color = Color(0.39, 0.43, 0.46, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.5, 0.56, 0.6, 1)
+ambient_light_energy = 0.55
+fog_enabled = true
+fog_light_color = Color(0.62, 0.68, 0.72, 1)
+fog_density = 0.035
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.025
+tonemap_mode = 2
+
+[sub_resource type="FogMaterial" id="FogMaterial_local"]
+density = 0.035
+albedo = Color(0.62, 0.68, 0.72, 1)
+
+[node name="FogWorld" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fog")
+
+[node name="RouteFog" type="FogVolume" parent="."]
+position = Vector3(0, 5, -430)
+size = Vector3(220, 38, 980)
+material = SubResource("FogMaterial_local")

@@ -1,0 +1,34 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/main/MainGame.gd" id="1_main"]
+[ext_resource type="PackedScene" path="res://scenes/environment/FogWorld.tscn" id="2_fog"]
+[ext_resource type="PackedScene" path="res://scenes/environment/MountainEnvironment.tscn" id="3_mountains"]
+[ext_resource type="PackedScene" path="res://scenes/environment/LowPolyForest.tscn" id="4_forest"]
+[ext_resource type="PackedScene" path="res://scenes/track/TrackPath.tscn" id="5_track"]
+[ext_resource type="PackedScene" path="res://scenes/train/Train.tscn" id="6_train"]
+[ext_resource type="Script" path="res://scripts/station/StationManager.gd" id="7_station_manager"]
+[ext_resource type="PackedScene" path="res://scenes/station/Station.tscn" id="8_station"]
+
+[node name="MainGame" type="Node3D"]
+script = ExtResource("1_main")
+
+[node name="Environment" parent="." instance=ExtResource("2_fog")]
+
+[node name="MountainEnvironment" parent="." instance=ExtResource("3_mountains")]
+
+[node name="LowPolyForest" parent="." instance=ExtResource("4_forest")]
+
+[node name="TrackPath" parent="." instance=ExtResource("5_track")]
+
+[node name="Train" parent="TrackPath" instance=ExtResource("6_train")]
+
+[node name="StationManager" type="Node3D" parent="."]
+script = ExtResource("7_station_manager")
+track_path = NodePath("../TrackPath")
+train_path = NodePath("../TrackPath/Train")
+station_scene = ExtResource("8_station")
+
+[node name="DirectionalLight" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-48, 32, 0)
+light_energy = 1.1
+shadow_enabled = true

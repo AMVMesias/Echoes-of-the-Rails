@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/DashboardController.gd" id="1_dashboard"]
+[ext_resource type="PackedScene" path="res://scenes/ui_diegetic/CoalGauge.tscn" id="2_coal"]
+[ext_resource type="PackedScene" path="res://scenes/ui_diegetic/PressureGauge.tscn" id="3_pressure"]
+[ext_resource type="PackedScene" path="res://scenes/ui_diegetic/SpeedGauge.tscn" id="4_speed"]
+[ext_resource type="PackedScene" path="res://scenes/ui_diegetic/StationClock.tscn" id="5_clock"]
+[ext_resource type="Material" path="res://assets/materials/psx_wood.tres" id="6_wood"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_board"]
+size = Vector3(3.3, 0.16, 1.4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_label_plate"]
+size = Vector3(1.0, 0.05, 0.28)
+
+[sub_resource type="BoxMesh" id="BoxMesh_label_plate_wide"]
+size = Vector3(1.4, 0.05, 0.28)
+
+[node name="Dashboard" type="Node3D"]
+script = ExtResource("1_dashboard")
+
+[node name="Board" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_board")
+material_override = ExtResource("6_wood")
+
+[node name="CoalGauge" parent="." instance=ExtResource("2_coal")]
+position = Vector3(-1.2, 0.14, -0.2)
+rotation_degrees = Vector3(-90, 0, 0)
+
+[node name="PressureGauge" parent="." instance=ExtResource("3_pressure")]
+position = Vector3(-0.4, 0.14, -0.2)
+rotation_degrees = Vector3(-90, 0, 0)
+
+[node name="SpeedGauge" parent="." instance=ExtResource("4_speed")]
+position = Vector3(0.4, 0.14, -0.2)
+rotation_degrees = Vector3(-90, 0, 0)
+
+[node name="StationClock" parent="." instance=ExtResource("5_clock")]
+position = Vector3(1.2, 0.14, -0.2)
+rotation_degrees = Vector3(-90, 0, 0)
+
+[node name="ScoreBackplate" type="MeshInstance3D" parent="."]
+position = Vector3(-0.75, 0.14, 0.47)
+mesh = SubResource("BoxMesh_label_plate")
+material_override = ExtResource("6_wood")
+
+[node name="ScorePlate" type="Label3D" parent="."]
+position = Vector3(-0.75, 0.2, 0.47)
+rotation_degrees = Vector3(-90, 0, 0)
+text = "PTS 0"
+font_size = 24
+pixel_size = 0.006
+horizontal_alignment = 1
+
+[node name="StateBackplate" type="MeshInstance3D" parent="."]
+position = Vector3(0.72, 0.14, 0.47)
+mesh = SubResource("BoxMesh_label_plate_wide")
+material_override = ExtResource("6_wood")
+
+[node name="StatePlate" type="Label3D" parent="."]
+position = Vector3(0.72, 0.2, 0.47)
+rotation_degrees = Vector3(-90, 0, 0)
+text = "TRAVELING"
+font_size = 20
+pixel_size = 0.005
+horizontal_alignment = 1

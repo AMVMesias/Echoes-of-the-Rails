@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+
+[ext_resource type="Shader" path="res://assets/shaders/steam_shader.gdshader" id="1_steam"]
+
+[resource]
+shader = ExtResource("1_steam")
+shader_parameter/steam_color = Color(0.72, 0.75, 0.78, 0.38)
+shader_parameter/noise_scale = 3.0
+shader_parameter/drift_speed = 0.55
+shader_parameter/fade_top = 0.75
