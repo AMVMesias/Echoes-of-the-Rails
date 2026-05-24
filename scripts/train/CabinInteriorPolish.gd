@@ -1,20 +1,9 @@
 class_name CabinInteriorPolish
 extends Node3D
 
-## Builds the realistic locomotive cabin interior procedurally.
-## Uses StandardMaterial3D for small detail parts (brass bezels, gauge faces,
-## needles, handles) to preserve metallic/roughness properties.
-## Uses PSX shader .tres materials only for large structural surfaces.
-
 @export var build_visual_panel: bool = true
 
-# --- PSX materials loaded from .tres (large surfaces only) ---
-var rusted_metal_mat: Material
-var iron_mat: Material
-
-# --- StandardMaterial3D (small details with proper shading) ---
 var brass_material: StandardMaterial3D
-var dark_face_material: StandardMaterial3D
 var label_bg_material: StandardMaterial3D
 var needle_material: StandardMaterial3D
 var lamp_glow_material: StandardMaterial3D
@@ -22,15 +11,12 @@ var glass_material: StandardMaterial3D
 var dark_slot_material: StandardMaterial3D
 var green_zone_material: StandardMaterial3D
 var red_zone_material: StandardMaterial3D
-var white_tick_material: StandardMaterial3D
 var cream_face_material: StandardMaterial3D
 var metal_material: StandardMaterial3D
 var grime_material: StandardMaterial3D
-var shadow_material: StandardMaterial3D
 
 
 func _ready() -> void:
-	_load_materials()
 	_create_procedural_materials()
 	_add_interior_lighting()
 	_add_oil_lamps()
@@ -38,56 +24,22 @@ func _ready() -> void:
 		_build_instrument_panel()
 
 
-# ─── Material Loading ────────────────────────────────────────────────
-
-func _load_materials() -> void:
-	rusted_metal_mat = load("res://assets/materials/psx_rusted_metal.tres")
-	iron_mat = load("res://assets/materials/psx_iron.tres")
-
-
 func _create_procedural_materials() -> void:
-	# Brass – muted gold, not too bright
 	brass_material = _mat(Color(0.42, 0.31, 0.16), 0.62, 0.25)
-
-	# Panel metal surface (procedural, darker than PSX version)
 	metal_material = _mat(Color(0.27, 0.25, 0.22), 0.82, 0.18)
-
-	# Dark gauge face – nearly black
-	dark_face_material = _mat(Color(0.06, 0.055, 0.05), 0.90, 0.0)
-
-	# Cream face for clock
 	cream_face_material = _mat(Color(0.85, 0.80, 0.68), 0.85, 0.0)
-
-	# Label background plates
 	label_bg_material = _mat(Color(0.018, 0.016, 0.014), 0.9, 0.0)
-
-	# Needle – dark reddish brown
 	needle_material = _mat(Color(0.10, 0.04, 0.025), 0.7, 0.0)
-
-	# Dark slot material
 	dark_slot_material = _mat(Color(0.04, 0.035, 0.03), 0.92, 0.0)
-
-	# Green zone (safe area on gauges)
 	green_zone_material = _mat(Color(0.10, 0.35, 0.08), 0.75, 0.0)
-
-	# Red zone (danger area on carbon gauge)
 	red_zone_material = _mat(Color(0.50, 0.06, 0.04), 0.75, 0.0)
-
-	# White tick marks
-	white_tick_material = _mat(Color(0.82, 0.78, 0.62), 0.80, 0.0)
-
-	# Transparent glass
 	glass_material = _mat(Color(0.78, 0.74, 0.58, 0.40), 0.20, 0.0)
 	glass_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-
-	# Lamp flame glow
 	lamp_glow_material = _mat(Color(1.0, 0.72, 0.30), 0.25, 0.0)
 	lamp_glow_material.emission_enabled = true
 	lamp_glow_material.emission = Color(1.0, 0.56, 0.18)
 	lamp_glow_material.emission_energy_multiplier = 1.8
-
 	grime_material = _mat(Color(0.12, 0.10, 0.08), 0.95, 0.0)
-	shadow_material = _mat(Color(0.015, 0.014, 0.013), 0.96, 0.0)
 
 
 func _mat(color: Color, roughness: float, metallic: float) -> StandardMaterial3D:
@@ -98,10 +50,7 @@ func _mat(color: Color, roughness: float, metallic: float) -> StandardMaterial3D
 	return material
 
 
-# ─── Interior Lighting ───────────────────────────────────────────────
-
 func _add_interior_lighting() -> void:
-	# Warm ceiling light – REDUCED energy to avoid red blow-out
 	var ceiling := OmniLight3D.new()
 	ceiling.name = "WarmCabinLight"
 	ceiling.position = Vector3(0.0, 2.85, 0.0)
@@ -111,7 +60,6 @@ func _add_interior_lighting() -> void:
 	ceiling.shadow_enabled = false
 	add_child(ceiling)
 
-	# Panel accent light – subtle
 	var panel_light := OmniLight3D.new()
 	panel_light.name = "PanelAccentLight"
 	panel_light.position = Vector3(0.0, 1.45, -1.25)
@@ -121,8 +69,6 @@ func _add_interior_lighting() -> void:
 	panel_light.shadow_enabled = false
 	add_child(panel_light)
 
-
-# ─── Oil Lamps ───────────────────────────────────────────────────────
 
 func _add_oil_lamps() -> void:
 	_create_oil_lamp(Vector3(-2.05, 1.55, -2.58))
@@ -134,17 +80,11 @@ func _create_oil_lamp(pos: Vector3) -> void:
 	lamp.name = "CabinOilLamp"
 	lamp.position = pos
 	add_child(lamp)
-
-	# Brass base
 	_create_cylinder_child(lamp, Vector3(0, 0.0, 0), 0.09, 0.05, brass_material)
-	# Brass pedestal
 	_create_cylinder_child(lamp, Vector3(0, 0.06, 0), 0.04, 0.08, brass_material)
-	# Glass chimney
 	_create_cylinder_child(lamp, Vector3(0, 0.20, 0), 0.06, 0.22, glass_material)
-	# Brass cap
 	_create_cylinder_child(lamp, Vector3(0, 0.34, 0), 0.05, 0.03, brass_material)
 
-	# Flame
 	var flame_mesh := SphereMesh.new()
 	flame_mesh.radius = 0.04
 	flame_mesh.height = 0.07
@@ -154,7 +94,6 @@ func _create_oil_lamp(pos: Vector3) -> void:
 	flame.position = Vector3(0, 0.22, 0)
 	lamp.add_child(flame)
 
-	# Warm point light
 	var light := OmniLight3D.new()
 	light.position = Vector3(0, 0.22, 0)
 	light.light_color = Color(1.0, 0.66, 0.32)
@@ -164,48 +103,32 @@ func _create_oil_lamp(pos: Vector3) -> void:
 	lamp.add_child(light)
 
 
-# ─── Main Instrument Panel ──────────────────────────────────────────
-
 func _build_instrument_panel() -> void:
 	var panel := Node3D.new()
 	panel.name = "HeroInstrumentPanel"
 	panel.position = Vector3(0.0, 1.08, -1.48)
 	panel.rotation_degrees.x = -8.0
-	panel.scale = Vector3(1.0, 1.0, 1.0)
 	add_child(panel)
 
-	# ── Main metal plate ──
 	_create_box_child(panel, "MainPlate", Vector3(0, 0.20, 0), Vector3(4.45, 0.98, 0.12), metal_material)
 	_add_panel_grime(panel)
-
-	# ── Lower desk plate ──
 	var lower_desk := _create_box_child(panel, "LowerDesk", Vector3(0, -0.50, 0.50), Vector3(4.45, 0.16, 1.02), metal_material)
 	lower_desk.rotation_degrees.x = -18.0
 
-	# ── Gauges: VAPOR, VAPOR, CARBÓN ──
 	var gauge_x: Array[float] = [-1.58, -0.86, -0.14]
-	var gauge_labels: Array[String] = ["VAPOR", "VAPOR", "CARBÓN"]
+	var gauge_labels: Array[String] = ["VAPOR", "VAPOR", "CARBON"]
 	var needle_angles: Array[float] = [-32.0, -10.0, 42.0]
 	var has_red: Array[bool] = [false, false, true]
 
 	for i in range(gauge_x.size()):
 		_create_gauge(panel, Vector3(gauge_x[i], 0.42, 0.09), gauge_labels[i], needle_angles[i], has_red[i])
 
-	# ── Station Clock (right side, larger) ──
 	_create_station_clock(panel, Vector3(1.58, 0.42, 0.09))
-
-	# ── Supply Buttons ──
 	_create_supply_buttons(panel, Vector3(0.70, 0.43, 0.12))
-
-	# ── Lever labels on lower desk ──
 	_create_label(panel, Vector3(-1.35, -0.75, 0.88), "REGULADOR DE VAPOR", 0.0036)
 	_create_label(panel, Vector3(1.10, -0.75, 0.88), "FRENO NEUMATICO", 0.0036)
-
-	# ── Visual lever slots on lower desk ──
 	_create_visual_lever(panel, Vector3(-1.35, -0.67, 0.64), "REGULADOR")
 	_create_visual_lever(panel, Vector3(1.10, -0.67, 0.64), "FRENO")
-
-	# ── Rivets ──
 	_create_rivets(panel)
 
 
@@ -222,10 +145,7 @@ func _add_panel_grime(parent: Node3D) -> void:
 		_create_box_child(parent, "PanelGrime", data["pos"], data["size"], grime_material)
 
 
-# ─── Gauge ──────────────────────────────────────────────────────────
-
 func _create_gauge(parent: Node3D, pos: Vector3, label_text: String, needle_angle: float, has_red_zone: bool) -> void:
-	# Brass outer bezel – THIN ring, not thick cylinder
 	var ring_mesh := CylinderMesh.new()
 	ring_mesh.top_radius = 0.245
 	ring_mesh.bottom_radius = 0.245
@@ -239,7 +159,6 @@ func _create_gauge(parent: Node3D, pos: Vector3, label_text: String, needle_angl
 	ring.material_override = brass_material
 	parent.add_child(ring)
 
-	# Dark gauge face – sits IN FRONT of bezel
 	var face_mesh := CylinderMesh.new()
 	face_mesh.top_radius = 0.205
 	face_mesh.bottom_radius = 0.205
@@ -253,7 +172,6 @@ func _create_gauge(parent: Node3D, pos: Vector3, label_text: String, needle_angl
 	face.material_override = cream_face_material
 	parent.add_child(face)
 
-	# Green zone (small indicator)
 	var green_mesh := CylinderMesh.new()
 	green_mesh.top_radius = 0.165
 	green_mesh.bottom_radius = 0.165
@@ -268,7 +186,6 @@ func _create_gauge(parent: Node3D, pos: Vector3, label_text: String, needle_angl
 	green_inst.scale = Vector3(0.20, 0.12, 1.0)
 	parent.add_child(green_inst)
 
-	# Red zone on CARBÓN gauge
 	if has_red_zone:
 		var red_mesh := CylinderMesh.new()
 		red_mesh.top_radius = 0.165
@@ -284,7 +201,6 @@ func _create_gauge(parent: Node3D, pos: Vector3, label_text: String, needle_angl
 		red_inst.scale = Vector3(0.18, 0.13, 1.0)
 		parent.add_child(red_inst)
 
-	# Center pivot cap
 	var cap_mesh := CylinderMesh.new()
 	cap_mesh.top_radius = 0.030
 	cap_mesh.bottom_radius = 0.030
@@ -298,19 +214,14 @@ func _create_gauge(parent: Node3D, pos: Vector3, label_text: String, needle_angl
 	cap.material_override = brass_material
 	parent.add_child(cap)
 
-	# Needle
 	var needle := _create_box_child(parent, "%sNeedle" % label_text, pos + Vector3(0.0, 0.0, 0.075), Vector3(0.028, 0.22, 0.016), needle_material)
 	needle.rotation_degrees.z = needle_angle
 
-	# Tick marks
 	for t in range(9):
 		var angle := deg_to_rad(-120.0 + float(t) * 30.0)
 		var tick_r := 0.175
-		var tx := pos.x + cos(angle) * tick_r
-		var ty := pos.y + sin(angle) * tick_r
-		_create_box_child(parent, "%sTick%d" % [label_text, t], Vector3(tx, ty, pos.z + 0.078), Vector3(0.010, 0.028, 0.008), needle_material)
+		_create_box_child(parent, "%sTick%d" % [label_text, t], Vector3(pos.x + cos(angle) * tick_r, pos.y + sin(angle) * tick_r, pos.z + 0.078), Vector3(0.010, 0.028, 0.008), needle_material)
 
-	# Glass dome
 	var dome_mesh := CylinderMesh.new()
 	dome_mesh.top_radius = 0.21
 	dome_mesh.bottom_radius = 0.21
@@ -323,15 +234,10 @@ func _create_gauge(parent: Node3D, pos: Vector3, label_text: String, needle_angl
 	dome.rotation_degrees.x = 90.0
 	dome.material_override = glass_material
 	parent.add_child(dome)
-
-	# Label under gauge
 	_create_label(parent, pos + Vector3(0.0, -0.34, 0.095), label_text, 0.0033)
 
 
-# ─── Station Clock ──────────────────────────────────────────────────
-
 func _create_station_clock(parent: Node3D, pos: Vector3) -> void:
-	# Larger brass bezel – thin
 	var ring_mesh := CylinderMesh.new()
 	ring_mesh.top_radius = 0.30
 	ring_mesh.bottom_radius = 0.30
@@ -345,7 +251,6 @@ func _create_station_clock(parent: Node3D, pos: Vector3) -> void:
 	ring.material_override = brass_material
 	parent.add_child(ring)
 
-	# Cream clock face
 	var face_mesh := CylinderMesh.new()
 	face_mesh.top_radius = 0.255
 	face_mesh.bottom_radius = 0.255
@@ -359,57 +264,29 @@ func _create_station_clock(parent: Node3D, pos: Vector3) -> void:
 	face.material_override = cream_face_material
 	parent.add_child(face)
 
-	# Hour marks (12)
 	for h in range(12):
 		var angle := deg_to_rad(float(h) * 30.0)
 		var mark_r := 0.21
-		var mx := pos.x + cos(angle) * mark_r
-		var my := pos.y + sin(angle) * mark_r
 		var mark_size := Vector3(0.014, 0.040, 0.008) if (h % 3 == 0) else Vector3(0.008, 0.025, 0.006)
-		_create_box_child(parent, "ClockMark%d" % h, Vector3(mx, my, pos.z + 0.078), mark_size, needle_material)
+		_create_box_child(parent, "ClockMark%d" % h, Vector3(pos.x + cos(angle) * mark_r, pos.y + sin(angle) * mark_r, pos.z + 0.078), mark_size, needle_material)
 
-	# Hour hand
 	_create_box_child(parent, "HourHand", pos + Vector3(0.02, 0.0, 0.080), Vector3(0.018, 0.12, 0.010), needle_material)
-	# Minute hand
 	var min_h := _create_box_child(parent, "MinHand", pos + Vector3(-0.01, 0.0, 0.090), Vector3(0.014, 0.16, 0.008), needle_material)
 	min_h.rotation_degrees.z = 72.0
-
-	# Center cap
-	var cap_mesh := CylinderMesh.new()
-	cap_mesh.top_radius = 0.022
-	cap_mesh.bottom_radius = 0.022
-	cap_mesh.height = 0.032
-	cap_mesh.radial_segments = 12
-	var cap := MeshInstance3D.new()
-	cap.name = "ClockCap"
-	cap.mesh = cap_mesh
-	cap.position = pos + Vector3(0.0, 0.0, 0.105)
-	cap.rotation_degrees.x = 90.0
-	cap.material_override = brass_material
-	parent.add_child(cap)
-
-	# Label
 	_create_label(parent, pos + Vector3(0.0, -0.40, 0.10), "RELOJ DE ESTACION", 0.0031)
 
 
-# ─── Supply Buttons ─────────────────────────────────────────────────
-
 func _create_supply_buttons(parent: Node3D, pos: Vector3) -> void:
 	_create_box_child(parent, "SupplyBG", pos + Vector3(0.0, 0.0, 0.025), Vector3(0.86, 0.58, 0.060), label_bg_material)
-
 	_create_label(parent, Vector3(pos.x, pos.y + 0.18, pos.z + 0.08), "COMPRAR CARBON", 0.0030)
 	_create_label(parent, Vector3(pos.x, pos.y, pos.z + 0.08), "COMPRAR", 0.0030)
 	_create_label(parent, Vector3(pos.x, pos.y - 0.18, pos.z + 0.08), "REINICIAR", 0.0030)
 
 
-# ─── Visual Lever (decorative slots on lower desk) ──────────────────
-
 func _create_visual_lever(parent: Node3D, pos: Vector3, lever_name: String) -> void:
-	# Slot groove
-	var slot := _create_box_child(parent, "%sSlot" % lever_name, pos + Vector3(0.0, 0.0, 0.0), Vector3(0.66, 0.06, 0.18), dark_slot_material)
+	var slot := _create_box_child(parent, "%sSlot" % lever_name, pos, Vector3(0.66, 0.06, 0.18), dark_slot_material)
 	slot.rotation_degrees.x = -18.0
 
-	# Stick
 	var stick_mesh := CylinderMesh.new()
 	stick_mesh.top_radius = 0.035
 	stick_mesh.bottom_radius = 0.035
@@ -423,7 +300,6 @@ func _create_visual_lever(parent: Node3D, pos: Vector3, lever_name: String) -> v
 	stick.material_override = metal_material
 	parent.add_child(stick)
 
-	# Red handle ball
 	var handle_mat := _mat(Color(0.58, 0.06, 0.035), 0.62, 0.0)
 	var handle_mesh := SphereMesh.new()
 	handle_mesh.radius = 0.105
@@ -435,8 +311,6 @@ func _create_visual_lever(parent: Node3D, pos: Vector3, lever_name: String) -> v
 	handle.position = pos + Vector3(0.50, 0.16, 0.10)
 	parent.add_child(handle)
 
-
-# ─── Rivets ─────────────────────────────────────────────────────────
 
 func _create_rivets(parent: Node3D) -> void:
 	for x_i in range(17):
@@ -461,8 +335,6 @@ func _create_rivet(parent: Node3D, pos: Vector3) -> void:
 	parent.add_child(rivet)
 
 
-# ─── Label ──────────────────────────────────────────────────────────
-
 func _create_label(parent: Node3D, pos: Vector3, text: String, pixel_size: float) -> void:
 	_create_box_child(parent, "%sPlate" % text, pos + Vector3(0.0, 0.0, 0.030), Vector3(max(0.24, float(text.length()) * 0.036), 0.052, 0.040), label_bg_material)
 	var label := Label3D.new()
@@ -473,11 +345,8 @@ func _create_label(parent: Node3D, pos: Vector3, text: String, pixel_size: float
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.modulate = Color(0.92, 0.82, 0.64)
 	label.position = pos + Vector3(0.0, 0.0, 0.070)
-	label.rotation_degrees = Vector3.ZERO
 	parent.add_child(label)
 
-
-# ─── Helpers ────────────────────────────────────────────────────────
 
 func _create_box_child(parent: Node3D, node_name: String, pos: Vector3, size: Vector3, material: Material) -> MeshInstance3D:
 	var mesh := BoxMesh.new()

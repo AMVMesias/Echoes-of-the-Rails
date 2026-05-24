@@ -1,0 +1,598 @@
+[gd_scene format=3 uid="uid://dtgxenq62m53e"]
+
+[ext_resource type="Material" path="res://assets/materials/train_aged_brass_weathered.tres" id="mat_brass"]
+[ext_resource type="Material" path="res://assets/materials/train_dark_iron_weathered.tres" id="mat_iron"]
+[ext_resource type="Material" path="res://assets/materials/train_panel_weathered.tres" id="mat_panel"]
+[ext_resource type="Material" path="res://assets/materials/train_old_wood_weathered.tres" id="mat_wood"]
+[ext_resource type="Material" path="res://assets/materials/dirty_glass_material.tres" id="mat_dirty_glass"]
+[ext_resource type="Material" path="res://assets/materials/train_black_iron_weathered.tres" id="mat_black_iron"]
+[ext_resource type="Material" path="res://assets/materials/train_gauge_face.tres" id="mat_gauge_face"]
+[ext_resource type="Material" path="res://assets/materials/train_red_bakelite_weathered.tres" id="mat_red"]
+
+[sub_resource type="BoxMesh" id="Mesh_box"]
+
+[sub_resource type="StandardMaterial3D" id="Mat_black"]
+albedo_color = Color(0.01, 0.01, 0.009, 1)
+metallic = 0.25
+roughness = 0.96
+
+[sub_resource type="CylinderMesh" id="Mesh_cylinder"]
+top_radius = 1.0
+bottom_radius = 1.0
+height = 1.0
+radial_segments = 24
+
+[sub_resource type="StandardMaterial3D" id="Mat_lamp"]
+albedo_color = Color(1, 0.55, 0.18, 1)
+roughness = 0.35
+emission_enabled = true
+emission = Color(1, 0.45, 0.12, 1)
+emission_energy_multiplier = 1.8
+
+[sub_resource type="SphereMesh" id="Mesh_sphere_low"]
+radius = 1.0
+height = 2.0
+radial_segments = 8
+rings = 4
+
+[sub_resource type="StandardMaterial3D" id="Mat_glass"]
+transparency = 1
+albedo_color = Color(0.65, 0.82, 0.84, 0.23)
+roughness = 0.18
+
+[sub_resource type="StandardMaterial3D" id="Mat_cream"]
+albedo_color = Color(0.88, 0.78, 0.55, 1)
+roughness = 0.84
+
+[sub_resource type="BoxMesh" id="Mesh_needle"]
+
+[sub_resource type="StandardMaterial3D" id="Mat_red"]
+albedo_color = Color(0.82, 0.035, 0.028, 1)
+roughness = 0.62
+
+[sub_resource type="SphereMesh" id="Mesh_sphere"]
+radius = 1.0
+height = 2.0
+radial_segments = 16
+rings = 8
+
+[node name="TrainVisual" type="Node3D" unique_id=1164474821]
+
+[node name="Exterior" type="Node3D" parent="." unique_id=87749155]
+
+[node name="MainFrame" type="MeshInstance3D" parent="Exterior" unique_id=1090238256]
+transform = Transform3D(3.9, 0, 0, 0, 0.28, 0, 0, 0, 7.8, 0, 0.48, -1.45)
+material_override = ExtResource("mat_iron")
+mesh = SubResource("Mesh_box")
+
+[node name="RunningBoardLeft" type="MeshInstance3D" parent="Exterior" unique_id=1364698256]
+transform = Transform3D(0.34, 0, 0, 0, 0.09, 0, 0, 0, 5.35, -1.72, 0.66, -1.55)
+material_override = ExtResource("mat_black_iron")
+mesh = SubResource("Mesh_box")
+
+[node name="RunningBoardRight" type="MeshInstance3D" parent="Exterior"]
+transform = Transform3D(0.34, 0, 0, 0, 0.09, 0, 0, 0, 5.35, 1.72, 0.66, -1.55)
+material_override = ExtResource("mat_black_iron")
+mesh = SubResource("Mesh_box")
+
+[node name="Boiler" type="MeshInstance3D" parent="Exterior" unique_id=1393780641]
+transform = Transform3D(0.66, 0, 0, 0, -1.6828884e-07, -0.66, 0, 3.85, -2.8849517e-08, 0, 1.55, -2.35)
+material_override = ExtResource("mat_black_iron")
+mesh = SubResource("Mesh_cylinder")
+
+[node name="SmokeboxFront" type="MeshInstance3D" parent="Exterior" unique_id=88278993]
+transform = Transform3D(0.72, 0, 0, 0, -7.86805e-09, -0.72, 0, 0.18, -3.14722e-08, 0, 1.55, -4.42)
+material_override = ExtResource("mat_iron")
+mesh = SubResource("Mesh_cylinder")
+
+[node name="Chimney" type="MeshInstance3D" parent="Exterior" unique_id=1455024307]
+transform = Transform3D(0.25, 0, 0, 0, 0.92, 0, 0, 0, 0.25, 0, 2.38, -3.68)
+material_override = ExtResource("mat_black_iron")
+mesh = SubResource("Mesh_cylinder")
+
+[node name="ChimneyLip" type="MeshInstance3D" parent="Exterior" unique_id=22525071]
+transform = Transform3D(0.35, 0, 0, 0, 0.12, 0, 0, 0, 0.35, 0, 2.88, -3.68)
+material_override = ExtResource("mat_iron")
+mesh = SubResource("Mesh_cylinder")
+
+[node name="Dome" type="MeshInstance3D" parent="Exterior" unique_id=1116367606]
+transform = Transform3D(0.34, 0, 0, 0, 0.42, 0, 0, 0, 0.34, 0, 2.19, -2.18)
+material_override = ExtResource("mat_black_iron")
+mesh = SubResource("Mesh_cylinder")
+
+[node name="FrontLamp" type="MeshInstance3D" parent="Exterior" unique_id=1711315030]
+transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 0, 1.68, -4.95)
+material_override = SubResource("Mat_lamp")
+mesh = SubResource("Mesh_sphere_low")
+
+[node name="CabShell" type="Node3D" parent="Exterior" unique_id=2107859732]
+
+[node name="CabBackWall" type="MeshInstance3D" parent="Exterior/CabShell" unique_id=1885833717]
+transform = Transform3D(4.15, 0, 0, 0, 2.35, 0, 0, 0, 0.16, 0, 1.65, 3.35)
+material_override = ExtResource("mat_wood")
+mesh = SubResource("Mesh_box")
+
+[node name="CabLeftWall" type="MeshInstance3D" parent="Exterior/CabShell" unique_id=1155799120]
+transform = Transform3D(0.16, 0, 0, 0, 1.03, 0, 0, 0, 3.18, -2.08, 1.02, 1.86)
+material_override = ExtResource("mat_wood")
+mesh = SubResource("Mesh_box")
+
+[node name="CabRightWall" type="MeshInstance3D" parent="Exterior/CabShell" unique_id=153468417]
+transform = Transform3D(0.16, 0, 0, 0, 1.03, 0, 0, 0, 3.18, 2.08, 1.02, 1.86)
+material_override = ExtResource("mat_wood")
+mesh = SubResource("Mesh_box")
+
+[node name="CabRoof" type="MeshInstance3D" parent="Exterior/CabShell" unique_id=1964585115]
+transform = Transform3D(4.45, 0, 0, 0, 0.16, 0, 0, 0, 3.9, 0, 2.92, 1.86)
+material_override = ExtResource("mat_wood")
+mesh = SubResource("Mesh_box")
+
+[node name="CabFrontTopBeam" type="MeshInstance3D" parent="Exterior/CabShell" unique_id=729166423]
+transform = Transform3D(4.35, 0, 0, 0, 0.2, 0, 0, 0, 0.18, 0, 2.52, 0.26)
+material_override = ExtResource("mat_wood")
+mesh = SubResource("Mesh_box")
+
+[node name="CabFrontBottomBeam" type="MeshInstance3D" parent="Exterior/CabShell" unique_id=1986263174]
+transform = Transform3D(4.35, 0, 0, 0, 0.14, 0, 0, 0, 0.18, 0, 0.86, 0.26)
+material_override = ExtResource("mat_wood")
+mesh = SubResource("Mesh_box")
+
+[node name="CabLeftPostFront" type="MeshInstance3D" parent="Exterior/CabShell" unique_id=1465566428]
+transform = Transform3D(0.18, 0, 0, 0, 1.8, 0, 0, 0, 0.16, -2.08, 1.95, 0.26)
+material_override = ExtResource("mat_iron")
+mesh = SubResource("Mesh_box")
+
+[node name="CabRightPostFront" type="MeshInstance3D" parent="Exterior/CabShell" unique_id=1935353522]
+transform = Transform3D(0.18, 0, 0, 0, 1.8, 0, 0, 0, 0.16, 2.08, 1.95, 0.26)
+material_override = ExtResource("mat_iron")
+mesh = SubResource("Mesh_box")
+
+[node name="CabLeftPostBack" type="MeshInstance3D" parent="Exterior/CabShell" unique_id=1045804102]
+transform = Transform3D(0.18, 0, 0, 0, 1.8, 0, 0, 0, 0.16, -2.08, 1.95, 3.35)
+material_override = ExtResource("mat_iron")
+mesh = SubResource("Mesh_box")
+
+[node name="CabRightPostBack" type="MeshInstance3D" parent="Exterior/CabShell" unique_id=81389859]
+transform = Transform3D(0.18, 0, 0, 0, 1.8, 0, 0, 0, 0.16, 2.08, 1.95, 3.35)
+material_override = ExtResource("mat_iron")
+mesh = SubResource("Mesh_box")
+
+[node name="LeftSideGlass" type="MeshInstance3D" parent="Exterior/CabShell" unique_id=643607782]
+transform = Transform3D(0.035, 0, 0, 0, 0.78, 0, 0, 0, 1.98, -2.17, 1.82, 1.78)
+material_override = ExtResource("mat_dirty_glass")
+mesh = SubResource("Mesh_box")
+
+[node name="RightSideGlass" type="MeshInstance3D" parent="Exterior/CabShell" unique_id=193579764]
+transform = Transform3D(0.035, 0, 0, 0, 0.78, 0, 0, 0, 1.98, 2.17, 1.82, 1.78)
+material_override = ExtResource("mat_dirty_glass")
+mesh = SubResource("Mesh_box")
+
+[node name="WheelGuardLeft" type="MeshInstance3D" parent="Exterior/CabShell" unique_id=974702111]
+transform = Transform3D(0.12, 0, 0, 0, 0.34, 0, 0, 0, 3.58, -1.72, 0.66, -1.88)
+material_override = ExtResource("mat_black_iron")
+mesh = SubResource("Mesh_box")
+
+[node name="WheelGuardRight" type="MeshInstance3D" parent="Exterior/CabShell" unique_id=1382854480]
+transform = Transform3D(0.12, 0, 0, 0, 0.34, 0, 0, 0, 3.58, 1.72, 0.66, -1.88)
+material_override = ExtResource("mat_black_iron")
+mesh = SubResource("Mesh_box")
+
+[node name="WheelPivots" type="Node3D" parent="Exterior" unique_id=1820201803]
+
+[node name="WheelFrontL" type="Node3D" parent="Exterior/WheelPivots" unique_id=510011845]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.36, 0.22, -3.45)
+
+[node name="Disk" type="MeshInstance3D" parent="Exterior/WheelPivots/WheelFrontL" unique_id=1640011373]
+transform = Transform3D(-1.7484556e-08, -0.145, 0, 0.4, -6.337788e-09, 0, 0, 0, 0.4, 0, 0, 0)
+material_override = ExtResource("mat_iron")
+mesh = SubResource("Mesh_cylinder")
+
+[node name="Hub" type="MeshInstance3D" parent="Exterior/WheelPivots/WheelFrontL" unique_id=778136316]
+transform = Transform3D(0.14, 0, 0, 0, 0.14, 0, 0, 0, 0.14, 0, 0, 0)
+material_override = ExtResource("mat_brass")
+mesh = SubResource("Mesh_sphere_low")
+
+[node name="WheelMidL" type="Node3D" parent="Exterior/WheelPivots" unique_id=1617916915]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.36, 0.22, -2)
+
+[node name="Disk" type="MeshInstance3D" parent="Exterior/WheelPivots/WheelMidL" unique_id=861845107]
+transform = Transform3D(-2.054435e-08, -0.16, 0, 0.47, -6.9938224e-09, 0, 0, 0, 0.47, 0, 0, 0)
+material_override = ExtResource("mat_iron")
+mesh = SubResource("Mesh_cylinder")
+
+[node name="Hub" type="MeshInstance3D" parent="Exterior/WheelPivots/WheelMidL" unique_id=2099190363]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+material_override = ExtResource("mat_brass")
+mesh = SubResource("Mesh_sphere_low")
+
+[node name="WheelBackL" type="Node3D" parent="Exterior/WheelPivots" unique_id=902086105]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.36, 0.22, -0.52)
+
+[node name="Disk" type="MeshInstance3D" parent="Exterior/WheelPivots/WheelBackL" unique_id=2128796968]
+transform = Transform3D(-1.87959e-08, -0.145, 0, 0.43, -6.337788e-09, 0, 0, 0, 0.43, 0, 0, 0)
+material_override = ExtResource("mat_iron")
+mesh = SubResource("Mesh_cylinder")
+
+[node name="Hub" type="MeshInstance3D" parent="Exterior/WheelPivots/WheelBackL" unique_id=224193448]
+transform = Transform3D(0.14, 0, 0, 0, 0.14, 0, 0, 0, 0.14, 0, 0, 0)
+material_override = ExtResource("mat_brass")
+mesh = SubResource("Mesh_sphere_low")
+
+[node name="WheelFrontR" type="Node3D" parent="Exterior/WheelPivots" unique_id=1271572168]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.36, 0.22, -3.45)
+
+[node name="Disk" type="MeshInstance3D" parent="Exterior/WheelPivots/WheelFrontR" unique_id=1699082389]
+transform = Transform3D(-1.7484556e-08, -0.145, 0, 0.4, -6.337788e-09, 0, 0, 0, 0.4, 0, 0, 0)
+material_override = ExtResource("mat_iron")
+mesh = SubResource("Mesh_cylinder")
+
+[node name="Hub" type="MeshInstance3D" parent="Exterior/WheelPivots/WheelFrontR" unique_id=2100831956]
+transform = Transform3D(0.14, 0, 0, 0, 0.14, 0, 0, 0, 0.14, 0, 0, 0)
+material_override = ExtResource("mat_brass")
+mesh = SubResource("Mesh_sphere_low")
+
+[node name="WheelMidR" type="Node3D" parent="Exterior/WheelPivots" unique_id=691210366]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.36, 0.22, -2)
+
+[node name="Disk" type="MeshInstance3D" parent="Exterior/WheelPivots/WheelMidR" unique_id=1470689735]
+transform = Transform3D(-2.054435e-08, -0.16, 0, 0.47, -6.9938224e-09, 0, 0, 0, 0.47, 0, 0, 0)
+material_override = ExtResource("mat_iron")
+mesh = SubResource("Mesh_cylinder")
+
+[node name="Hub" type="MeshInstance3D" parent="Exterior/WheelPivots/WheelMidR" unique_id=1614256624]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+material_override = ExtResource("mat_brass")
+mesh = SubResource("Mesh_sphere_low")
+
+[node name="WheelBackR" type="Node3D" parent="Exterior/WheelPivots" unique_id=1407424763]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.36, 0.22, -0.52)
+
+[node name="Disk" type="MeshInstance3D" parent="Exterior/WheelPivots/WheelBackR" unique_id=1463950988]
+transform = Transform3D(-1.87959e-08, -0.145, 0, 0.43, -6.337788e-09, 0, 0, 0, 0.43, 0, 0, 0)
+material_override = ExtResource("mat_iron")
+mesh = SubResource("Mesh_cylinder")
+
+[node name="Hub" type="MeshInstance3D" parent="Exterior/WheelPivots/WheelBackR" unique_id=1618499770]
+transform = Transform3D(0.14, 0, 0, 0, 0.14, 0, 0, 0, 0.14, 0, 0, 0)
+material_override = ExtResource("mat_brass")
+mesh = SubResource("Mesh_sphere_low")
+
+[node name="Interior" type="Node3D" parent="." unique_id=1314061356]
+visible = false
+
+[node name="CabFloor" type="MeshInstance3D" parent="Interior" unique_id=208339454]
+transform = Transform3D(3.95, 0, 0, 0, 0.14, 0, 0, 0, 3.48, 0, 0.49, 1.86)
+material_override = ExtResource("mat_wood")
+mesh = SubResource("Mesh_box")
+
+[node name="Dashboard" type="Node3D" parent="Interior" unique_id=944286923]
+
+[node name="DashboardSurface" type="Node3D" parent="Interior/Dashboard" unique_id=1391521810]
+transform = Transform3D(1, 0, 0, 0, 0.7954735, 0.6059884, 0, -0.6059884, 0.7954735, 0, 1.24, 0.88)
+
+[node name="MainPanel" type="MeshInstance3D" parent="Interior/Dashboard/DashboardSurface" unique_id=980742243]
+transform = Transform3D(3.7, 0, 0, 0, 0.68, 0, 0, 0, 0.12, 0, 0, 0)
+material_override = ExtResource("mat_panel")
+mesh = SubResource("Mesh_box")
+
+[node name="PanelTopLip" type="MeshInstance3D" parent="Interior/Dashboard/DashboardSurface" unique_id=1090210417]
+transform = Transform3D(4.02, 0, 0, 0, 0.075, 0, 0, 0, 0.105, 0, 0.39, 0.09)
+material_override = ExtResource("mat_iron")
+mesh = SubResource("Mesh_box")
+
+[node name="PanelBottomLip" type="MeshInstance3D" parent="Interior/Dashboard/DashboardSurface" unique_id=869054063]
+transform = Transform3D(4.02, 0, 0, 0, 0.075, 0, 0, 0, 0.105, 0, -0.39, 0.09)
+material_override = ExtResource("mat_iron")
+mesh = SubResource("Mesh_box")
+
+[node name="PanelWearA" type="MeshInstance3D" parent="Interior/Dashboard/DashboardSurface" unique_id=8730261]
+transform = Transform3D(0.72, 0, 0, 0, 0.055, 0, 0, 0, 0.016, -0.86, 0.19, 0.08)
+material_override = ExtResource("mat_panel")
+mesh = SubResource("Mesh_box")
+
+[node name="PanelWearB" type="MeshInstance3D" parent="Interior/Dashboard/DashboardSurface" unique_id=737241938]
+transform = Transform3D(0.62, 0, 0, 0, 0.05, 0, 0, 0, 0.016, 0.96, -0.12, 0.08)
+material_override = ExtResource("mat_panel")
+mesh = SubResource("Mesh_box")
+
+[node name="RivetRowTop" type="Node3D" parent="Interior/Dashboard/DashboardSurface" unique_id=1854739872]
+
+[node name="Rivet00" type="MeshInstance3D" parent="Interior/Dashboard/DashboardSurface/RivetRowTop" unique_id=1965200394]
+transform = Transform3D(0.035, 0, 0, 0, 0.035, 0, 0, 0, 0.035, -1.75, 0.31, 0.105)
+material_override = ExtResource("mat_brass")
+mesh = SubResource("Mesh_sphere_low")
+
+[node name="Rivet01" type="MeshInstance3D" parent="Interior/Dashboard/DashboardSurface/RivetRowTop" unique_id=1365128944]
+transform = Transform3D(0.035, 0, 0, 0, 0.035, 0, 0, 0, 0.035, -1.25, 0.31, 0.105)
+material_override = ExtResource("mat_brass")
+mesh = SubResource("Mesh_sphere_low")
+
+[node name="Rivet02" type="MeshInstance3D" parent="Interior/Dashboard/DashboardSurface/RivetRowTop" unique_id=1182918555]
+transform = Transform3D(0.035, 0, 0, 0, 0.035, 0, 0, 0, 0.035, -0.75, 0.31, 0.105)
+material_override = ExtResource("mat_brass")
+mesh = SubResource("Mesh_sphere_low")
+
+[node name="Rivet03" type="MeshInstance3D" parent="Interior/Dashboard/DashboardSurface/RivetRowTop" unique_id=2038362301]
+transform = Transform3D(0.035, 0, 0, 0, 0.035, 0, 0, 0, 0.035, -0.25, 0.31, 0.105)
+material_override = ExtResource("mat_brass")
+mesh = SubResource("Mesh_sphere_low")
+
+[node name="Rivet04" type="MeshInstance3D" parent="Interior/Dashboard/DashboardSurface/RivetRowTop" unique_id=970492329]
+transform = Transform3D(0.035, 0, 0, 0, 0.035, 0, 0, 0, 0.035, 0.25, 0.31, 0.105)
+material_override = ExtResource("mat_brass")
+mesh = SubResource("Mesh_sphere_low")
+
+[node name="Rivet05" type="MeshInstance3D" parent="Interior/Dashboard/DashboardSurface/RivetRowTop" unique_id=1474105833]
+transform = Transform3D(0.035, 0, 0, 0, 0.035, 0, 0, 0, 0.035, 0.75, 0.31, 0.105)
+material_override = ExtResource("mat_brass")
+mesh = SubResource("Mesh_sphere_low")
+
+[node name="Rivet06" type="MeshInstance3D" parent="Interior/Dashboard/DashboardSurface/RivetRowTop" unique_id=411733932]
+transform = Transform3D(0.035, 0, 0, 0, 0.035, 0, 0, 0, 0.035, 1.25, 0.31, 0.105)
+material_override = ExtResource("mat_brass")
+mesh = SubResource("Mesh_sphere_low")
+
+[node name="Rivet07" type="MeshInstance3D" parent="Interior/Dashboard/DashboardSurface/RivetRowTop" unique_id=2042048474]
+transform = Transform3D(0.035, 0, 0, 0, 0.035, 0, 0, 0, 0.035, 1.75, 0.31, 0.105)
+material_override = ExtResource("mat_brass")
+mesh = SubResource("Mesh_sphere_low")
+
+[node name="Gauges" type="Node3D" parent="Interior/Dashboard/DashboardSurface" unique_id=734937683]
+
+[node name="SteamGaugeBezel" type="MeshInstance3D" parent="Interior/Dashboard/DashboardSurface/Gauges" unique_id=1838638969]
+transform = Transform3D(0.29, 0, 0, 0, -1.9670126e-09, -0.29, 0, 0.045, -1.2676303e-08, -1.28, 0.09, 0.128)
+material_override = ExtResource("mat_brass")
+mesh = SubResource("Mesh_cylinder")
+
+[node name="SteamGaugeFace" type="MeshInstance3D" parent="Interior/Dashboard/DashboardSurface/Gauges" unique_id=1624436559]
+transform = Transform3D(0.235, 0, 0, 0, -1.3113416e-09, -0.235, 0, 0.03, -1.0272176e-08, -1.28, 0.09, 0.158)
+material_override = ExtResource("mat_gauge_face")
+mesh = SubResource("Mesh_cylinder")
+
+[node name="SteamNeedle" type="Node3D" parent="Interior/Dashboard/DashboardSurface/Gauges" unique_id=579683864]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.28, 0.09, 0.188)
+
+[node name="NeedleBar" type="MeshInstance3D" parent="Interior/Dashboard/DashboardSurface/Gauges/SteamNeedle" unique_id=1242828357]
+transform = Transform3D(0.22, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.1, 0, 0)
+material_override = ExtResource("mat_black_iron")
+mesh = SubResource("Mesh_needle")
+
+[node name="BrakeGaugeBezel" type="MeshInstance3D" parent="Interior/Dashboard/DashboardSurface/Gauges" unique_id=534656001]
+transform = Transform3D(0.29, 0, 0, 0, -1.9670126e-09, -0.29, 0, 0.045, -1.2676303e-08, -0.52, 0.09, 0.128)
+material_override = ExtResource("mat_brass")
+mesh = SubResource("Mesh_cylinder")
+
+[node name="BrakeGaugeFace" type="MeshInstance3D" parent="Interior/Dashboard/DashboardSurface/Gauges" unique_id=266445033]
+transform = Transform3D(0.235, 0, 0, 0, -1.3113416e-09, -0.235, 0, 0.03, -1.0272176e-08, -0.52, 0.09, 0.158)
+material_override = ExtResource("mat_gauge_face")
+mesh = SubResource("Mesh_cylinder")
+
+[node name="BrakeNeedle" type="Node3D" parent="Interior/Dashboard/DashboardSurface/Gauges" unique_id=1169740888]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.52, 0.09, 0.188)
+
+[node name="NeedleBar" type="MeshInstance3D" parent="Interior/Dashboard/DashboardSurface/Gauges/BrakeNeedle" unique_id=86133395]
+transform = Transform3D(0.22, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.1, 0, 0)
+material_override = ExtResource("mat_black_iron")
+mesh = SubResource("Mesh_needle")
+
+[node name="CoalGaugeBezel" type="MeshInstance3D" parent="Interior/Dashboard/DashboardSurface/Gauges" unique_id=1483853267]
+transform = Transform3D(0.31, 0, 0, 0, -1.9670126e-09, -0.31, 0, 0.045, -1.35505305e-08, 0.24, 0.09, 0.128)
+material_override = ExtResource("mat_brass")
+mesh = SubResource("Mesh_cylinder")
+
+[node name="CoalGaugeFace" type="MeshInstance3D" parent="Interior/Dashboard/DashboardSurface/Gauges" unique_id=1703466820]
+transform = Transform3D(0.255, 0, 0, 0, -1.3113416e-09, -0.255, 0, 0.03, -1.1146404e-08, 0.24, 0.09, 0.158)
+material_override = ExtResource("mat_gauge_face")
+mesh = SubResource("Mesh_cylinder")
+
+[node name="CoalNeedle" type="Node3D" parent="Interior/Dashboard/DashboardSurface/Gauges" unique_id=987306981]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24, 0.09, 0.188)
+
+[node name="NeedleBar" type="MeshInstance3D" parent="Interior/Dashboard/DashboardSurface/Gauges/CoalNeedle" unique_id=1429508974]
+transform = Transform3D(0.24, 0, 0, 0, 0.022, 0, 0, 0, 0.02, 0.11, 0, 0)
+material_override = ExtResource("mat_red")
+mesh = SubResource("Mesh_needle")
+
+[node name="SpeedGaugeBezel" type="MeshInstance3D" parent="Interior/Dashboard/DashboardSurface/Gauges" unique_id=678825534]
+transform = Transform3D(0.33, 0, 0, 0, -1.9670126e-09, -0.33, 0, 0.045, -1.4424758e-08, 1.42, 0.09, 0.128)
+material_override = ExtResource("mat_brass")
+mesh = SubResource("Mesh_cylinder")
+
+[node name="SpeedGaugeFace" type="MeshInstance3D" parent="Interior/Dashboard/DashboardSurface/Gauges" unique_id=2003104126]
+transform = Transform3D(0.265, 0, 0, 0, -1.3113416e-09, -0.265, 0, 0.03, -1.1583517e-08, 1.42, 0.09, 0.158)
+material_override = ExtResource("mat_gauge_face")
+mesh = SubResource("Mesh_cylinder")
+
+[node name="SpeedNeedle" type="Node3D" parent="Interior/Dashboard/DashboardSurface/Gauges" unique_id=1989846442]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42, 0.09, 0.188)
+
+[node name="NeedleBar" type="MeshInstance3D" parent="Interior/Dashboard/DashboardSurface/Gauges/SpeedNeedle" unique_id=1749526614]
+transform = Transform3D(0.26, 0, 0, 0, 0.022, 0, 0, 0, 0.02, 0.12, 0, 0)
+material_override = ExtResource("mat_black_iron")
+mesh = SubResource("Mesh_needle")
+
+[node name="GaugeLabels" type="Node3D" parent="Interior/Dashboard/DashboardSurface" unique_id=878084429]
+
+[node name="SteamLabel" type="Label3D" parent="Interior/Dashboard/DashboardSurface/GaugeLabels" unique_id=1279013397]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.28, -0.28, 0.125)
+pixel_size = 0.0017
+modulate = Color(0.95, 0.88, 0.7, 1)
+text = "VAPOR"
+font_size = 28
+outline_size = 5
+
+[node name="BrakeLabel" type="Label3D" parent="Interior/Dashboard/DashboardSurface/GaugeLabels" unique_id=627847387]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.52, -0.28, 0.125)
+pixel_size = 0.0017
+modulate = Color(0.95, 0.88, 0.7, 1)
+text = "FRENO"
+font_size = 28
+outline_size = 5
+
+[node name="CoalLabel" type="Label3D" parent="Interior/Dashboard/DashboardSurface/GaugeLabels" unique_id=1054416379]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24, -0.28, 0.125)
+pixel_size = 0.0017
+modulate = Color(0.95, 0.88, 0.7, 1)
+text = "CARBON"
+font_size = 28
+outline_size = 5
+
+[node name="SpeedLabel" type="Label3D" parent="Interior/Dashboard/DashboardSurface/GaugeLabels" unique_id=1791345680]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42, -0.3, 0.125)
+pixel_size = 0.00155
+modulate = Color(0.95, 0.88, 0.7, 1)
+text = "VELOCIDAD"
+font_size = 26
+outline_size = 5
+
+[node name="SupplyPanel" type="MeshInstance3D" parent="Interior/Dashboard/DashboardSurface" unique_id=544834600]
+transform = Transform3D(0.6, 0, 0, 0, 0.36, 0, 0, 0, 0.055, 0.82, 0.02, 0.125)
+material_override = ExtResource("mat_black_iron")
+mesh = SubResource("Mesh_box")
+
+[node name="SupplyLabel" type="Label3D" parent="Interior/Dashboard/DashboardSurface" unique_id=1732811774]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.82, 0.13, 0.165)
+pixel_size = 0.00115
+modulate = Color(0.95, 0.88, 0.7, 1)
+text = "COMPRAR CARBON"
+font_size = 24
+outline_size = 5
+
+[node name="SupplyLabel2" type="Label3D" parent="Interior/Dashboard/DashboardSurface" unique_id=1443455703]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.82, 0.02, 0.165)
+pixel_size = 0.00115
+modulate = Color(0.95, 0.88, 0.7, 1)
+text = "COMPRAR"
+font_size = 24
+outline_size = 5
+
+[node name="SupplyLabel3" type="Label3D" parent="Interior/Dashboard/DashboardSurface" unique_id=895864914]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.82, -0.09, 0.165)
+pixel_size = 0.00115
+modulate = Color(0.95, 0.88, 0.7, 1)
+text = "REINICIAR"
+font_size = 24
+outline_size = 5
+
+[node name="Controls" type="Node3D" parent="Interior" unique_id=2032911804]
+
+[node name="ControlDeckSurface" type="Node3D" parent="Interior/Controls" unique_id=1025343217]
+transform = Transform3D(1, 0, 0, 0, 0.7954735, 0.6059884, 0, -0.6059884, 0.7954735, 0, 1.08, 1.5)
+
+[node name="ControlDeck" type="MeshInstance3D" parent="Interior/Controls/ControlDeckSurface" unique_id=626523574]
+transform = Transform3D(2.42, 0, 0, 0, 0.035, 0, 0, 0, 0.24, 0, -0.07, 0.14)
+material_override = ExtResource("mat_panel")
+mesh = SubResource("Mesh_box")
+
+[node name="ThrottleBase" type="MeshInstance3D" parent="Interior/Controls/ControlDeckSurface" unique_id=794815286]
+transform = Transform3D(0.64, 0, 0, 0, 0.08, 0, 0, 0, 0.24, -1.04, 0.035, 0.04)
+material_override = ExtResource("mat_black_iron")
+mesh = SubResource("Mesh_box")
+
+[node name="ThrottleLeverPivot" type="Node3D" parent="Interior/Controls/ControlDeckSurface" unique_id=103692937]
+transform = Transform3D(1, 0, 0, 0, 0.95105654, 0.309017, 0, -0.309017, 0.95105654, -1.04, 0.085, 0.075)
+
+[node name="Stem" type="MeshInstance3D" parent="Interior/Controls/ControlDeckSurface/ThrottleLeverPivot" unique_id=1837220331]
+transform = Transform3D(0.048, 0, 0, 0, 0.34, 0, 0, 0, 0.048, 0, 0.16, -0.035)
+material_override = ExtResource("mat_iron")
+mesh = SubResource("Mesh_box")
+
+[node name="Grip" type="MeshInstance3D" parent="Interior/Controls/ControlDeckSurface/ThrottleLeverPivot" unique_id=2122788849]
+transform = Transform3D(0.45, 0, 0, 0, 0.085, 0, 0, 0, 0.092, 0, 0.38, -0.075)
+material_override = ExtResource("mat_wood")
+mesh = SubResource("Mesh_box")
+
+[node name="BrakeBase" type="MeshInstance3D" parent="Interior/Controls/ControlDeckSurface" unique_id=796985581]
+transform = Transform3D(0.28, 0, 0, 0, 0.08, 0, 0, 0, 0.24, 0.03, 0.035, 0.04)
+material_override = ExtResource("mat_black_iron")
+mesh = SubResource("Mesh_box")
+
+[node name="BrakeLeverPivot" type="Node3D" parent="Interior/Controls/ControlDeckSurface" unique_id=187018136]
+transform = Transform3D(1, 0, 0, 0, 0.9848077, 0.17364818, 0, -0.17364818, 0.9848077, 0.03, 0.085, 0.075)
+
+[node name="Stem" type="MeshInstance3D" parent="Interior/Controls/ControlDeckSurface/BrakeLeverPivot" unique_id=421097935]
+transform = Transform3D(0.05, 0, 0, 0, 0.34, 0, 0, 0, 0.05, 0, 0.17, -0.045)
+material_override = ExtResource("mat_iron")
+mesh = SubResource("Mesh_box")
+
+[node name="Knob" type="MeshInstance3D" parent="Interior/Controls/ControlDeckSurface/BrakeLeverPivot" unique_id=2007779937]
+transform = Transform3D(0.135, 0, 0, 0, 0.135, 0, 0, 0, 0.135, 0, 0.39, -0.075)
+material_override = ExtResource("mat_red")
+mesh = SubResource("Mesh_sphere")
+
+[node name="PneumaticBase" type="MeshInstance3D" parent="Interior/Controls/ControlDeckSurface" unique_id=830232083]
+transform = Transform3D(0.58, 0, 0, 0, 0.08, 0, 0, 0, 0.24, 0.98, 0.035, 0.04)
+material_override = ExtResource("mat_black_iron")
+mesh = SubResource("Mesh_box")
+
+[node name="PneumaticLeverPivot" type="Node3D" parent="Interior/Controls/ControlDeckSurface" unique_id=1244340649]
+transform = Transform3D(1, 0, 0, 0, 0.99026805, 0.1391731, 0, -0.1391731, 0.99026805, 0.98, 0.085, 0.075)
+
+[node name="Stem" type="MeshInstance3D" parent="Interior/Controls/ControlDeckSurface/PneumaticLeverPivot" unique_id=73512856]
+transform = Transform3D(0.05, 0, 0, 0, 0.30, 0, 0, 0, 0.05, 0, 0.15, -0.045)
+material_override = ExtResource("mat_iron")
+mesh = SubResource("Mesh_box")
+
+[node name="Knob" type="MeshInstance3D" parent="Interior/Controls/ControlDeckSurface/PneumaticLeverPivot" unique_id=1239934512]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0.15, 0.35, -0.07)
+material_override = ExtResource("mat_red")
+mesh = SubResource("Mesh_sphere")
+
+[node name="ControlLabels" type="Node3D" parent="Interior/Controls/ControlDeckSurface" unique_id=549990177]
+
+[node name="ThrottlePlaque" type="MeshInstance3D" parent="Interior/Controls/ControlDeckSurface/ControlLabels" unique_id=830475541]
+transform = Transform3D(0.66, 0, 0, 0, 0.038, 0, 0, 0, 0.018, -1.04, -0.17, 0.29)
+material_override = ExtResource("mat_black_iron")
+mesh = SubResource("Mesh_box")
+
+[node name="BrakePlaque" type="MeshInstance3D" parent="Interior/Controls/ControlDeckSurface/ControlLabels" unique_id=1625442697]
+transform = Transform3D(0.34, 0, 0, 0, 0.038, 0, 0, 0, 0.018, 0.03, -0.17, 0.29)
+material_override = ExtResource("mat_black_iron")
+mesh = SubResource("Mesh_box")
+
+[node name="PneumaticPlaque" type="MeshInstance3D" parent="Interior/Controls/ControlDeckSurface/ControlLabels" unique_id=1441593803]
+transform = Transform3D(0.62, 0, 0, 0, 0.038, 0, 0, 0, 0.018, 0.98, -0.17, 0.29)
+material_override = ExtResource("mat_black_iron")
+mesh = SubResource("Mesh_box")
+
+[node name="ThrottleControlLabel" type="Label3D" parent="Interior/Controls/ControlDeckSurface/ControlLabels" unique_id=809725538]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04, -0.17, 0.31)
+pixel_size = 0.00082
+modulate = Color(0.95, 0.88, 0.7, 1)
+text = "REGULADOR DE VAPOR"
+font_size = 22
+outline_size = 3
+
+[node name="BrakeControlLabel" type="Label3D" parent="Interior/Controls/ControlDeckSurface/ControlLabels" unique_id=287057851]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, -0.17, 0.31)
+pixel_size = 0.00082
+modulate = Color(0.95, 0.88, 0.7, 1)
+text = "FRENO"
+font_size = 22
+outline_size = 3
+
+[node name="PneumaticControlLabel" type="Label3D" parent="Interior/Controls/ControlDeckSurface/ControlLabels" unique_id=1126532200]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98, -0.17, 0.31)
+pixel_size = 0.00082
+modulate = Color(0.95, 0.88, 0.7, 1)
+text = "FRENO NEUMATICO"
+font_size = 22
+outline_size = 3
+
+[node name="CabLamps" type="Node3D" parent="Interior" unique_id=413626026]
+
+[node name="LampLeft" type="MeshInstance3D" parent="Interior/CabLamps" unique_id=1247033662]
+transform = Transform3D(0.1, 0, 0, 0, 0.2, 0, 0, 0, 0.1, -1.85, 1.44, 0.7)
+material_override = SubResource("Mat_lamp")
+mesh = SubResource("Mesh_sphere")
+
+[node name="LampRight" type="MeshInstance3D" parent="Interior/CabLamps" unique_id=1621516440]
+transform = Transform3D(0.1, 0, 0, 0, 0.2, 0, 0, 0, 0.1, 1.85, 1.44, 0.7)
+material_override = SubResource("Mat_lamp")
+mesh = SubResource("Mesh_sphere")
+
+[node name="CabWarmLight" type="OmniLight3D" parent="Interior/CabLamps" unique_id=2118098573]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05, 1.42)
+light_color = Color(1, 0.66, 0.38, 1)
+light_energy = 1.1
+omni_range = 4.2

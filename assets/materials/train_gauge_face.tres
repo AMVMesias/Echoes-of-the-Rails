@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+
+[ext_resource type="Shader" path="res://assets/shaders/train_gauge_face.gdshader" id="1_shader"]
+
+[resource]
+shader = ExtResource("1_shader")
+shader_parameter/paper_color = Color(0.93, 0.80, 0.55, 1)
+shader_parameter/aged_color = Color(0.34, 0.25, 0.14, 1)
+shader_parameter/ink_color = Color(0.045, 0.032, 0.022, 1)
+shader_parameter/warning_color = Color(0.86, 0.10, 0.04, 1)
+shader_parameter/stain_strength = 0.26
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.82

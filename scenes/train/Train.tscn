@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3]
+[gd_scene load_steps=23 format=3]
 
 [ext_resource type="Script" path="res://scripts/train/TrainController.gd" id="1_train_controller"]
 [ext_resource type="Script" path="res://scripts/train/FuelSystem.gd" id="2_fuel"]
@@ -7,24 +7,14 @@
 [ext_resource type="Script" path="res://scripts/train/DerailmentSystem.gd" id="5_derailment"]
 [ext_resource type="PackedScene" path="res://scenes/train/Cabin.tscn" id="6_cabin"]
 [ext_resource type="PackedScene" path="res://scenes/audio/TrainAudioController.tscn" id="7_audio"]
-[ext_resource type="Material" path="res://assets/materials/psx_iron.tres" id="8_iron"]
-[ext_resource type="Material" path="res://assets/materials/steam_material.tres" id="9_steam"]
-[ext_resource type="Script" path="res://scripts/train/SteamPlumeController.gd" id="10_steam_controller"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_base"]
-size = Vector3(2.0, 0.55, 5.4)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_boiler"]
-top_radius = 0.52
-bottom_radius = 0.52
-height = 3.2
-radial_segments = 12
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_chimney"]
-top_radius = 0.25
-bottom_radius = 0.32
-height = 1.1
-radial_segments = 10
+[ext_resource type="Material" path="res://assets/materials/steam_material.tres" id="8_steam"]
+[ext_resource type="Script" path="res://scripts/train/SteamPlumeController.gd" id="9_steam_controller"]
+[ext_resource type="PackedScene" path="res://scenes/train/TrainVisual.tscn" id="10_train_visual"]
+[ext_resource type="Script" path="res://scripts/train/TrainVisualControls.gd" id="11_visual_controls"]
+[ext_resource type="Material" path="res://assets/materials/train_black_iron_weathered.tres" id="12_black_iron"]
+[ext_resource type="Material" path="res://assets/materials/train_old_wood_weathered.tres" id="13_old_wood"]
+[ext_resource type="Material" path="res://assets/materials/train_panel_weathered.tres" id="14_panel"]
+[ext_resource type="Material" path="res://assets/materials/train_aged_brass_weathered.tres" id="15_brass"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_steam"]
 direction = Vector3(0, 1.65, -0.45)
@@ -36,32 +26,129 @@ scale_min = 0.3
 scale_max = 0.9
 
 [sub_resource type="QuadMesh" id="QuadMesh_steam"]
-material = ExtResource("9_steam")
+material = ExtResource("8_steam")
 size = Vector2(1.0, 1.0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wagon_body"]
+size = Vector3(3.55, 1.55, 5.0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wagon_roof"]
+size = Vector3(3.85, 0.28, 5.28)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wagon_side_trim"]
+size = Vector3(0.16, 0.78, 4.82)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wagon_brass_band"]
+size = Vector3(3.62, 0.08, 4.72)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wagon_wheel"]
+top_radius = 0.34
+bottom_radius = 0.34
+height = 0.18
+radial_segments = 16
 
 [node name="Train" type="PathFollow3D"]
 script = ExtResource("1_train_controller")
 progress_loop = false
 
-[node name="LocomotiveModel" type="Node3D" parent="."]
+[node name="TrainVisual" parent="." instance=ExtResource("10_train_visual")]
 
-[node name="Base" type="MeshInstance3D" parent="LocomotiveModel"]
-position = Vector3(0, 0.32, -1.55)
-mesh = SubResource("BoxMesh_base")
-material_override = ExtResource("8_iron")
+[node name="VisualControls" type="Node" parent="."]
+script = ExtResource("11_visual_controls")
+visual_root_path = NodePath("../TrainVisual")
 
-[node name="Boiler" type="MeshInstance3D" parent="LocomotiveModel"]
-position = Vector3(0, 0.92, -2.55)
-rotation_degrees = Vector3(90, 0, 0)
-mesh = SubResource("CylinderMesh_boiler")
-material_override = ExtResource("8_iron")
+[node name="PassengerCars" type="Node3D" parent="."]
 
-[node name="Chimney" type="MeshInstance3D" parent="LocomotiveModel"]
-position = Vector3(0, 1.62, -3.85)
-mesh = SubResource("CylinderMesh_chimney")
-material_override = ExtResource("8_iron")
+[node name="PassengerCarA" type="Node3D" parent="PassengerCars"]
+position = Vector3(0, 0.56, 5.85)
 
-[node name="SteamParticles" type="GPUParticles3D" parent="LocomotiveModel"]
+[node name="Body" type="MeshInstance3D" parent="PassengerCars/PassengerCarA"]
+position = Vector3(0, 0.78, 0)
+mesh = SubResource("BoxMesh_wagon_body")
+material_override = ExtResource("13_old_wood")
+
+[node name="Roof" type="MeshInstance3D" parent="PassengerCars/PassengerCarA"]
+position = Vector3(0, 1.72, 0)
+mesh = SubResource("BoxMesh_wagon_roof")
+material_override = ExtResource("12_black_iron")
+
+[node name="LeftTrim" type="MeshInstance3D" parent="PassengerCars/PassengerCarA"]
+position = Vector3(-1.86, 0.92, 0)
+mesh = SubResource("BoxMesh_wagon_side_trim")
+material_override = ExtResource("14_panel")
+
+[node name="RightTrim" type="MeshInstance3D" parent="PassengerCars/PassengerCarA"]
+position = Vector3(1.86, 0.92, 0)
+mesh = SubResource("BoxMesh_wagon_side_trim")
+material_override = ExtResource("14_panel")
+
+[node name="WheelFL" type="MeshInstance3D" parent="PassengerCars/PassengerCarA"]
+position = Vector3(-1.65, 0.03, -1.55)
+rotation_degrees = Vector3(0, 0, 90)
+mesh = SubResource("CylinderMesh_wagon_wheel")
+material_override = ExtResource("12_black_iron")
+
+[node name="WheelBL" type="MeshInstance3D" parent="PassengerCars/PassengerCarA"]
+position = Vector3(-1.65, 0.03, 1.55)
+rotation_degrees = Vector3(0, 0, 90)
+mesh = SubResource("CylinderMesh_wagon_wheel")
+material_override = ExtResource("12_black_iron")
+
+[node name="WheelFR" type="MeshInstance3D" parent="PassengerCars/PassengerCarA"]
+position = Vector3(1.65, 0.03, -1.55)
+rotation_degrees = Vector3(0, 0, 90)
+mesh = SubResource("CylinderMesh_wagon_wheel")
+material_override = ExtResource("12_black_iron")
+
+[node name="WheelBR" type="MeshInstance3D" parent="PassengerCars/PassengerCarA"]
+position = Vector3(1.65, 0.03, 1.55)
+rotation_degrees = Vector3(0, 0, 90)
+mesh = SubResource("CylinderMesh_wagon_wheel")
+material_override = ExtResource("12_black_iron")
+
+[node name="PassengerCarB" type="Node3D" parent="PassengerCars"]
+position = Vector3(0, 0.56, 11.25)
+
+[node name="Body" type="MeshInstance3D" parent="PassengerCars/PassengerCarB"]
+position = Vector3(0, 0.78, 0)
+mesh = SubResource("BoxMesh_wagon_body")
+material_override = ExtResource("13_old_wood")
+
+[node name="Roof" type="MeshInstance3D" parent="PassengerCars/PassengerCarB"]
+position = Vector3(0, 1.72, 0)
+mesh = SubResource("BoxMesh_wagon_roof")
+material_override = ExtResource("12_black_iron")
+
+[node name="BrassBands" type="MeshInstance3D" parent="PassengerCars/PassengerCarB"]
+position = Vector3(0, 1.38, 0)
+mesh = SubResource("BoxMesh_wagon_brass_band")
+material_override = ExtResource("15_brass")
+
+[node name="WheelFL" type="MeshInstance3D" parent="PassengerCars/PassengerCarB"]
+position = Vector3(-1.65, 0.03, -1.55)
+rotation_degrees = Vector3(0, 0, 90)
+mesh = SubResource("CylinderMesh_wagon_wheel")
+material_override = ExtResource("12_black_iron")
+
+[node name="WheelBL" type="MeshInstance3D" parent="PassengerCars/PassengerCarB"]
+position = Vector3(-1.65, 0.03, 1.55)
+rotation_degrees = Vector3(0, 0, 90)
+mesh = SubResource("CylinderMesh_wagon_wheel")
+material_override = ExtResource("12_black_iron")
+
+[node name="WheelFR" type="MeshInstance3D" parent="PassengerCars/PassengerCarB"]
+position = Vector3(1.65, 0.03, -1.55)
+rotation_degrees = Vector3(0, 0, 90)
+mesh = SubResource("CylinderMesh_wagon_wheel")
+material_override = ExtResource("12_black_iron")
+
+[node name="WheelBR" type="MeshInstance3D" parent="PassengerCars/PassengerCarB"]
+position = Vector3(1.65, 0.03, 1.55)
+rotation_degrees = Vector3(0, 0, 90)
+mesh = SubResource("CylinderMesh_wagon_wheel")
+material_override = ExtResource("12_black_iron")
+
+[node name="SteamParticles" type="GPUParticles3D" parent="."]
 position = Vector3(0, 3.18, -4.45)
 amount = 24
 lifetime = 1.55
@@ -70,13 +157,13 @@ local_coords = true
 visibility_aabb = AABB(-10, -2, -10, 20, 12, 20)
 process_material = SubResource("ParticleProcessMaterial_steam")
 draw_pass_1 = SubResource("QuadMesh_steam")
-script = ExtResource("10_steam_controller")
+script = ExtResource("9_steam_controller")
 vertical_lift = 1.75
 forward_push = -0.55
 cabin_guard_front_z = -1.25
 minimum_safe_forward_push = -0.22
 
-[node name="SideSteamLeft" type="GPUParticles3D" parent="LocomotiveModel"]
+[node name="SideSteamLeft" type="GPUParticles3D" parent="."]
 position = Vector3(-1.02, 1.55, -2.35)
 amount = 8
 lifetime = 0.8
@@ -85,13 +172,13 @@ local_coords = true
 visibility_aabb = AABB(-10, -2, -10, 20, 12, 20)
 process_material = SubResource("ParticleProcessMaterial_steam")
 draw_pass_1 = SubResource("QuadMesh_steam")
-script = ExtResource("10_steam_controller")
+script = ExtResource("9_steam_controller")
 plume_side_bias = -1.0
 is_side_vent = true
 cabin_guard_front_z = -1.25
 minimum_safe_forward_push = -0.22
 
-[node name="SideSteamRight" type="GPUParticles3D" parent="LocomotiveModel"]
+[node name="SideSteamRight" type="GPUParticles3D" parent="."]
 position = Vector3(1.02, 1.55, -2.35)
 amount = 8
 lifetime = 0.8
@@ -100,7 +187,7 @@ local_coords = true
 visibility_aabb = AABB(-10, -2, -10, 20, 12, 20)
 process_material = SubResource("ParticleProcessMaterial_steam")
 draw_pass_1 = SubResource("QuadMesh_steam")
-script = ExtResource("10_steam_controller")
+script = ExtResource("9_steam_controller")
 plume_side_bias = 1.0
 is_side_vent = true
 cabin_guard_front_z = -1.25

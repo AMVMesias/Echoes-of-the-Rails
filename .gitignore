@@ -1,3 +1,17 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+addons/
+
+# Local editor/AI/MCP tooling
+.agents/
+.antigravitycli/
+send_godot_command.js
+
+# Local source/reference files not required to run the Godot project
+Blender/
+captures/
+tools/
+image.png
+image.png.import
+assets/external/

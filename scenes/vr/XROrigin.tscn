@@ -7,9 +7,9 @@
 
 [node name="Camera3D" type="Camera3D" parent="."]
 current = true
-position = Vector3(0, 2.15, 1.05)
+position = Vector3(0, 2.12, 1.08)
 rotation_degrees = Vector3(-8, 0, 0)
-fov = 78.0
+fov = 84.0
 script = ExtResource("2_desktop_look")
 
 [node name="LeftController" parent="." instance=ExtResource("1_controller")]
