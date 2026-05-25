@@ -14,3 +14,15 @@ tools/
 image.png
 image.png.import
 assets/external/
+
+# Ignorar archivos generados por la compilación de LaTeX
+*.aux
+*.bbl
+*.blg
+*.fls
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fdb_latexmk
+*.xdv
