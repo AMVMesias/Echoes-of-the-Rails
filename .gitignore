@@ -11,9 +11,6 @@ send_godot_command.js
 # Local source/reference files not required to run the Godot project
 captures/
 tools/
-Blender/
-*.blend
-*.blend1
 image.png
 image.png.import
 assets/external/
