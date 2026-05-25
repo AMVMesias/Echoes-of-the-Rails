@@ -332,7 +332,7 @@ La simulación necesita un espacio legible, pero no completamente seguro. Por es
 
 \section{Diseño Visual y Ambientación del Escenario}
 
-El escenario de \textit{El Paso de la Bruma} trabaja una identidad visual \textit{Retro Realism}: modelos de baja poligonización, texturas simples, colores contenidos, luces cálidas puntuales y niebla atmosférica. Esta estética ayuda a que el entorno sea viable en VR y mantenga una personalidad nostálgica.
+El escenario de \textit{El Paso de la Bruma} trabaja una identidad visual \textit{Retro Realism}: modelos de baja poligonización, materiales de lectura clara, colores contenidos, luces cálidas puntuales y niebla atmosférica. Para describir la paleta se toma como referencia la vista con materiales activos en Blender, no el modo \textit{Solid}, porque este último puede mostrar modelos complejos en blanco o con colores planos que no representan el acabado final.
 
 \subsection{Paleta de Color e Iluminación}
 
@@ -345,6 +345,7 @@ El escenario de \textit{El Paso de la Bruma} trabaja una identidad visual \texti
 Cielo nocturno & Azul oscuro & Crea soledad y calma tensa.\\
 Neblina de ruta & Gris niebla & Reduce visibilidad y separa planos de profundidad.\\
 Madera y tierra & Marrón cálido & Conecta vías, estación, andenes y desgaste ferroviario.\\
+Locomotora y vagón & Rojo oscuro, crema, negro y metal envejecido & Diferencia el vehículo principal del terreno y comunica uso, antigüedad y peso.\\
 Rieles metálicos & Gris claro & Hace legible el recorrido del tren.\\
 Vegetación & Verde oscuro & Rodea la vía y refuerza el aislamiento de montaña.\\
 Iluminación de andén & Amarillo tenue & Marca puntos humanos dentro del bosque.\\
@@ -353,7 +354,7 @@ Iluminación de andén & Amarillo tenue & Marca puntos humanos dentro del bosque
 \caption{Paleta visual aplicada al entorno.}
 \end{table}
 
-La iluminación se mantiene tenue para que las farolas, la estación y la cabina tengan protagonismo. En el recorrido de Blender, las farolas acompañan los postes y ayudan a leer los bordes de la vía sin invadir el espacio central de circulación.
+La iluminación se mantiene tenue para que las farolas, la estación y la cabina tengan protagonismo. En el recorrido de Blender, las farolas acompañan los postes y ayudan a leer los bordes de la vía sin invadir el espacio central de circulación. La locomotora importada conserva texturas de color, rugosidad metálica y normales; por ello su lectura real corresponde al acabado desgastado visible en vista de materiales.
 
 \begin{figure}[H]
 \centering
@@ -366,7 +367,7 @@ La iluminación se mantiene tenue para que las farolas, la estación y la cabina
 La composición del escenario se organiza en tres capas:
 
 \begin{itemize}
-  \item \textbf{Primer plano:} locomotora, vagones y cabina VR, donde el jugador toma decisiones.
+  \item \textbf{Primer plano:} locomotora, vagón posterior y cabina VR, donde el jugador toma decisiones.
   \item \textbf{Plano medio:} rieles, tierra de vía, estación, postes, farolas y puntos de parada.
   \item \textbf{Fondo:} montaña, bosque, rocas y niebla que dan profundidad sin sobrecargar la escena.
 \end{itemize}
@@ -398,7 +399,7 @@ El entorno se sostiene sobre objetos principales, decorativos e interactivos. Es
 \textbf{Objeto principal} & \textbf{Función en el entorno}\\
 \midrule
 \endhead
-Locomotora y vagones & Vehículo del jugador y silueta central del juego. La locomotora frontal evita que el tren parezca un único vagón aislado.\\
+Locomotora y vagón posterior & Vehículo del jugador y silueta central del juego. La locomotora frontal importada desde Sketchfab se conecta con el vagón mediante una cadena, evitando que el tren parezca un único vagón aislado.\\
 Vías ferroviarias & Definen la ruta continua, conectan estaciones y marcan el recorrido que debe leer el jugador.\\
 Montaña y colina extendida & Generan ascenso, cima y descenso, haciendo que la ruta tenga ritmo y tensión.\\
 Andenes / estaciones & Funcionan como objetivos temporales donde se resuelve si el jugador llega a tiempo.\\
@@ -410,7 +411,7 @@ Cabina de control & Integra tablero, palancas, freno, medidores y decisiones pri
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.92\textwidth]{figures/blender_actual_locomotora_vagones.png}
-\caption{Locomotora y vagones dentro del entorno actual, integrados con estación, árboles, postes y niebla.}
+\caption{Locomotora y vagón posterior dentro del entorno actual, integrados con estación, árboles, postes y niebla.}
 \end{figure}
 
 \subsection{Objetos Decorativos}
@@ -594,7 +595,7 @@ Denise Rea & Narrativa ambiental, pasajeros, diarios, tono emocional y justifica
 \section*{Conclusión}
 \addcontentsline{toc}{section}{Conclusión}
 
-El entorno virtual de \textit{Echoes of the Rails} demuestra que un escenario bien diseñado puede sostener narrativa, mecánicas y atmósfera al mismo tiempo. La ruta ferroviaria de montaña, los rieles despejados, la locomotora con vagones, las estaciones iluminadas, el bosque low-poly y la niebla forman un sistema coherente con la experiencia de conducir bajo presión temporal y gestión de carbón.
+El entorno virtual de \textit{Echoes of the Rails} demuestra que un escenario bien diseñado puede sostener narrativa, mecánicas y atmósfera al mismo tiempo. La ruta ferroviaria de montaña, los rieles despejados, la locomotora con vagón posterior, las estaciones iluminadas, el bosque low-poly y la niebla forman un sistema coherente con la experiencia de conducir bajo presión temporal y gestión de carbón.
 
 En conjunto, la propuesta deja defendidas las decisiones de coherencia, ambientación, objetos, funcionalidad e integración grupal sin separar el diseño visual de su uso jugable.
 
