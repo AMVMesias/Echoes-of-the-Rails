@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" path="res://scenes/environment/MountainEnvironment.tscn" id="3_mountains"]
 [ext_resource type="PackedScene" path="res://scenes/environment/LowPolyForest.tscn" id="4_forest"]
 [ext_resource type="PackedScene" path="res://scenes/track/TrackPath.tscn" id="5_track"]
-[ext_resource type="PackedScene" path="res://scenes/train/Train.tscn" id="6_train"]
+[ext_resource type="PackedScene" uid="uid://b78efbpoqb7x" path="res://scenes/train/Train.tscn" id="6_train"]
 [ext_resource type="Script" uid="uid://ri16312yonxf" path="res://scripts/station/StationManager.gd" id="7_station_manager"]
 [ext_resource type="PackedScene" path="res://scenes/station/Station.tscn" id="8_station"]
 [ext_resource type="Script" uid="uid://b4tgm28x3qath" path="res://scripts/environment/RouteSceneryBuilder.gd" id="9_scenery"]
@@ -22,12 +22,10 @@ script = ExtResource("1_main")
 [node name="TrackPath" parent="." unique_id=997350060 instance=ExtResource("5_track")]
 
 [node name="Train" parent="TrackPath" unique_id=322137384 instance=ExtResource("6_train")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.027440071, 0.009611845, 0.026281595)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05670619, 0.0031951666, 0.048986554)
 
 [node name="RouteScenery" type="Node3D" parent="." unique_id=550645340]
 script = ExtResource("9_scenery")
-tree_count = 620
-rock_count = 130
 
 [node name="StationManager" type="Node3D" parent="." unique_id=1132930423]
 script = ExtResource("7_station_manager")

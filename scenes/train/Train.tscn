@@ -1,20 +1,38 @@
-[gd_scene load_steps=23 format=3]
+[gd_scene format=3 uid="uid://b78efbpoqb7x"]
 
-[ext_resource type="Script" path="res://scripts/train/TrainController.gd" id="1_train_controller"]
-[ext_resource type="Script" path="res://scripts/train/FuelSystem.gd" id="2_fuel"]
-[ext_resource type="Script" path="res://scripts/train/BrakeSystem.gd" id="3_brake"]
-[ext_resource type="Script" path="res://scripts/train/PressureSystem.gd" id="4_pressure"]
-[ext_resource type="Script" path="res://scripts/train/DerailmentSystem.gd" id="5_derailment"]
-[ext_resource type="PackedScene" path="res://scenes/train/Cabin.tscn" id="6_cabin"]
+[ext_resource type="Script" uid="uid://brpns5phixjny" path="res://scripts/train/TrainController.gd" id="1_train_controller"]
+[ext_resource type="Script" uid="uid://blr8oadhsdn4u" path="res://scripts/train/FuelSystem.gd" id="2_fuel"]
+[ext_resource type="Script" uid="uid://ch8o66hchuo0e" path="res://scripts/train/BrakeSystem.gd" id="3_brake"]
+[ext_resource type="Script" uid="uid://bl2iml26bak2o" path="res://scripts/train/PressureSystem.gd" id="4_pressure"]
+[ext_resource type="Script" uid="uid://d3n3nxg7oow0l" path="res://scripts/train/DerailmentSystem.gd" id="5_derailment"]
+[ext_resource type="PackedScene" uid="uid://bnimlvoctdjjf" path="res://scenes/train/Cabin.tscn" id="6_cabin"]
 [ext_resource type="PackedScene" path="res://scenes/audio/TrainAudioController.tscn" id="7_audio"]
 [ext_resource type="Material" path="res://assets/materials/steam_material.tres" id="8_steam"]
-[ext_resource type="Script" path="res://scripts/train/SteamPlumeController.gd" id="9_steam_controller"]
-[ext_resource type="PackedScene" path="res://scenes/train/TrainVisual.tscn" id="10_train_visual"]
-[ext_resource type="Script" path="res://scripts/train/TrainVisualControls.gd" id="11_visual_controls"]
+[ext_resource type="Script" uid="uid://deg0bpf8vk68l" path="res://scripts/train/SteamPlumeController.gd" id="9_steam_controller"]
+[ext_resource type="PackedScene" uid="uid://dtgxenq62m53e" path="res://scenes/train/TrainVisual.tscn" id="10_train_visual"]
+[ext_resource type="Script" uid="uid://dkyakkn5bv4q7" path="res://scripts/train/TrainVisualControls.gd" id="11_visual_controls"]
 [ext_resource type="Material" path="res://assets/materials/train_black_iron_weathered.tres" id="12_black_iron"]
 [ext_resource type="Material" path="res://assets/materials/train_old_wood_weathered.tres" id="13_old_wood"]
 [ext_resource type="Material" path="res://assets/materials/train_panel_weathered.tres" id="14_panel"]
 [ext_resource type="Material" path="res://assets/materials/train_aged_brass_weathered.tres" id="15_brass"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wagon_body"]
+size = Vector3(3.55, 1.55, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wagon_roof"]
+size = Vector3(3.85, 0.28, 5.28)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wagon_side_trim"]
+size = Vector3(0.16, 0.78, 4.82)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wagon_wheel"]
+top_radius = 0.34
+bottom_radius = 0.34
+height = 0.18
+radial_segments = 16
+
+[sub_resource type="BoxMesh" id="BoxMesh_wagon_brass_band"]
+size = Vector3(3.62, 0.08, 4.72)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_steam"]
 direction = Vector3(0, 1.65, -0.45)
@@ -27,185 +45,137 @@ scale_max = 0.9
 
 [sub_resource type="QuadMesh" id="QuadMesh_steam"]
 material = ExtResource("8_steam")
-size = Vector2(1.0, 1.0)
 
-[sub_resource type="BoxMesh" id="BoxMesh_wagon_body"]
-size = Vector3(3.55, 1.55, 5.0)
-
-[sub_resource type="BoxMesh" id="BoxMesh_wagon_roof"]
-size = Vector3(3.85, 0.28, 5.28)
-
-[sub_resource type="BoxMesh" id="BoxMesh_wagon_side_trim"]
-size = Vector3(0.16, 0.78, 4.82)
-
-[sub_resource type="BoxMesh" id="BoxMesh_wagon_brass_band"]
-size = Vector3(3.62, 0.08, 4.72)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_wagon_wheel"]
-top_radius = 0.34
-bottom_radius = 0.34
-height = 0.18
-radial_segments = 16
-
-[node name="Train" type="PathFollow3D"]
+[node name="Train" type="PathFollow3D" unique_id=1363529619]
 script = ExtResource("1_train_controller")
-progress_loop = false
 
-[node name="TrainVisual" parent="." instance=ExtResource("10_train_visual")]
+[node name="TrainVisual" parent="." unique_id=1456100058 instance=ExtResource("10_train_visual")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.011878014, 0, -0.008676529)
 
-[node name="VisualControls" type="Node" parent="."]
+[node name="VisualControls" type="Node" parent="." unique_id=664616263]
 script = ExtResource("11_visual_controls")
-visual_root_path = NodePath("../TrainVisual")
 
-[node name="PassengerCars" type="Node3D" parent="."]
+[node name="PassengerCars" type="Node3D" parent="." unique_id=1022858413]
 
-[node name="PassengerCarA" type="Node3D" parent="PassengerCars"]
-position = Vector3(0, 0.56, 5.85)
+[node name="PassengerCarA" type="Node3D" parent="PassengerCars" unique_id=1942131750]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.56, 5.85)
 
-[node name="Body" type="MeshInstance3D" parent="PassengerCars/PassengerCarA"]
-position = Vector3(0, 0.78, 0)
-mesh = SubResource("BoxMesh_wagon_body")
+[node name="Body" type="MeshInstance3D" parent="PassengerCars/PassengerCarA" unique_id=31746008]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.78, 0)
 material_override = ExtResource("13_old_wood")
-
-[node name="Roof" type="MeshInstance3D" parent="PassengerCars/PassengerCarA"]
-position = Vector3(0, 1.72, 0)
-mesh = SubResource("BoxMesh_wagon_roof")
-material_override = ExtResource("12_black_iron")
-
-[node name="LeftTrim" type="MeshInstance3D" parent="PassengerCars/PassengerCarA"]
-position = Vector3(-1.86, 0.92, 0)
-mesh = SubResource("BoxMesh_wagon_side_trim")
-material_override = ExtResource("14_panel")
-
-[node name="RightTrim" type="MeshInstance3D" parent="PassengerCars/PassengerCarA"]
-position = Vector3(1.86, 0.92, 0)
-mesh = SubResource("BoxMesh_wagon_side_trim")
-material_override = ExtResource("14_panel")
-
-[node name="WheelFL" type="MeshInstance3D" parent="PassengerCars/PassengerCarA"]
-position = Vector3(-1.65, 0.03, -1.55)
-rotation_degrees = Vector3(0, 0, 90)
-mesh = SubResource("CylinderMesh_wagon_wheel")
-material_override = ExtResource("12_black_iron")
-
-[node name="WheelBL" type="MeshInstance3D" parent="PassengerCars/PassengerCarA"]
-position = Vector3(-1.65, 0.03, 1.55)
-rotation_degrees = Vector3(0, 0, 90)
-mesh = SubResource("CylinderMesh_wagon_wheel")
-material_override = ExtResource("12_black_iron")
-
-[node name="WheelFR" type="MeshInstance3D" parent="PassengerCars/PassengerCarA"]
-position = Vector3(1.65, 0.03, -1.55)
-rotation_degrees = Vector3(0, 0, 90)
-mesh = SubResource("CylinderMesh_wagon_wheel")
-material_override = ExtResource("12_black_iron")
-
-[node name="WheelBR" type="MeshInstance3D" parent="PassengerCars/PassengerCarA"]
-position = Vector3(1.65, 0.03, 1.55)
-rotation_degrees = Vector3(0, 0, 90)
-mesh = SubResource("CylinderMesh_wagon_wheel")
-material_override = ExtResource("12_black_iron")
-
-[node name="PassengerCarB" type="Node3D" parent="PassengerCars"]
-position = Vector3(0, 0.56, 11.25)
-
-[node name="Body" type="MeshInstance3D" parent="PassengerCars/PassengerCarB"]
-position = Vector3(0, 0.78, 0)
 mesh = SubResource("BoxMesh_wagon_body")
-material_override = ExtResource("13_old_wood")
 
-[node name="Roof" type="MeshInstance3D" parent="PassengerCars/PassengerCarB"]
-position = Vector3(0, 1.72, 0)
-mesh = SubResource("BoxMesh_wagon_roof")
+[node name="Roof" type="MeshInstance3D" parent="PassengerCars/PassengerCarA" unique_id=1390017409]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.72, 0)
 material_override = ExtResource("12_black_iron")
+mesh = SubResource("BoxMesh_wagon_roof")
 
-[node name="BrassBands" type="MeshInstance3D" parent="PassengerCars/PassengerCarB"]
-position = Vector3(0, 1.38, 0)
-mesh = SubResource("BoxMesh_wagon_brass_band")
+[node name="LeftTrim" type="MeshInstance3D" parent="PassengerCars/PassengerCarA" unique_id=1501239601]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.86, 0.92, 0)
+material_override = ExtResource("14_panel")
+mesh = SubResource("BoxMesh_wagon_side_trim")
+
+[node name="RightTrim" type="MeshInstance3D" parent="PassengerCars/PassengerCarA" unique_id=31968582]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.86, 0.92, 0)
+material_override = ExtResource("14_panel")
+mesh = SubResource("BoxMesh_wagon_side_trim")
+
+[node name="WheelFL" type="MeshInstance3D" parent="PassengerCars/PassengerCarA" unique_id=559792539]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -1.65, 0.03, -1.55)
+material_override = ExtResource("12_black_iron")
+mesh = SubResource("CylinderMesh_wagon_wheel")
+
+[node name="WheelBL" type="MeshInstance3D" parent="PassengerCars/PassengerCarA" unique_id=1772266428]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -1.65, 0.03, 1.55)
+material_override = ExtResource("12_black_iron")
+mesh = SubResource("CylinderMesh_wagon_wheel")
+
+[node name="WheelFR" type="MeshInstance3D" parent="PassengerCars/PassengerCarA" unique_id=1272980669]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 1.65, 0.03, -1.55)
+material_override = ExtResource("12_black_iron")
+mesh = SubResource("CylinderMesh_wagon_wheel")
+
+[node name="WheelBR" type="MeshInstance3D" parent="PassengerCars/PassengerCarA" unique_id=1484012984]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 1.65, 0.03, 1.55)
+material_override = ExtResource("12_black_iron")
+mesh = SubResource("CylinderMesh_wagon_wheel")
+
+[node name="PassengerCarB" type="Node3D" parent="PassengerCars" unique_id=1022776773]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.56, 11.25)
+
+[node name="Body" type="MeshInstance3D" parent="PassengerCars/PassengerCarB" unique_id=1612165929]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.78, 0)
+material_override = ExtResource("13_old_wood")
+mesh = SubResource("BoxMesh_wagon_body")
+
+[node name="Roof" type="MeshInstance3D" parent="PassengerCars/PassengerCarB" unique_id=773823276]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.72, 0)
+material_override = ExtResource("12_black_iron")
+mesh = SubResource("BoxMesh_wagon_roof")
+
+[node name="BrassBands" type="MeshInstance3D" parent="PassengerCars/PassengerCarB" unique_id=635243612]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38, 0)
 material_override = ExtResource("15_brass")
+mesh = SubResource("BoxMesh_wagon_brass_band")
 
-[node name="WheelFL" type="MeshInstance3D" parent="PassengerCars/PassengerCarB"]
-position = Vector3(-1.65, 0.03, -1.55)
-rotation_degrees = Vector3(0, 0, 90)
-mesh = SubResource("CylinderMesh_wagon_wheel")
+[node name="WheelFL" type="MeshInstance3D" parent="PassengerCars/PassengerCarB" unique_id=1492241151]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -1.65, 0.03, -1.55)
 material_override = ExtResource("12_black_iron")
-
-[node name="WheelBL" type="MeshInstance3D" parent="PassengerCars/PassengerCarB"]
-position = Vector3(-1.65, 0.03, 1.55)
-rotation_degrees = Vector3(0, 0, 90)
 mesh = SubResource("CylinderMesh_wagon_wheel")
-material_override = ExtResource("12_black_iron")
 
-[node name="WheelFR" type="MeshInstance3D" parent="PassengerCars/PassengerCarB"]
-position = Vector3(1.65, 0.03, -1.55)
-rotation_degrees = Vector3(0, 0, 90)
+[node name="WheelBL" type="MeshInstance3D" parent="PassengerCars/PassengerCarB" unique_id=56034746]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -1.65, 0.03, 1.55)
+material_override = ExtResource("12_black_iron")
 mesh = SubResource("CylinderMesh_wagon_wheel")
-material_override = ExtResource("12_black_iron")
 
-[node name="WheelBR" type="MeshInstance3D" parent="PassengerCars/PassengerCarB"]
-position = Vector3(1.65, 0.03, 1.55)
-rotation_degrees = Vector3(0, 0, 90)
+[node name="WheelFR" type="MeshInstance3D" parent="PassengerCars/PassengerCarB" unique_id=528993104]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 1.65, 0.03, -1.55)
+material_override = ExtResource("12_black_iron")
 mesh = SubResource("CylinderMesh_wagon_wheel")
-material_override = ExtResource("12_black_iron")
 
-[node name="SteamParticles" type="GPUParticles3D" parent="."]
-position = Vector3(0, 3.18, -4.45)
+[node name="WheelBR" type="MeshInstance3D" parent="PassengerCars/PassengerCarB" unique_id=2056456505]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 1.65, 0.03, 1.55)
+material_override = ExtResource("12_black_iron")
+mesh = SubResource("CylinderMesh_wagon_wheel")
+
+[node name="SteamParticles" type="GPUParticles3D" parent="." unique_id=1244943024]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.18, -4.45)
 amount = 24
 lifetime = 1.55
 preprocess = 0.4
-local_coords = true
 visibility_aabb = AABB(-10, -2, -10, 20, 12, 20)
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_steam")
 draw_pass_1 = SubResource("QuadMesh_steam")
 script = ExtResource("9_steam_controller")
 vertical_lift = 1.75
 forward_push = -0.55
-cabin_guard_front_z = -1.25
-minimum_safe_forward_push = -0.22
 
-[node name="SideSteamLeft" type="GPUParticles3D" parent="."]
-position = Vector3(-1.02, 1.55, -2.35)
-amount = 8
+[node name="SideSteamLeft" type="GPUParticles3D" parent="." unique_id=922475416]
+transform = Transform3D(0.9999571, 0.006075942, -0.006989307, -0.006102601, 0.99997413, -0.0037989125, 0.0069660414, 0.0038414074, 0.99996835, -0.00798291, 2.64589, -2.1226997)
 lifetime = 0.8
 preprocess = 0.2
-local_coords = true
 visibility_aabb = AABB(-10, -2, -10, 20, 12, 20)
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_steam")
 draw_pass_1 = SubResource("QuadMesh_steam")
 script = ExtResource("9_steam_controller")
 plume_side_bias = -1.0
 is_side_vent = true
-cabin_guard_front_z = -1.25
-minimum_safe_forward_push = -0.22
 
-[node name="SideSteamRight" type="GPUParticles3D" parent="."]
-position = Vector3(1.02, 1.55, -2.35)
-amount = 8
-lifetime = 0.8
-preprocess = 0.2
-local_coords = true
-visibility_aabb = AABB(-10, -2, -10, 20, 12, 20)
-process_material = SubResource("ParticleProcessMaterial_steam")
-draw_pass_1 = SubResource("QuadMesh_steam")
-script = ExtResource("9_steam_controller")
-plume_side_bias = 1.0
-is_side_vent = true
-cabin_guard_front_z = -1.25
-minimum_safe_forward_push = -0.22
+[node name="Cabin" parent="." unique_id=906935483 instance=ExtResource("6_cabin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 2)
 
-[node name="Cabin" parent="." instance=ExtResource("6_cabin")]
-position = Vector3(0, 0.35, 2.0)
-
-[node name="FuelSystem" type="Node" parent="."]
+[node name="FuelSystem" type="Node" parent="." unique_id=1395651323]
 script = ExtResource("2_fuel")
 
-[node name="BrakeSystem" type="Node" parent="."]
+[node name="BrakeSystem" type="Node" parent="." unique_id=1290050333]
 script = ExtResource("3_brake")
 
-[node name="PressureSystem" type="Node" parent="."]
+[node name="PressureSystem" type="Node" parent="." unique_id=273712693]
 script = ExtResource("4_pressure")
 
-[node name="DerailmentSystem" type="Node" parent="."]
+[node name="DerailmentSystem" type="Node" parent="." unique_id=496876689]
 script = ExtResource("5_derailment")
 
-[node name="TrainAudioController" parent="." instance=ExtResource("7_audio")]
+[node name="TrainAudioController" parent="." unique_id=801512296 instance=ExtResource("7_audio")]
