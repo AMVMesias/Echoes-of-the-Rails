@@ -1,7 +1,9 @@
-\documentclass[11pt,letterpaper]{article}
+﻿\documentclass[11pt,letterpaper]{article}
 
 \usepackage[spanish,es-nodecimaldot]{babel}
-\usepackage{fontspec}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage{geometry}
 \usepackage{graphicx}
 \usepackage{xcolor}
@@ -19,15 +21,11 @@
 \usepackage{float}
 \usepackage{hyperref}
 \usepackage{microtype}
-\usepackage{pagecolor}
 
 \usetikzlibrary{arrows.meta,positioning,calc,shadows.blur}
 
-\geometry{top=2.25cm,bottom=2.25cm,left=2.15cm,right=2.15cm}
+\geometry{margin=2.5cm}
 
-\setmainfont{Latin Modern Roman}
-\setsansfont{Latin Modern Sans}
-\setmonofont{Latin Modern Mono}[Scale=0.9]
 
 \definecolor{paper}{HTML}{F4F1E8}
 \definecolor{ink}{HTML}{17211D}
@@ -45,8 +43,6 @@
 \definecolor{danger}{HTML}{A83A2D}
 \definecolor{night}{HTML}{111827}
 
-\pagecolor{paper}
-\color{ink}
 \hypersetup{
   colorlinks=true,
   linkcolor=pine,
@@ -64,13 +60,13 @@
 \setlist[enumerate]{leftmargin=1.5em,itemsep=0.22em,topsep=0.25em}
 
 \titleformat{\section}
-  {\Large\sffamily\bfseries\color{deepgreen}}
+  {\normalfont\Large\bfseries\color{deepgreen}}
   {\thesection}{0.75em}{}
 \titleformat{\subsection}
-  {\large\sffamily\bfseries\color{pine}}
+  {\normalfont\large\bfseries\color{pine}}
   {\thesubsection}{0.65em}{}
 \titleformat{\subsubsection}
-  {\normalsize\sffamily\bfseries\color{rust}}
+  {\normalfont\normalsize\bfseries\color{rust}}
   {\thesubsubsection}{0.55em}{}
 
 \captionsetup{
@@ -108,171 +104,45 @@
 \begin{titlepage}
 \thispagestyle{empty}
 \begin{tikzpicture}[remember picture,overlay]
-  \coordinate (SW) at (current page.south west);
-  \shade[top color=night!92!black,bottom color=deepgreen!82!black]
-    (current page.south west) rectangle (current page.north east);
-
-  % Niebla lejana, detrás de las montañas.
-  \fill[fog!70,opacity=0.13]
-    ([xshift=-0.5cm,yshift=18.8cm]SW) .. controls ([xshift=3.7cm,yshift=19.6cm]SW) and ([xshift=7.1cm,yshift=18.3cm]SW) ..
-    ([xshift=10.6cm,yshift=19.05cm]SW) .. controls ([xshift=14.1cm,yshift=19.75cm]SW) and ([xshift=17.3cm,yshift=18.65cm]SW) ..
-    ([xshift=22.4cm,yshift=19.25cm]SW) -- ([xshift=22.4cm,yshift=17.35cm]SW) .. controls ([xshift=17.9cm,yshift=16.85cm]SW) and
-    ([xshift=13.6cm,yshift=17.7cm]SW) .. ([xshift=10.1cm,yshift=17.05cm]SW) .. controls ([xshift=6.6cm,yshift=16.45cm]SW) and
-    ([xshift=3.2cm,yshift=17.45cm]SW) .. ([xshift=-0.5cm,yshift=16.95cm]SW) -- cycle;
-
-  % Luna y estrellas.
-  \shade[inner color=white,outer color=fog!10,opacity=0.42]
-    ([xshift=-3.2cm,yshift=-3.0cm]current page.north east) circle (1.65cm);
-  \fill[fog!92]
-    ([xshift=-3.2cm,yshift=-3.0cm]current page.north east) circle (0.72cm);
-  \foreach \x/\y/\r in {2.8/25.8/0.018,4.5/24.1/0.015,7.6/25.2/0.017,13.3/24.7/0.015,18.4/25.0/0.018,19.8/23.7/0.014}{
-    \fill[white,opacity=0.62] ([xshift=\x cm,yshift=\y cm]SW) circle (\r cm);
-  }
-
-  % Montañas de fondo.
-  \fill[pine!65!black] ([xshift=-0.5cm,yshift=13.7cm]SW) -- ([xshift=5.9cm,yshift=23.7cm]SW) -- ([xshift=11.4cm,yshift=14.6cm]SW) -- cycle;
-  \fill[wood!72!black] ([xshift=2.7cm,yshift=14.0cm]SW) -- ([xshift=5.9cm,yshift=23.7cm]SW) -- ([xshift=7.5cm,yshift=15.2cm]SW) -- cycle;
-  \fill[wood!55!black] ([xshift=5.9cm,yshift=23.7cm]SW) -- ([xshift=11.4cm,yshift=14.6cm]SW) -- ([xshift=7.5cm,yshift=15.2cm]SW) -- cycle;
-  \fill[fog!86] ([xshift=5.9cm,yshift=23.7cm]SW) -- ([xshift=4.95cm,yshift=21.75cm]SW) -- ([xshift=5.82cm,yshift=22.35cm]SW) -- ([xshift=6.35cm,yshift=21.35cm]SW) -- ([xshift=7.03cm,yshift=21.9cm]SW) -- cycle;
-  \fill[pine!55!black] ([xshift=9.2cm,yshift=14.0cm]SW) -- ([xshift=17.5cm,yshift=24.2cm]SW) -- ([xshift=22.6cm,yshift=15.4cm]SW) -- cycle;
-  \fill[wood!78!black] ([xshift=10.8cm,yshift=14.3cm]SW) -- ([xshift=17.5cm,yshift=24.2cm]SW) -- ([xshift=16.1cm,yshift=15.5cm]SW) -- cycle;
-  \fill[wood!58!black] ([xshift=17.5cm,yshift=24.2cm]SW) -- ([xshift=22.6cm,yshift=15.4cm]SW) -- ([xshift=16.1cm,yshift=15.5cm]SW) -- cycle;
-  \fill[fog!90] ([xshift=17.5cm,yshift=24.2cm]SW) -- ([xshift=16.35cm,yshift=22.1cm]SW) -- ([xshift=17.2cm,yshift=22.55cm]SW) -- ([xshift=18.05cm,yshift=21.7cm]SW) -- ([xshift=18.72cm,yshift=22.25cm]SW) -- cycle;
-
-  % Lomas laterales.
-  \fill[deepgreen!62!black,opacity=0.72]
-    ([xshift=-0.5cm,yshift=9.9cm]SW) .. controls ([xshift=2.8cm,yshift=10.8cm]SW) and ([xshift=5.3cm,yshift=12.6cm]SW) ..
-    ([xshift=8.85cm,yshift=12.05cm]SW) .. controls ([xshift=8.2cm,yshift=10.85cm]SW) and ([xshift=5.8cm,yshift=10.2cm]SW) ..
-    ([xshift=-0.5cm,yshift=8.4cm]SW) -- cycle;
-  \fill[deepgreen!58!black,opacity=0.70]
-    ([xshift=12.75cm,yshift=12.15cm]SW) .. controls ([xshift=15.8cm,yshift=13.1cm]SW) and ([xshift=18.4cm,yshift=12.3cm]SW) ..
-    ([xshift=22.4cm,yshift=12.95cm]SW) -- ([xshift=22.4cm,yshift=10.6cm]SW) .. controls ([xshift=18.2cm,yshift=10.05cm]SW) and
-    ([xshift=15.0cm,yshift=10.8cm]SW) .. ([xshift=13.15cm,yshift=11.0cm]SW) -- cycle;
-
-  % Vía en perspectiva. Sin línea amarilla central.
-  \coordinate (bedA) at ([xshift=8.35cm,yshift=0.4cm]SW);
-  \coordinate (bedB) at ([xshift=12.35cm,yshift=0.4cm]SW);
-  \coordinate (bedC) at ([xshift=11.18cm,yshift=15.85cm]SW);
-  \coordinate (bedD) at ([xshift=10.52cm,yshift=15.85cm]SW);
-  \fill[trackbed!95,opacity=0.96] (bedA) -- (bedD) -- (bedC) -- (bedB) -- cycle;
-  \fill[deepgreen!68!black,opacity=0.52] ([xshift=-1.6cm]bedA) -- ([xshift=-0.55cm]bedD) -- (bedD) -- (bedA) -- cycle;
-  \fill[deepgreen!68!black,opacity=0.48] (bedB) -- (bedC) -- ([xshift=0.55cm]bedC) -- ([xshift=1.6cm]bedB) -- cycle;
-  \draw[rail,line width=1.45pt] ([xshift=0.72cm]bedA) -- ([xshift=0.17cm]bedD);
-  \draw[rail,line width=1.45pt] ([xshift=-0.72cm]bedB) -- ([xshift=-0.17cm]bedC);
-  \draw[railshadow,line width=0.45pt,opacity=0.55] ([xshift=0.62cm]bedA) -- ([xshift=0.12cm]bedD);
-  \draw[railshadow,line width=0.45pt,opacity=0.55] ([xshift=-0.62cm]bedB) -- ([xshift=-0.12cm]bedC);
-  \foreach \t in {0.035,0.08,...,0.94}{
-    \draw[rail!82!white,line width=1.15pt,opacity=0.95]
-      ($([xshift=0.42cm]bedA)!\t!([xshift=0.08cm]bedD)$) --
-      ($([xshift=-0.42cm]bedB)!\t!([xshift=-0.08cm]bedC)$);
-  }
-
-  % Estación lateral.
-  \fill[wood!55!black] ([xshift=13.15cm,yshift=4.55cm]SW) rectangle ([xshift=19.2cm,yshift=5.05cm]SW);
-  \fill[wood!76!black] ([xshift=13.55cm,yshift=5.0cm]SW) rectangle ([xshift=18.85cm,yshift=8.25cm]SW);
-  \foreach \x in {13.8,14.7,15.6,16.5,17.4,18.3}{
-    \draw[amber!70!black,line width=0.45pt] ([xshift=\x cm,yshift=5.25cm]SW) -- ([xshift=\x cm,yshift=8.0cm]SW);
-  }
-  \fill[wood!38!black] ([xshift=12.95cm,yshift=8.05cm]SW) -- ([xshift=19.25cm,yshift=8.05cm]SW) -- ([xshift=18.45cm,yshift=9.25cm]SW) -- ([xshift=13.8cm,yshift=9.25cm]SW) -- cycle;
-  \foreach \x/\y in {13.35/7.5,18.85/7.55}{
-    \fill[amber!72,opacity=0.95] ([xshift=\x cm,yshift=\y cm]SW) rectangle ([xshift=\x cm+0.28cm,yshift=\y cm+0.44cm]SW);
-    \shade[inner color=amber!95,outer color=amber!10,opacity=0.26] ([xshift=\x cm+0.14cm,yshift=\y cm+0.22cm]SW) circle (0.6cm);
-  }
-
-  % Tren frontal.
-  \shade[inner color=black,outer color=black,opacity=0.30]
-    ([xshift=10.55cm,yshift=7.85cm]SW) ellipse (1.45cm and 0.26cm);
-  \begin{scope}[shift={([xshift=10.55cm,yshift=7.85cm]SW)},scale=1.18]
-    \shade[top color=amber!42!white,bottom color=rust!72!black] (-0.92,0.0) rectangle (0.92,2.05);
-    \fill[wood!88!rust] (-0.72,-0.35) rectangle (0.72,0.28);
-    \fill[rail!80] (-0.8,1.2) rectangle (0.8,1.9);
-    \fill[night!70] (-0.58,1.34) rectangle (-0.13,1.75);
-    \fill[night!70] (0.13,1.34) rectangle (0.58,1.75);
-    \fill[amber!78] (-0.07,0.57) circle (0.23);
-    \shade[inner color=amber!90,outer color=amber!5,opacity=0.28] (-0.07,0.57) circle (0.9);
-    \fill[night!70] (-0.24,-0.12) circle (0.18);
-    \fill[night!70] (0.24,-0.12) circle (0.18);
-    \draw[rail!90,line width=0.7pt] (-0.78,0.15) -- (0.78,0.15);
-    \draw[rail!90,line width=0.7pt] (-0.58,-0.35) -- (-1.05,-0.85);
-    \draw[rail!90,line width=0.7pt] (0.58,-0.35) -- (1.05,-0.85);
-    \fill[amber!50!white] (-0.5,1.98) rectangle (0.5,2.18);
-    \draw[night!70,line width=0.45pt] (-0.5,1.98) rectangle (0.5,2.18);
-  \end{scope}
-
-  % Bosque y postes con faroles.
-  \foreach \x/\y/\s/\c in {0.9/5.4/1.05/pine,1.8/7.1/0.9/pine,2.8/8.5/1.25/moss,4.1/5.8/1.1/pine,5.0/9.8/1.0/moss,6.3/6.4/1.45/pine,7.35/10.4/0.85/pine,14.1/10.8/0.82/pine,16.7/11.2/0.86/pine,20.4/8.8/0.78/pine,4.6/13.5/0.74/pine,7.8/14.8/0.65/moss,14.9/14.0/0.72/pine,18.4/13.2/0.7/moss}{
-    \begin{scope}[shift={([xshift=\x cm,yshift=\y cm]SW)},scale=\s]
-      \fill[wood!70!black] (-0.045,-0.42) rectangle (0.045,0.08);
-      \fill[\c!72!black] (0,0.92) -- (-0.42,0.13) -- (0.42,0.13) -- cycle;
-      \fill[\c!82!black] (0,1.28) -- (-0.34,0.58) -- (0.34,0.58) -- cycle;
-      \fill[\c!62!black] (0,1.58) -- (-0.22,1.05) -- (0.22,1.05) -- cycle;
-      \fill[fog!85,opacity=0.65] (0,1.62) -- (-0.09,1.43) -- (0.13,1.44) -- cycle;
-    \end{scope}
-  }
-  \foreach \x/\y/\side/\s in {7.75/5.25/-1/1.00,12.95/5.55/1/1.00,8.28/7.65/-1/0.88,12.45/7.95/1/0.88,8.95/10.05/-1/0.76,11.95/10.35/1/0.76,9.50/12.25/-1/0.64,11.48/12.45/1/0.64,9.98/14.05/-1/0.52,11.18/14.12/1/0.52}{
-    \begin{scope}[scale=\s,shift={([xshift=\x cm/\s,yshift=\y cm/\s]SW)}]
-      \draw[rail!75,line width=1.5pt] (0,0) -- (0,2.65);
-      \draw[rail!83,line width=1.05pt] (-0.52,2.15) -- (0.52,2.15);
-      \draw[rail!56,line width=0.48pt,opacity=0.75] (-0.52,2.12) -- ({\side*1.05},1.83);
-      \draw[amber!76,line width=0.48pt] (0,2.05) -- ({\side*0.58},1.54);
-      \fill[amber!90] ({\side*0.48},1.28) rectangle ({\side*0.80},1.72);
-      \shade[inner color=amber!95,outer color=amber!10,opacity=0.30] ({\side*0.64},1.50) circle (0.58);
-    \end{scope}
-  }
-
-  % Bruma baja.
-  \fill[fog!78,opacity=0.055]
-    ([xshift=-0.5cm,yshift=5.0cm]SW) .. controls ([xshift=3.4cm,yshift=5.8cm]SW) and ([xshift=7.3cm,yshift=4.4cm]SW) ..
-    ([xshift=10.7cm,yshift=5.15cm]SW) .. controls ([xshift=13.8cm,yshift=5.85cm]SW) and ([xshift=17.2cm,yshift=4.6cm]SW) ..
-    ([xshift=22.4cm,yshift=5.65cm]SW) -- ([xshift=22.4cm,yshift=4.35cm]SW) .. controls ([xshift=17.6cm,yshift=3.75cm]SW) and
-    ([xshift=14.0cm,yshift=4.65cm]SW) .. ([xshift=10.6cm,yshift=4.05cm]SW) .. controls ([xshift=6.8cm,yshift=3.42cm]SW) and
-    ([xshift=3.0cm,yshift=4.15cm]SW) .. ([xshift=-0.5cm,yshift=3.7cm]SW) -- cycle;
-
-  \draw[amber,opacity=0.75,line width=1.1pt]
-    ([xshift=1.35cm,yshift=-1.25cm]current page.north west) --
-    ([xshift=-1.35cm,yshift=-1.25cm]current page.north east);
-  \draw[amber,opacity=0.45,line width=0.8pt]
-    ([xshift=1.35cm,yshift=1.25cm]current page.south west) --
-    ([xshift=-1.35cm,yshift=1.25cm]current page.south east);
+  \fill[white] (current page.south west) rectangle (current page.north east);
+  \fill[deepgreen] (current page.north west) rectangle ([xshift=3.6cm]current page.south west);
+  \fill[pine] ([xshift=3.05cm]current page.north west) -- ([xshift=4.35cm]current page.north west) -- ([xshift=3.45cm]current page.south west) -- ([xshift=2.25cm]current page.south west) -- cycle;
+  \draw[amber,line width=1pt] ([xshift=11.8cm,yshift=-1.05cm]current page.north west) -- ([xshift=-1.1cm,yshift=-1.05cm]current page.north east);
+  \draw[amber,line width=1pt] ([xshift=4.5cm,yshift=1.05cm]current page.south west) -- ([xshift=-1.1cm,yshift=1.05cm]current page.south east);
 \end{tikzpicture}
 
-\vspace*{1.05cm}
-\begin{minipage}{0.83\textwidth}
-\begin{tcolorbox}[
-  enhanced,
-  colback=deepgreen!88!black,
-  colframe=amber!50,
-  boxrule=0.55pt,
-  arc=2mm,
-  opacityback=0.84,
-  left=4mm,right=4mm,top=3.2mm,bottom=3.2mm
-]
-{\sffamily\bfseries\small\color{amber} UNIVERSIDAD DE LAS FUERZAS ARMADAS ESPE}\\[0.35cm]
-{\sffamily\bfseries\fontsize{33}{36}\selectfont\color{white} Echoes of the Rails}\\[0.15cm]
-{\sffamily\fontsize{16}{20}\selectfont\color{fog} Informe de diseño del entorno virtual}\\[0.25cm]
-{\sffamily\fontsize{11.2}{14}\selectfont\color{fog} Tarea I -- Parcial II \quad | \quad Desarrollo de Videojuegos -- 30817}
-\end{tcolorbox}
-\end{minipage}
+\vspace*{1.8cm}
+\hspace*{4.15cm}
+\begin{minipage}{0.68\textwidth}
+\begin{flushleft}
+\includegraphics[width=0.22\textwidth]{image.png}
+\vspace{0.35cm}
+{\Large\bfseries Universidad de las Fuerzas Armadas ESPE\par}
+\vspace{0.2cm}
+{\large Desarrollo de Videojuegos -- 30817\par}
+\vspace{2.0cm}
+{\fontsize{25}{31}\selectfont\bfseries Echoes of the Rails\par}
+\vspace{0.3cm}
+{\Large Informe de diseño del entorno virtual\par}
+\vspace{1.6cm}
+\begin{tikzpicture}
+\draw[amber,line width=1pt] (0,0) -- (9.4,0);
+\fill[amber] (0,0) circle (2pt);
+\fill[amber] (9.4,0) circle (2pt);
+\end{tikzpicture}
+\vspace{0.65cm}
 
-\vfill
-\begin{minipage}{0.92\textwidth}
-\begin{tcolorbox}[
-  enhanced,
-  colback=deepgreen!88!black,
-  colframe=amber!50,
-  boxrule=0.55pt,
-  arc=2mm,
-  opacityback=0.92,
-  left=4mm,right=4mm,top=3mm,bottom=3mm
-]
-\begin{tabularx}{\textwidth}{@{}L{2.75cm}L{4.35cm}L{2.45cm}Y@{}}
-\textcolor{amber}{\sffamily\bfseries Docente} & \textcolor{white}{Ing. Héctor Pinto} &
-\textcolor{amber}{\sffamily\bfseries Grupo} & \textcolor{white}{N°1}\\
-\textcolor{amber}{\sffamily\bfseries Carrera} & \textcolor{white}{Ingeniería en Software} &
-\textcolor{amber}{\sffamily\bfseries Integrantes} &
-\textcolor{white}{Jordan Guaman, Mesías Mariscal, Anthony Morales, Denise Rea}\\
-\end{tabularx}
-\end{tcolorbox}
+{\bfseries Tarea I -- Parcial II\par}
+\vspace{0.3cm}
+{\bfseries Docente:} Ing. Héctor Pinto\par
+\vspace{0.3cm}
+{\bfseries Grupo N\textsuperscript{o}1:} Jordan Guaman, Mesías Mariscal, Anthony Morales, Denise Rea\par
+\vspace{0.3cm}
+{\bfseries Carrera:} Ingeniería en Software\par
+\vspace{1.0cm}
+Sangolquí, Ecuador\par
+Mayo de 2026
+\end{flushleft}
 \end{minipage}
 \end{titlepage}
 
@@ -281,7 +151,7 @@
 
 \section{Coherencia del Entorno con el Videojuego}
 
-El entorno de \textit{Echoes of the Rails} está diseñado para responder a los pilares del videojuego: objetivo medible, historia, género y mecánicas. La ruta no funciona como un decorado, sino como el espacio que obliga al jugador a tomar decisiones bajo la sensación de \textbf{estrés tranquilo}: avanzar, ahorrar carbón, llegar a tiempo y no perder pasajeros en la niebla.
+El entorno de \textit{Echoes of the Rails} está diseñado para responder a los pilares del videojuego: objetivo medible, historia, género y mecánicas. La ruta se define como un sistema funcional de toma de decisiones: avanzar, administrar carbón, cumplir tiempos de llegada y evitar pérdida de pasajeros en condiciones de niebla.
 
 \subsection{Coherencia con el Objetivo del Juego}
 
@@ -301,15 +171,21 @@ El escenario responde directamente a este objetivo porque:
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{figures/blender_actual_recorrido_general.png}
+\includegraphics[width=\textwidth]{../figures/blender_actual_recorrido_general.png}
 \caption{Vista actual del escenario en Blender: ruta ferroviaria de montaña con bosque, ascenso, cima, estaciones y postes junto a la vía.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{../figures/figura2_vista.png}
+\caption{Vista complementaria del entorno con lectura funcional del recorrido y su integración visual en la ruta principal.}
 \end{figure}
 
 \subsection{Coherencia con la Historia}
 
-La narrativa presenta al jugador como el último maquinista de una línea ferroviaria olvidada en una zona montañosa sin acceso por carretera. El entorno materializa esta idea mediante una estética de aislamiento: montañas extensas, pinos alrededor de la vía, estaciones pequeñas, farolas cálidas y niebla persistente.
+La narrativa presenta al jugador como el último maquinista de una línea ferroviaria olvidada en una zona montañosa sin acceso por carretera. El entorno materializa esta idea mediante una estática de aislamiento: montañas extensas, pinos alrededor de la vía, estaciones pequeñas, farolas cálidas y niebla persistente.
 
-La ausencia de una interfaz externa refuerza la inmersión. El jugador observa la ruta desde la cabina y depende de los instrumentos, las señales visuales y los puntos de luz para orientarse. Las estaciones no son solo puntos de parada: son momentos narrativos donde los pasajeros esperan, abordan o desaparecen cuando el tren llega tarde.
+La ausencia de una interfaz externa mantiene la coherencia diegética de la simulación. El jugador observa la ruta desde la cabina y depende de los instrumentos, las señales visuales y los puntos de luz para orientarse. Las estaciones no son solo puntos de parada: son momentos narrativos donde los pasajeros esperan, abordan o desaparecen cuando el tren llega tarde.
 
 \subsection{Coherencia con el Género y las Mecánicas}
 
@@ -322,13 +198,13 @@ La ausencia de una interfaz externa refuerza la inmersión. El jugador observa l
 Género & Simulación ferroviaria VR / Gestión de recursos / Horror sutil\\
 Plataforma objetivo & Godot 4.6 + OpenXR\\
 Mecánica central & Equilibrio entre velocidad, consumo de carbón y presión temporal\\
-Estilo visual & Retro Realism con estética low-poly y atmósfera de niebla\\
+Estilo visual & Retro Realism con estática low-poly y atmósfera de niebla\\
 \bottomrule
 \end{tabularx}
 \caption{Relación general entre el entorno y el género del videojuego.}
 \end{table}
 
-La simulación necesita un espacio legible, pero no completamente seguro. Por eso el entorno combina rieles claros, estaciones reconocibles, postes con farolas y una montaña que altera la lectura del recorrido. La gestión de recursos se justifica con el ascenso, la distancia entre estaciones y la necesidad de frenar antes de curvas o paradas.
+La simulación requiere un espacio legible con niveles de riesgo controlado. Por eso el entorno combina rieles claros, estaciones reconocibles, postes con farolas y una montaña que altera la lectura del recorrido. La gestión de recursos se justifica con el ascenso, la distancia entre estaciones y la necesidad de frenar antes de curvas o paradas.
 
 \section{Diseño Visual y Ambientación del Escenario}
 
@@ -358,7 +234,7 @@ La iluminación se mantiene tenue para que las farolas, la estación y la cabina
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.96\textwidth]{figures/blender_actual_estacion_cima.png}
+\includegraphics[width=0.96\textwidth]{../figures/blender_actual_estacion_cima.png}
 \caption{Composición actual de la cima: rieles, árboles, postes y farolas organizados alrededor del corredor ferroviario.}
 \end{figure}
 
@@ -376,7 +252,7 @@ El diseño evita que los árboles aparezcan en medio de los rieles. La vegetaci�
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.96\textwidth]{figures/blender_actual_ancho_montana.png}
+\includegraphics[width=0.96\textwidth]{../figures/blender_actual_ancho_montana.png}
 \caption{Vista superior del ancho del terreno y del corredor de rieles, con árboles y rocas ubicados fuera del paso del tren.}
 \end{figure}
 
@@ -399,7 +275,7 @@ El entorno se sostiene sobre objetos principales, decorativos e interactivos. Es
 \textbf{Objeto principal} & \textbf{Función en el entorno}\\
 \midrule
 \endhead
-Locomotora y vagón posterior & Vehículo del jugador y silueta central del juego. La locomotora frontal importada desde Sketchfab se conecta con el vagón mediante una cadena, evitando que el tren parezca un único vagón aislado.\\
+Locomotora y vagón posterior & Vehículo del jugador y silueta central del juego. La locomotora frontal importada desde Sketchfab se conecta con el vagón mediante una cadena, evitando que el tren parezca un ?nico vagón aislado.\\
 Vías ferroviarias & Definen la ruta continua, conectan estaciones y marcan el recorrido que debe leer el jugador.\\
 Montaña y colina extendida & Generan ascenso, cima y descenso, haciendo que la ruta tenga ritmo y tensión.\\
 Andenes / estaciones & Funcionan como objetivos temporales donde se resuelve si el jugador llega a tiempo.\\
@@ -410,7 +286,7 @@ Cabina de control & Integra tablero, palancas, freno, medidores y decisiones pri
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.92\textwidth]{figures/blender_actual_locomotora_vagones.png}
+\includegraphics[width=0.92\textwidth]{../figures/blender_actual_locomotora_vagones.png}
 \caption{Locomotora y vagón posterior dentro del entorno actual, integrados con estación, árboles, postes y niebla.}
 \end{figure}
 
@@ -437,8 +313,20 @@ Cielo nublado perpetuo & Mantiene una iluminación difusa y una atmósfera de es
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.96\textwidth]{figures/blender_actual_conexion_rieles.png}
+\includegraphics[width=0.96\textwidth]{../figures/blender_actual_conexion_rieles.png}
 \caption{Lectura superior de los rieles, la tierra de vía y los postes: el corredor central queda despejado para que la ruta sea funcional.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.96\textwidth]{../figures/figura_elemento_farolas.png}
+\caption{Plano medio decorativo: farolas y postes como guía visual del corredor ferroviario en condiciones de baja iluminación.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.96\textwidth]{../figures/figura_elemento_montanas.png}
+\caption{Plano de fondo decorativo: composición de montañas y bosque para profundidad visual y lectura del relieve de la ruta.}
 \end{figure}
 
 \subsection{Objetos Interactivos}
@@ -453,12 +341,17 @@ Regulador de vapor & Controla la velocidad y aumenta el consumo de carbón.\\
 Freno neumático & Permite detenerse con precisión en andenes y reducir velocidad en curvas.\\
 Panel de suministros & Permite comprar carbón con puntos obtenidos al transportar pasajeros.\\
 Temporizador de estación & Cuenta regresiva que define si los pasajeros abordan o se pierden.\\
-Silbato de vapor & Feedback sonoro que refuerza la presencia del maquinista.\\
 Medidores de cabina & Muestran velocidad, carbón, presión y estado del viaje sin HUD externo.\\
 \bottomrule
 \end{tabularx}
 \caption{Objetos interactivos ligados a la toma de decisiones del jugador.}
 \end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.96\textwidth]{../figures/figura_elemento_NPCs_Estacion.png}
+\caption{Plano medio interactivo en estación: integración de NPCs y andén como referencia de abordaje y salida de pasajeros.}
+\end{figure}
 
 \subsection{Pasajeros NPC}
 
@@ -469,6 +362,24 @@ Los pasajeros funcionan como elementos híbridos entre ambiente e interacción. 
   \item \textbf{Abordar:} suben si el tren llega a tiempo y se detiene correctamente.
   \item \textbf{Retirarse:} desaparecen en la niebla si el temporizador llega a cero.
 \end{itemize}
+
+\subsection{Notas y Memorias de Pasajeros / Almas}
+
+Como parte del sistema narrativo del entorno, se incorpora el apartado de notas o memorias asociadas a los pasajeros (almas) que suben a la locomotora. Estas memorias funcionan como evidencia diegética del paso de cada viajero y refuerzan la relación entre la conducción del tren y la carga emocional del recorrido.
+
+\begin{itemize}
+  \item \textbf{Activación:} la memoria se habilita al completar correctamente el abordaje en estación.
+  \item \textbf{Persistencia:} la nota queda vinculada al progreso de ruta y al estado del viaje.
+  \item \textbf{Pérdida:} si el jugador no llega a tiempo, la memoria de ese pasajero no se registra.
+\end{itemize}
+
+\subsection{Imágenes de Memorias}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{../figures/memoria_pasajero_nota.png}
+\caption{Ejemplo de nota/memoria asociada a pasajeros que abordan la locomotora.}
+\end{figure}
 
 \section{Funcionalidad e Interacción del Entorno}
 
@@ -487,7 +398,7 @@ Tramo recto & Segmento donde el consumo y la velocidad son predecibles. & Permit
 Curvas cerradas & Cambios de dirección donde la velocidad excesiva puede ser peligrosa. & Obliga a frenar y leer la vía con anticipación.\\
 Pendientes & Ascensos y descensos de montaña. & Subir consume más; bajar exige controlar la velocidad.\\
 Andenes / estaciones & Puntos de parada con pasajeros y temporizadores. & Resuelven éxito, pérdida o recompensa narrativa.\\
-Zona de niebla densa & Espacio de baja visibilidad más allá del tramo inmediato. & Oculta el futuro de la ruta y aumenta la presión temporal.\\
+Zona de niebla densa & Espacio de baja visibilidad más allí del tramo inmediato. & Oculta el futuro de la ruta y aumenta la presión temporal.\\
 \bottomrule
 \end{tabularx}
 \caption{Zonas funcionales del entorno.}
@@ -495,11 +406,17 @@ Zona de niebla densa & Espacio de baja visibilidad más allá del tramo inmediat
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.96\textwidth]{figures/blender_actual_recorrido_general.png}
+\includegraphics[width=0.96\textwidth]{../figures/blender_actual_recorrido_general.png}
 \caption{Recorrido completo: la ruta sube, se extiende por la cima y desciende hacia nuevas paradas sin cortar la lectura del trayecto.}
 \end{figure}
 
 La cabina interior trabajada en Godot complementa este diseño exterior. Funciona como punto de vista del maquinista y concentra instrumentos, palancas, freno y lectura de recursos; por eso el entorno no se entiende solo como paisaje, sino como el espacio que el jugador interpreta desde dentro del tren.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.96\textwidth]{../figures/figura_interior_cabina.jpeg}
+\caption{Interior de cabina en operación: integración de medidores, controles y lectura de carbón para la toma de decisiones en ruta.}
+\end{figure}
 
 \subsection{Obstáculos del Entorno}
 
@@ -508,6 +425,16 @@ La cabina interior trabajada en Godot complementa este diseño exterior. Funcion
   \item \textbf{Tiempo:} cada estación tiene una cuenta regresiva que presiona al jugador.
   \item \textbf{Geometría:} curvas y pendientes exigen control para evitar llegar tarde o perder estabilidad.
   \item \textbf{Visibilidad:} la niebla reduce la información disponible y vuelve importante memorizar el recorrido.
+\end{itemize}
+
+\subsection{Barra de Estabilización Reactiva en Curvas}
+
+Se incorpora una barra de estabilización visible para curvas, con respuesta directa a la velocidad del tren respecto a la circunferencia de la curva. Este elemento informa el nivel de riesgo y permite prevenir descarrilamientos por exceso de velocidad.
+
+\begin{itemize}
+  \item \textbf{Zona estable:} velocidad compatible con el radio de curva.
+  \item \textbf{Zona de alerta:} velocidad cercana al límite operativo.
+  \item \textbf{Zona crítica:} velocidad excesiva y alta probabilidad de descarrilamiento.
 \end{itemize}
 
 \subsection{Interacciones Clave}
@@ -523,7 +450,6 @@ Aplicar freno neumático & Reduce velocidad para curvas, bajadas y paradas de es
 Consultar instrumentos & Permite leer carbón, presión, velocidad y estado del viaje desde la cabina.\\
 Llegar al andén & Si el tren llega dentro del tiempo, los pasajeros abordan y se obtiene progreso.\\
 Comprar carbón & Convierte puntos en combustible para sostener rutas consecutivas.\\
-Activar silbato & Refuerza presencia e inmersión sin romper el tono del juego.\\
 \bottomrule
 \end{tabularx}
 \caption{Interacciones principales del entorno en VR.}
@@ -555,43 +481,6 @@ Activar silbato & Refuerza presencia e inmersión sin romper el tono del juego.\
 \end{tikzpicture}
 \end{center}
 
-\section{Presentación y Justificación Grupal}
-
-\subsection{Decisiones de Diseño Justificadas}
-
-\begin{enumerate}
-  \item \textbf{Niebla volumétrica como límite de visibilidad.} Crea aislamiento, oculta elementos lejanos y convierte el retraso en una pérdida visual y narrativa.
-  \item \textbf{Interfaz diegética sin HUD externo.} Mantiene al jugador dentro de la cabina y hace que los instrumentos sean parte del mundo.
-  \item \textbf{Estética Retro Realism.} La baja poligonización aporta identidad, nostalgia y rendimiento estable para VR.
-  \item \textbf{Ruta de montaña con ascenso, cima y descenso.} La geometría justifica el consumo de carbón, el control de velocidad y la tensión de las estaciones.
-  \item \textbf{Pasajeros como siluetas o figuras silenciosas.} Su espera y desaparición refuerzan el tono melancólico sin necesidad de diálogos extensos.
-\end{enumerate}
-
-\subsection{Utilidad del Entorno dentro del Juego}
-
-El entorno de \textit{El Paso de la Bruma} no es intercambiable. La línea ferroviaria justifica el movimiento, la montaña justifica el esfuerzo, la niebla justifica la tensión temporal y las estaciones justifican la parada precisa. Sin estos elementos, el juego perdería su identidad principal.
-
-\begin{infoCard}
-\textbf{Idea de defensa:} el entorno es el sistema que vuelve jugable la historia. Cada objeto visual tiene una función: orientar, limitar, advertir, recompensar o presionar al jugador.
-\end{infoCard}
-
-\subsection{Distribución de Trabajo del Grupo N°1}
-
-\begin{table}[H]
-\centering
-\begin{tabularx}{\textwidth}{@{}L{3.8cm}Y@{}}
-\toprule
-\textbf{Integrante} & \textbf{Aporte al entorno virtual}\\
-\midrule
-Jordan Guaman & Diseño de mecánicas, equilibrio de rutas y relación entre velocidad, carbón y estaciones.\\
-Mesías Mariscal & Diseño visual del entorno, composición de montaña, bosque, iluminación, rieles y recursos en Blender.\\
-Anthony Morales & Integración técnica en Godot: tren, ruta, estaciones, interacción y soporte VR.\\
-Denise Rea & Narrativa ambiental, pasajeros, diarios, tono emocional y justificación de estaciones.\\
-\bottomrule
-\end{tabularx}
-\caption{Participación equilibrada del Grupo N°1.}
-\end{table}
-
 \section*{Conclusión}
 \addcontentsline{toc}{section}{Conclusión}
 
@@ -600,3 +489,7 @@ El entorno virtual de \textit{Echoes of the Rails} demuestra que un escenario bi
 En conjunto, la propuesta deja defendidas las decisiones de coherencia, ambientación, objetos, funcionalidad e integración grupal sin separar el diseño visual de su uso jugable.
 
 \end{document}
+
+
+
+

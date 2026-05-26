@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crl6nu6ninock"
-path="res://.godot/imported/informe_entorno_echoes_v2_portada.png-53aad135cea5f14a7e3b9273172e99b9.ctex"
+uid="uid://dqx7yyo0idiyj"
+path="res://.godot/imported/figura_elemento_montanas.png-29534ff04e5140889fd8fdb1897313db.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Doc/InformeEntornoVirtual/informe_entorno_echoes_v2_portada.png"
-dest_files=["res://.godot/imported/informe_entorno_echoes_v2_portada.png-53aad135cea5f14a7e3b9273172e99b9.ctex"]
+source_file="res://Doc/InformeEntornoVirtual/figures/figura_elemento_montanas.png"
+dest_files=["res://.godot/imported/figura_elemento_montanas.png-29534ff04e5140889fd8fdb1897313db.ctex"]
 
 [params]
 
