@@ -772,7 +772,7 @@ transform = Transform3D(1, 0, 0, 0, 0.9612617, -0.27563733, 0, 0.27563733, 0.961
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 2.85, -1.2)
 
 [node name="BuyCoalButton" parent="." unique_id=1660112993 instance=ExtResource("6_buycoal")]
-transform = Transform3D(0.46, 0, 0, 0, 0.3769127, 0.2631871, 0, -0.2631871, 0.3769127, 1.58, 1.45, -1.6)
+transform = Transform3D(0.265, 0, 0, 0, 0.24482806, 0.10141111, 0, -0.10141111, 0.24482806, 1.58, 1.45, -1.6)
 
 [node name="XROrigin" parent="." unique_id=1541377148 instance=ExtResource("4_xr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.285, -0.635)
@@ -794,75 +794,77 @@ light_energy = 0.85
 omni_range = 2.5
 
 [node name="CabinOilLampLeft" type="Node3D" parent="CabinInteriorPolish" unique_id=2018291556]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.05, 1.55, -2.58)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.05, 1.55, -0.81)
 
 [node name="Bracket" type="MeshInstance3D" parent="CabinInteriorPolish/CabinOilLampLeft" unique_id=1876114686]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08, 0.12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08, -0.81)
 material_override = ExtResource("7_75g50")
 mesh = SubResource("BoxMesh_i7gfx")
 
 [node name="@MeshInstance3D@54446" type="MeshInstance3D" parent="CabinInteriorPolish/CabinOilLampLeft" unique_id=970399119]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.81)
 material_override = ExtResource("7_75g50")
 mesh = SubResource("CylinderMesh_5jds3")
 
 [node name="@MeshInstance3D@54447" type="MeshInstance3D" parent="CabinInteriorPolish/CabinOilLampLeft" unique_id=1921135191]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, -0.81)
 material_override = ExtResource("7_75g50")
 mesh = SubResource("CylinderMesh_juj0c")
 
 [node name="@MeshInstance3D@54448" type="MeshInstance3D" parent="CabinInteriorPolish/CabinOilLampLeft" unique_id=845860190]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, -0.81)
 material_override = SubResource("StandardMaterial3D_x68jf")
 mesh = SubResource("CylinderMesh_utxl8")
 
 [node name="@MeshInstance3D@54449" type="MeshInstance3D" parent="CabinInteriorPolish/CabinOilLampLeft" unique_id=1522573773]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.34, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.34, -0.81)
 material_override = ExtResource("7_75g50")
 mesh = SubResource("CylinderMesh_4553b")
 
 [node name="@MeshInstance3D@54450" type="MeshInstance3D" parent="CabinInteriorPolish/CabinOilLampLeft" unique_id=994893176]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, -0.81)
 mesh = SubResource("SphereMesh_kv8et")
 
 [node name="@OmniLight3D@54451" type="OmniLight3D" parent="CabinInteriorPolish/CabinOilLampLeft" unique_id=219527902]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, -0.81)
 light_color = Color(1, 0.66, 0.32, 1)
 light_energy = 1.2
 omni_range = 2.0
 
 [node name="CabinOilLampRight" type="Node3D" parent="CabinInteriorPolish" unique_id=1278478512]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.05, 1.55, -2.58)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.045, 1.55, -0.775)
 
 [node name="Bracket" type="MeshInstance3D" parent="CabinInteriorPolish/CabinOilLampRight" unique_id=1979966209]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08, 0.12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.045, -0.08, -0.775)
 material_override = ExtResource("7_75g50")
 mesh = SubResource("BoxMesh_045ye")
 
 [node name="@MeshInstance3D@54452" type="MeshInstance3D" parent="CabinInteriorPolish/CabinOilLampRight" unique_id=1124649805]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.045, 0, -0.775)
 material_override = ExtResource("7_75g50")
 mesh = SubResource("CylinderMesh_laq47")
 
 [node name="@MeshInstance3D@54453" type="MeshInstance3D" parent="CabinInteriorPolish/CabinOilLampRight" unique_id=1483904144]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.045, 0.06, -0.775)
 material_override = ExtResource("7_75g50")
 mesh = SubResource("CylinderMesh_5qykx")
 
 [node name="@MeshInstance3D@54454" type="MeshInstance3D" parent="CabinInteriorPolish/CabinOilLampRight" unique_id=115415127]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.045, 0.2, -0.775)
 material_override = SubResource("StandardMaterial3D_x68jf")
 mesh = SubResource("CylinderMesh_wwgtx")
 
 [node name="@MeshInstance3D@54455" type="MeshInstance3D" parent="CabinInteriorPolish/CabinOilLampRight" unique_id=1137146470]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.34, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.045, 0.34, -0.775)
 material_override = ExtResource("7_75g50")
 mesh = SubResource("CylinderMesh_r3uop")
 
 [node name="@MeshInstance3D@54456" type="MeshInstance3D" parent="CabinInteriorPolish/CabinOilLampRight" unique_id=1055395311]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.045, 0.22, -0.775)
 mesh = SubResource("SphereMesh_jn0gp")
 
 [node name="@OmniLight3D@54457" type="OmniLight3D" parent="CabinInteriorPolish/CabinOilLampRight" unique_id=655547131]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.045, 0.22, -0.775)
 light_color = Color(1, 0.66, 0.32, 1)
 light_energy = 1.2
 omni_range = 2.0
