@@ -64,6 +64,8 @@ var _speed_value: float = 0.0
 
 func _ready() -> void:
 	_ensure_generated_scene_parts()
+	_bind_existing_gauge_needles()
+	_apply_initial_gauge_values()
 	if not Engine.is_editor_hint():
 		_connect_signals()
 
@@ -86,6 +88,69 @@ func _animate_needle(needle: Node3D, target_angle: float, blend: float) -> void:
 	if needle == null:
 		return
 	needle.rotation_degrees.z = lerpf(needle.rotation_degrees.z, target_angle, blend)
+
+
+func _bind_existing_gauge_needles() -> void:
+	vapor_needle = _get_gauge_needle("VAPORGauge", ["vapor", "steam"])
+	presion_needle = _get_gauge_needle("PRESIONGauge", ["presion", "presión", "pressure"])
+	carbon_needle = _get_gauge_needle("CARBONGauge", ["carbon", "carbón", "coal"])
+	vel_needle = _get_gauge_needle("VELGauge", ["vel", "speed", "velocidad"])
+
+
+func _get_gauge_needle(primary_gauge_name: String, label_tokens: Array[String]) -> Node3D:
+	var panel := get_node_or_null("HeroInstrumentPanel") as Node3D
+	if panel == null:
+		return null
+
+	var direct := panel.get_node_or_null("%s/NeedlePivot" % primary_gauge_name) as Node3D
+	if direct != null:
+		return direct
+
+	var matched_gauge := _find_gauge_by_label(panel, label_tokens)
+	if matched_gauge != null:
+		var matched_needle := matched_gauge.get_node_or_null("NeedlePivot") as Node3D
+		if matched_needle != null:
+			return matched_needle
+
+	return null
+
+
+func _find_gauge_by_label(root: Node, label_tokens: Array[String]) -> Node3D:
+	for child in root.get_children():
+		var child_name := child.name.to_lower()
+		var name_matches := false
+		for token in label_tokens:
+			if child_name.contains(token):
+				name_matches = true
+				break
+		if name_matches and child is Node3D and child.get_node_or_null("NeedlePivot") != null:
+			return child as Node3D
+
+		for grandchild in child.get_children():
+			if grandchild is Label3D:
+				var label := grandchild as Label3D
+				var text := label.text.to_lower()
+				for token in label_tokens:
+					if text.contains(token):
+						if child is Node3D:
+							return child as Node3D
+						return null
+
+		var nested := _find_gauge_by_label(child, label_tokens)
+		if nested != null:
+			return nested
+	return null
+
+
+func _apply_initial_gauge_values() -> void:
+	if vapor_needle != null:
+		vapor_needle.rotation_degrees.z = _gauge_angle(_throttle_value)
+	if presion_needle != null:
+		presion_needle.rotation_degrees.z = _gauge_angle(_pressure_value)
+	if carbon_needle != null:
+		carbon_needle.rotation_degrees.z = _gauge_angle(_coal_value)
+	if vel_needle != null:
+		vel_needle.rotation_degrees.z = _gauge_angle(clampf(_speed_value / SPEED_GAUGE_MAX, 0.0, 1.0))
 
 
 func _connect_signals() -> void:
