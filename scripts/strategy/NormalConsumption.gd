@@ -3,4 +3,5 @@ extends FuelConsumptionStrategy
 
 
 func calculate_consumption(base_consumption: float, throttle: float, speed: float, route_factor: float) -> float:
-	return base_consumption + throttle * max(speed, 1.0) * 0.004 * route_factor
+	var throttle_burn: float = throttle * (2.8 + maxf(speed, 0.0) * 0.22)
+	return (base_consumption + throttle_burn) * route_factor
