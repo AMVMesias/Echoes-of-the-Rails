@@ -1,29 +1,35 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="Script" path="res://scripts/interaction/LeverInteractable.gd" id="1_lever"]
 [ext_resource type="Material" path="res://assets/materials/psx_iron.tres" id="2_iron"]
-[ext_resource type="Material" path="res://assets/materials/psx_rusted_metal.tres" id="3_rusted"]
+[ext_resource type="Material" path="res://assets/materials/psx_dark_wood.tres" id="3_wood"]
+[ext_resource type="Material" path="res://assets/materials/train_aged_brass_weathered.tres" id="4_brass"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_brake"]
-size = Vector3(0.85, 0.30, 0.35)
+size = Vector3(0.30, 0.60, 0.35)
 
 [sub_resource type="BoxMesh" id="BoxMesh_slot"]
-size = Vector3(0.70, 0.06, 0.20)
+size = Vector3(0.08, 0.34, 0.04)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_bar"]
-top_radius = 0.032
-bottom_radius = 0.032
-height = 0.62
-radial_segments = 10
+[sub_resource type="BoxMesh" id="BoxMesh_guide_plate"]
+size = Vector3(0.18, 0.04, 0.06)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_shaft"]
+top_radius = 0.018
+bottom_radius = 0.018
+height = 0.52
+radial_segments = 12
 
 [sub_resource type="SphereMesh" id="SphereMesh_handle"]
-radius = 0.088
-height = 0.16
-radial_segments = 14
+radius = 0.055
+height = 0.11
+radial_segments = 16
+rings = 10
 
 [sub_resource type="StandardMaterial3D" id="Mat_red_handle"]
-albedo_color = Color(0.58, 0.06, 0.035, 1)
-roughness = 0.62
+albedo_color = Color(0.62, 0.06, 0.03, 1)
+roughness = 0.52
+metallic = 0.05
 
 [node name="BrakeLever" type="Area3D"]
 script = ExtResource("1_lever")
@@ -33,20 +39,29 @@ value_step = 0.15
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_brake")
 
+[node name="SlotBase" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0, 0)
+mesh = SubResource("BoxMesh_slot")
+material_override = ExtResource("3_wood")
+
+[node name="GuidePlateTop" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.15, 0.02)
+mesh = SubResource("BoxMesh_guide_plate")
+material_override = ExtResource("4_brass")
+
+[node name="GuidePlateBot" type="MeshInstance3D" parent="."]
+position = Vector3(0, -0.15, 0.02)
+mesh = SubResource("BoxMesh_guide_plate")
+material_override = ExtResource("4_brass")
+
 [node name="Pivot" type="Node3D" parent="."]
 
-[node name="Slot" type="MeshInstance3D" parent="Pivot"]
-position = Vector3(0, -0.02, 0)
-mesh = SubResource("BoxMesh_slot")
-material_override = ExtResource("3_rusted")
-
-[node name="Bar" type="MeshInstance3D" parent="Pivot"]
-position = Vector3(0.18, 0.04, 0)
-rotation_degrees = Vector3(0, 0, 90)
-mesh = SubResource("CylinderMesh_bar")
+[node name="Shaft" type="MeshInstance3D" parent="Pivot"]
+position = Vector3(0, 0.26, 0)
+mesh = SubResource("CylinderMesh_shaft")
 material_override = ExtResource("2_iron")
 
 [node name="Handle" type="MeshInstance3D" parent="Pivot"]
-position = Vector3(0.48, 0.04, 0)
+position = Vector3(0, 0.54, 0)
 mesh = SubResource("SphereMesh_handle")
 material_override = SubResource("Mat_red_handle")
