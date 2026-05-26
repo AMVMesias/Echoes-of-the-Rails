@@ -1,19 +1,772 @@
-[gd_scene format=3 uid="uid://bnimlvoctdjjf"]
+[gd_scene format=4 uid="uid://bnimlvoctdjjf"]
 
-[ext_resource type="PackedScene" path="res://scenes/train/SteamRegulator.tscn" id="1_regulator"]
-[ext_resource type="PackedScene" path="res://scenes/train/BrakeLever.tscn" id="2_brake"]
+[ext_resource type="PackedScene" uid="uid://dw8s7fsiitxge" path="res://scenes/train/SteamRegulator.tscn" id="1_regulator"]
+[ext_resource type="PackedScene" uid="uid://3tra7o7i15ey" path="res://scenes/train/BrakeLever.tscn" id="2_brake"]
 [ext_resource type="PackedScene" path="res://scenes/train/Whistle.tscn" id="3_whistle"]
 [ext_resource type="PackedScene" path="res://scenes/vr/XROrigin.tscn" id="4_xr"]
 [ext_resource type="Script" uid="uid://dwlyti3t6ukdq" path="res://scripts/train/CabinInteriorPolish.gd" id="5_polish"]
 [ext_resource type="PackedScene" path="res://scenes/train/BuyCoalButton.tscn" id="6_buycoal"]
+[ext_resource type="Material" path="res://assets/materials/train_aged_brass_weathered.tres" id="7_75g50"]
+[ext_resource type="Material" path="res://assets/materials/train_old_wood_weathered.tres" id="8_3rovn"]
+[ext_resource type="Material" path="res://assets/materials/train_dark_iron_weathered.tres" id="9_anrue"]
+[ext_resource type="Material" path="res://assets/materials/train_cool_black_metal.tres" id="10_pxued"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_i7gfx"]
+size = Vector3(0.04, 0.04, 0.28)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5jds3"]
+top_radius = 0.09
+bottom_radius = 0.09
+height = 0.05
+radial_segments = 18
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_juj0c"]
+top_radius = 0.04
+bottom_radius = 0.04
+height = 0.08
+radial_segments = 18
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x68jf"]
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0.8, 0.76, 0.6, 0.35)
+roughness = 0.18
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_utxl8"]
+top_radius = 0.06
+bottom_radius = 0.06
+height = 0.22
+radial_segments = 18
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4553b"]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.03
+radial_segments = 18
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tepnv"]
+cull_mode = 2
+albedo_color = Color(1, 0.72, 0.3, 1)
+roughness = 0.25
+emission_enabled = true
+emission = Color(1, 0.56, 0.18, 1)
+emission_energy_multiplier = 1.8
+
+[sub_resource type="SphereMesh" id="SphereMesh_kv8et"]
+material = SubResource("StandardMaterial3D_tepnv")
+radius = 0.04
+height = 0.07
+
+[sub_resource type="BoxMesh" id="BoxMesh_045ye"]
+size = Vector3(0.04, 0.04, 0.28)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_laq47"]
+top_radius = 0.09
+bottom_radius = 0.09
+height = 0.05
+radial_segments = 18
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5qykx"]
+top_radius = 0.04
+bottom_radius = 0.04
+height = 0.08
+radial_segments = 18
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wwgtx"]
+top_radius = 0.06
+bottom_radius = 0.06
+height = 0.22
+radial_segments = 18
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_r3uop"]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.03
+radial_segments = 18
+
+[sub_resource type="SphereMesh" id="SphereMesh_jn0gp"]
+material = SubResource("StandardMaterial3D_tepnv")
+radius = 0.04
+height = 0.07
+
+[sub_resource type="BoxMesh" id="BoxMesh_torhm"]
+size = Vector3(4.1, 0.98, 0.09)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uvhrr"]
+size = Vector3(4.16, 0.03, 0.11)
+
+[sub_resource type="BoxMesh" id="BoxMesh_avqlq"]
+size = Vector3(4.16, 0.03, 0.11)
+
+[sub_resource type="BoxMesh" id="BoxMesh_slxxr"]
+size = Vector3(0.03, 1.03, 0.11)
+
+[sub_resource type="BoxMesh" id="BoxMesh_trigv"]
+size = Vector3(0.03, 1.03, 0.11)
+
+[sub_resource type="BoxMesh" id="BoxMesh_w8jtx"]
+size = Vector3(3.86, 0.022, 0.045)
+
+[sub_resource type="BoxMesh" id="BoxMesh_w4hay"]
+size = Vector3(2.92, 0.04, 0.04)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p1wao"]
+cull_mode = 2
+albedo_color = Color(0.1, 0.08, 0.06, 1)
+roughness = 0.96
+
+[sub_resource type="BoxMesh" id="BoxMesh_iibyb"]
+size = Vector3(0.28, 0.055, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wr225"]
+size = Vector3(0.34, 0.045, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ynade"]
+size = Vector3(0.42, 0.038, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_m8eq4"]
+size = Vector3(0.26, 0.065, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mdar4"]
+size = Vector3(0.32, 0.05, 0.008)
+
+[sub_resource type="SphereMesh" id="SphereMesh_va8ik"]
+material = ExtResource("7_75g50")
+radius = 0.018
+height = 0.0216
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_abrhd"]
+material = ExtResource("7_75g50")
+radius = 0.018
+height = 0.0216
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_ybgcr"]
+material = ExtResource("7_75g50")
+radius = 0.018
+height = 0.0216
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_4p46e"]
+material = ExtResource("7_75g50")
+radius = 0.018
+height = 0.0216
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_gcnyi"]
+material = ExtResource("7_75g50")
+radius = 0.018
+height = 0.0216
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_mstm4"]
+material = ExtResource("7_75g50")
+radius = 0.018
+height = 0.0216
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_s0g4u"]
+material = ExtResource("7_75g50")
+radius = 0.018
+height = 0.0216
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_hvns5"]
+material = ExtResource("7_75g50")
+radius = 0.018
+height = 0.0216
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_m4e0o"]
+material = ExtResource("7_75g50")
+radius = 0.018
+height = 0.0216
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_u2164"]
+material = ExtResource("7_75g50")
+radius = 0.018
+height = 0.0216
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_ftiqe"]
+material = ExtResource("7_75g50")
+radius = 0.018
+height = 0.0216
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_jrxqy"]
+material = ExtResource("7_75g50")
+radius = 0.018
+height = 0.0216
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_cqcbe"]
+material = ExtResource("7_75g50")
+radius = 0.018
+height = 0.0216
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_c8o1n"]
+material = ExtResource("7_75g50")
+radius = 0.018
+height = 0.0216
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_dw3fw"]
+material = ExtResource("7_75g50")
+radius = 0.018
+height = 0.0216
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_g087h"]
+material = ExtResource("7_75g50")
+radius = 0.018
+height = 0.0216
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_jfuvb"]
+material = ExtResource("7_75g50")
+radius = 0.018
+height = 0.0216
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_m67t8"]
+material = ExtResource("7_75g50")
+radius = 0.018
+height = 0.0216
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_gop4e"]
+material = ExtResource("7_75g50")
+radius = 0.018
+height = 0.0216
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_pgk6e"]
+material = ExtResource("7_75g50")
+radius = 0.018
+height = 0.0216
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_0w5q6"]
+material = ExtResource("7_75g50")
+radius = 0.018
+height = 0.0216
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_4uct6"]
+material = ExtResource("7_75g50")
+radius = 0.018
+height = 0.0216
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_6ypwf"]
+material = ExtResource("7_75g50")
+radius = 0.018
+height = 0.0216
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_euc7q"]
+material = ExtResource("7_75g50")
+radius = 0.018
+height = 0.0216
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_cnfa6"]
+material = ExtResource("7_75g50")
+radius = 0.018
+height = 0.0216
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_wrmym"]
+material = ExtResource("7_75g50")
+radius = 0.018
+height = 0.0216
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_0ieww"]
+material = ExtResource("7_75g50")
+radius = 0.018
+height = 0.0216
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_yu5hg"]
+material = ExtResource("7_75g50")
+radius = 0.018
+height = 0.0216
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_auebn"]
+material = ExtResource("7_75g50")
+radius = 0.017
+height = 0.0204
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_63abr"]
+material = ExtResource("7_75g50")
+radius = 0.017
+height = 0.0204
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_a0o1d"]
+material = ExtResource("7_75g50")
+radius = 0.017
+height = 0.0204
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_uvgm2"]
+material = ExtResource("7_75g50")
+radius = 0.017
+height = 0.0204
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_082rk"]
+material = ExtResource("7_75g50")
+radius = 0.017
+height = 0.0204
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_61mp6"]
+material = ExtResource("7_75g50")
+radius = 0.017
+height = 0.0204
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_iu2qi"]
+material = ExtResource("7_75g50")
+radius = 0.017
+height = 0.0204
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_5tm68"]
+material = ExtResource("7_75g50")
+radius = 0.017
+height = 0.0204
+radial_segments = 8
+rings = 4
+
+[sub_resource type="BoxMesh" id="BoxMesh_hey5v"]
+size = Vector3(3.7, 0.15, 0.7)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yw3qa"]
+size = Vector3(3.74, 0.024, 0.72)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qljpj"]
+size = Vector3(0.252, 0.05, 0.022)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wwcnw"]
+size = Vector3(0.252, 0.05, 0.022)
+
+[sub_resource type="TorusMesh" id="TorusMesh_5qp84"]
+inner_radius = 0.138
+outer_radius = 0.188
+rings = 32
+ring_segments = 20
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hp8ju"]
+cull_mode = 2
+albedo_color = Color(0.88, 0.83, 0.72, 1)
+roughness = 0.82
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6vsc3"]
+top_radius = 0.148
+bottom_radius = 0.148
+height = 0.014
+radial_segments = 40
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_us64q"]
+cull_mode = 2
+albedo_color = Color(0.08, 0.28, 0.06, 1)
+roughness = 0.78
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_k2g52"]
+_surfaces = [{
+"aabb": AABB(-0.057053465, -0.13498951, 0.025, 0.19138262, 0.24557504, 1e-05),
+"attribute_data": PackedByteArray("AAAAAAAAAAAAAIA/AAAAAAAAAAAlSZI9AACAPyVJkj0AAAAAJUkSPgAAgD8lSRI+AAAAALdtWz4AAIA/t21bPgAAAAAlSZI+AACAPyVJkj4AAAAAbtu2PgAAgD9u27Y+AAAAALdt2z4AAIA/t23bPgAAAAAAAAA/AACAPwAAAD8AAAAAJUkSPwAAgD8lSRI/AAAAAEmSJD8AAIA/SZIkPwAAAABu2zY/AACAP27bNj8AAAAAkiRJPwAAgD+SJEk/AAAAALdtWz8AAIA/t21bPwAAAADbtm0/AACAP9u2bT8AAAAAAACAPwAAgD8AAIA/"),
+"format": 34359742487,
+"index_count": 84,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAgADAAQAAwAFAAQABAAFAAYABQAHAAYABgAHAAgABwAJAAgACAAJAAoACQALAAoACgALAAwACwANAAwADAANAA4ADQAPAA4ADgAPABAADwARABAAEAARABIAEQATABIAEgATABQAEwAVABQAFAAVABYAFQAXABYAFgAXABgAFwAZABgAGAAZABoAGQAbABoAGgAbABwAGwAdABwA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 30,
+"vertex_data": PackedByteArray("CJEwvfZSvb3NzMw85bBpvXOT+r3NzMw8WO+5vJaoy73NzMw8IRf2vCfGBr7NzMw8nKqmujjh0L3NzMw8hJbcurE6Cr7NzMw8WJGlPA3BzL3NzMw8QCLbPMF/B77NzMw8WhInPVh3v73NzMw80h9dPUBp/b3NzMw8KeJzPVCcqb3NzMw8uWShPRB84L3NzMw8GOSaPVMqjL3NzMw8tgDNPVCDub3NzMw8xOi0PWDlUL3NzMw8T3DvPXE9ir3NzMw8DdXGPR0dAL3NzMw8hZQDPvGPKb3NzMw8o9vPPQRlJrzNzMw8lY0JPmg6XLzNzMw8H5XPPYgcOzzNzMw8614JPsOldzzNzMw8qwTGPakPBT3NzMw8ngoDPkIcMD3NzMw81pezPetjVT3NzMw8XrLtPdQ2jT3NzMw8sSGZPdoVjj3NzMw8l6zKPd0NvD3NzMw8uqJvPRoeqz3NzMw8GZWePap64j3NzMw8//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA")
+}]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_idm7g"]
+top_radius = 0.022
+bottom_radius = 0.022
+height = 0.018
+radial_segments = 14
+
+[sub_resource type="BoxMesh" id="BoxMesh_b5rog"]
+size = Vector3(0.014, 0.126, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3kdjr"]
+size = Vector3(0.018, 0.04, 0.009)
+
+[sub_resource type="BoxMesh" id="BoxMesh_by6tw"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_83hnu"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_e214p"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yjtwd"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xb340"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lf6ms"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_en3y2"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3uo0i"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0uprm"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_voxes"]
+top_radius = 0.148
+bottom_radius = 0.148
+height = 0.016
+radial_segments = 32
+
+[sub_resource type="BoxMesh" id="BoxMesh_sthig"]
+size = Vector3(0.2, 0.05, 0.022)
+
+[sub_resource type="TorusMesh" id="TorusMesh_roq1o"]
+inner_radius = 0.138
+outer_radius = 0.188
+rings = 32
+ring_segments = 20
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_o1mfx"]
+top_radius = 0.148
+bottom_radius = 0.148
+height = 0.014
+radial_segments = 40
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_t5ik6"]
+_surfaces = [{
+"aabb": AABB(-0.057053465, -0.13483219, 0.025, 0.19179128, 0.16977276, 1e-05),
+"attribute_data": PackedByteArray("AAAAAAAAAAAAAIA/AAAAAAAAAAAlSZI9AACAPyVJkj0AAAAAJUkSPgAAgD8lSRI+AAAAALdtWz4AAIA/t21bPgAAAAAlSZI+AACAPyVJkj4AAAAAbtu2PgAAgD9u27Y+AAAAALdt2z4AAIA/t23bPgAAAAAAAAA/AACAPwAAAD8AAAAAJUkSPwAAgD8lSRI/AAAAAEmSJD8AAIA/SZIkPwAAAABu2zY/AACAP27bNj8AAAAAkiRJPwAAgD+SJEk/AAAAALdtWz8AAIA/t21bPwAAAADbtm0/AACAP9u2bT8AAAAAAACAPwAAgD8AAIA/"),
+"format": 34359742487,
+"index_count": 84,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAgADAAQAAwAFAAQABAAFAAYABQAHAAYABgAHAAgABwAJAAgACAAJAAoACQALAAoACgALAAwACwANAAwADAANAA4ADQAPAA4ADgAPABAADwARABAAEAARABIAEQATABIAEgATABQAEwAVABQAFAAVABYAFQAXABYAFgAXABgAFwAZABgAGAAZABoAGQAbABoAGgAbABwAGwAdABwA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 30,
+"vertex_data": PackedByteArray("CJEwvfZSvb3NzMw85bBpvXOT+r3NzMw8Wk/ivJ4Wyb3NzMw8ksMVvbwSBb7NzMw8iBw7vB+Vz73NzMw8w6V3vOteCb7NzMw8CZqmO+ai0L3NzMw8k4DcO3MRCr7NzMw818OvPOI4zL3NzMw8UaHoPKUlB77NzMw89aIYPa90wr3NzMw82wRKPRqvAL7NzMw862NVPdaXs73NzMw81DaNPV6y7b3NzMw8mEaGPQwGoL3NzMw8ybexPcXL073NzMw8V1aePZ9CiL3NzMw8ZJDRPSxYtL3NzMw8wj+yPfnZWb3NzMw8+errPZoqkL3NzMw8Qn3BPRZ5Hb3NzMw8XAsAPo5rUL3NzMw8lqjLPVjvubzNzMw8J8YGPiEX9rzNzMw8hX3QPR000LvNzMw8tvgJPiLICbzNzMw8o9vPPQRlJjzNzMw8lY0JPmg6XDzNzMw8LsfJPdtD2DzNzMw8k4cFPtgdDz3NzMw8//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA")
+}]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rtr40"]
+cull_mode = 2
+albedo_color = Color(0.52, 0.06, 0.04, 1)
+roughness = 0.78
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_mdlqp"]
+_surfaces = [{
+"aabb": AABB(0.058504798, 0.038209874, 0.026, 0.066665016, 0.072375655, 1e-05),
+"attribute_data": PackedByteArray("AAAAAAAAAAAAAIA/AAAAAAAAAAAlSZI9AACAPyVJkj0AAAAAJUkSPgAAgD8lSRI+AAAAALdtWz4AAIA/t21bPgAAAAAlSZI+AACAPyVJkj4AAAAAbtu2PgAAgD9u27Y+AAAAALdt2z4AAIA/t23bPgAAAAAAAAA/AACAPwAAAD8AAAAAJUkSPwAAgD8lSRI/AAAAAEmSJD8AAIA/SZIkPwAAAABu2zY/AACAP27bNj8AAAAAkiRJPwAAgD+SJEk/AAAAALdtWz8AAIA/t21bPwAAAADbtm0/AACAP9u2bT8AAAAAAACAPwAAgD8AAIA/"),
+"format": 34359742487,
+"index_count": 84,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAgADAAQAAwAFAAQABAAFAAYABQAHAAYABgAHAAgABwAJAAgACAAJAAoACQALAAoACgALAAwACwANAAwADAANAA4ADQAPAA4ADgAPABAADwARABAAEAARABIAEQATABIAEgATABQAEwAVABQAFAAVABYAFQAXABYAFgAXABgAFwAZABgAGAAZABoAGQAbABoAGgAbABwAGwAdABwA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 30,
+"vertex_data": PackedByteArray("XK/BPfWBHD30/dQ8hCwAPngkTz30/dQ8fE2+PZ1OLD30/dQ8Bt/7PbINZD30/dQ8Kpm6PaDQOz30/dQ85ff2PR+UeD30/dQ8ApS2PUUBSz30/dQ8x6XxPW5Xhj30/dQ8wj+yPfnZWT30/dQ8+errPZoqkD30/dQ8SZ6tPUxUaD30/dQ898nlPVG/mT30/dQ8mbGoPflpdj30/dQ8aUXfPWwRoz30/dQ81XujPXMKgj30/dQ8IWDYPeQcrD30/dQ8Pf+dPZOniD30/dQ8HB3RPcvdtD30/dQ8Mz6YPYAJjz30/dQ8gH/JPVdQvT30/dQ8NTuSPXYtlT30/dQ8mYrBPeBwxT30/dQ83viLPcsQmz30/dQ82kG5PeA7zT30/dQ84nmFPfOwoD30/dQ82aiwPfet1D30/dQ8KYJ9PX4Lpj30/dQ8UMOnPevD2z30/dQ8uqJvPRoeqz30/dQ8GZWePap64j30/dQ8//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA")
+}]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_626if"]
+top_radius = 0.022
+bottom_radius = 0.022
+height = 0.018
+radial_segments = 14
+
+[sub_resource type="BoxMesh" id="BoxMesh_ly0nl"]
+size = Vector3(0.014, 0.126, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xphwd"]
+size = Vector3(0.018, 0.04, 0.009)
+
+[sub_resource type="BoxMesh" id="BoxMesh_o1q8o"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2exu4"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ebraa"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_07k2t"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_75fut"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n0iwx"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_q8dka"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_seuyb"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_c84xs"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_488ir"]
+top_radius = 0.148
+bottom_radius = 0.148
+height = 0.016
+radial_segments = 32
+
+[sub_resource type="BoxMesh" id="BoxMesh_0divb"]
+size = Vector3(0.252, 0.05, 0.022)
+
+[sub_resource type="TorusMesh" id="TorusMesh_acmid"]
+inner_radius = 0.138
+outer_radius = 0.188
+rings = 32
+ring_segments = 20
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5rxsi"]
+top_radius = 0.148
+bottom_radius = 0.148
+height = 0.014
+radial_segments = 40
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_o772d"]
+_surfaces = [{
+"aabb": AABB(-0.057053465, -0.1349999, 0.026, 0.08971292, 0.04255651, 1e-05),
+"attribute_data": PackedByteArray("AAAAAAAAAAAAAIA/AAAAAAAAAAAlSZI9AACAPyVJkj0AAAAAJUkSPgAAgD8lSRI+AAAAALdtWz4AAIA/t21bPgAAAAAlSZI+AACAPyVJkj4AAAAAbtu2PgAAgD9u27Y+AAAAALdt2z4AAIA/t23bPgAAAAAAAAA/AACAPwAAAD8AAAAAJUkSPwAAgD8lSRI/AAAAAEmSJD8AAIA/SZIkPwAAAABu2zY/AACAP27bNj8AAAAAkiRJPwAAgD+SJEk/AAAAALdtWz8AAIA/t21bPwAAAADbtm0/AACAP9u2bT8AAAAAAACAPwAAgD8AAIA/"),
+"format": 34359742487,
+"index_count": 84,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAgADAAQAAwAFAAQABAAFAAYABQAHAAYABgAHAAgABwAJAAgACAAJAAoACQALAAoACgALAAwACwANAAwADAANAA4ADQAPAA4ADgAPABAADwARABAAEAARABIAEQATABIAEgATABQAEwAVABQAFAAVABYAFQAXABYAFgAXABgAFwAZABgAGAAZABoAGQAbABoAGgAbABwAGwAdABwA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 30,
+"vertex_data": PackedByteArray("CJEwvfZSvb30/dQ85bBpvXOT+r30/dQ8j/QdvRdkwb30/dQ8+Q5RvWr1/730/dQ8g/gKvTUAxb30/dQ8kO43vUFeAr70/dQ8xlDvvCIlyL30/dQ83l4eve1yBL70/dQ8ux/IvPfQyr30/dQ8Wm8EvXY3Br70/dQ8mXWgvBYCzb30/dQ8aV/UvMuqB770/dQ8xtRwvCq3zr30/dQ8oV+fvAnMCL70/dQ8oiwgvC3vz730/dQ81/5TvISaCb70/dQ8LEeeu2Gp0L30/dQ8UHzRu70VCr70/dQ8KlYFOVbl0L30/dQ8knkwOWo9Cr70/dQ8CZqmO+ai0L30/dQ8k4DcO3MRCr70/dQ8SlIkPDviz730/dQ8+HtZPPORCb70/dQ8I/R0PMmjzr30/dQ8CBqiPDa/CL70/dQ85ICiPFHozL30/dQ8ARTXPL2ZB770/dQ8ZSXKPN+wyr30/dQ87MUFPTkiBr70/dQ8//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA")
+}]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_tvlix"]
+_surfaces = [{
+"aabb": AABB(0.038209874, -0.12516981, 0.025, 0.09668271, 0.23575534, 1e-05),
+"attribute_data": PackedByteArray("AAAAAAAAAAAAAIA/AAAAAAAAAAAlSZI9AACAPyVJkj0AAAAAJUkSPgAAgD8lSRI+AAAAALdtWz4AAIA/t21bPgAAAAAlSZI+AACAPyVJkj4AAAAAbtu2PgAAgD9u27Y+AAAAALdt2z4AAIA/t23bPgAAAAAAAAA/AACAPwAAAD8AAAAAJUkSPwAAgD8lSRI/AAAAAEmSJD8AAIA/SZIkPwAAAABu2zY/AACAP27bNj8AAAAAkiRJPwAAgD+SJEk/AAAAALdtWz8AAIA/t21bPwAAAADbtm0/AACAP9u2bT8AAAAAAACAPwAAgD8AAIA/"),
+"format": 34359742487,
+"index_count": 84,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAgADAAQAAwAFAAQABAAFAAYABQAHAAYABgAHAAgABwAJAAgACAAJAAoACQALAAoACgALAAwACwANAAwADAANAA4ADQAPAA4ADgAPABAADwARABAAEAARABIAEQATABIAEgATABQAEwAVABQAFAAVABYAFQAXABYAFgAXABgAFwAZABgAGAAZABoAGQAbABoAGgAbABwAGwAdABwA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 30,
+"vertex_data": PackedByteArray("9YEcPVyvwb3NzMw8eCRPPYQsAL7NzMw8gtZVPb91s73NzMw8qYKNPUGF7b3NzMw8NhOFPQUGob3NzMw89SCwPY4e1b3NzMw8thucPe/Oir3NzMw8Jp3OPYi3t73NzMw8YnqvPeerYr3NzMw8GEDoPdEAlr3NzMw83Lq+PTFoKr3NzMw8yW/8PeeJYb3NzMw8hIHJPYJJ3LzNzMw8eVkFPjzHEb3NzMw8no3PPX0uPbzNzMw89FkJPixjerzNzMw81LrQPR9NhTvNzMw8SCEKPpltsDvNzMw8FgLNPZl1oDzNzMw8y6oHPmlf1DzNzMw8vnnEPfrpDT3NzMw8RQUCPsrTOz3NzMw8EFW3PZhESD3NzMw8S6XyPb+HhD3NzMw8AuOlPRjsfT3NzMw8VY7bPWoJqD3NzMw8YIyQPRLPlj3NzMw8YVC/PZiZxz3NzMw8uqJvPRoeqz3NzMw8GZWePap64j3NzMw8//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA")
+}]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gk018"]
+top_radius = 0.022
+bottom_radius = 0.022
+height = 0.018
+radial_segments = 14
+
+[sub_resource type="BoxMesh" id="BoxMesh_ohw8g"]
+size = Vector3(0.014, 0.126, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pwsp0"]
+size = Vector3(0.018, 0.04, 0.009)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1w4k3"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_csvp6"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hljs2"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vffa3"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_stqey"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ydur7"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_03s4q"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n38sy"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kbfxu"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7v1cu"]
+top_radius = 0.148
+bottom_radius = 0.148
+height = 0.016
+radial_segments = 32
+
+[sub_resource type="BoxMesh" id="BoxMesh_li32b"]
+size = Vector3(0.216, 0.05, 0.022)
+
+[sub_resource type="TorusMesh" id="TorusMesh_4g3fe"]
+inner_radius = 0.138
+outer_radius = 0.188
+rings = 32
+ring_segments = 20
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5bfdb"]
+top_radius = 0.148
+bottom_radius = 0.148
+height = 0.014
+radial_segments = 40
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_6wotq"]
+_surfaces = [{
+"aabb": AABB(-0.057053465, -0.13498951, 0.025, 0.19138262, 0.24557504, 1e-05),
+"attribute_data": PackedByteArray("AAAAAAAAAAAAAIA/AAAAAAAAAAAlSZI9AACAPyVJkj0AAAAAJUkSPgAAgD8lSRI+AAAAALdtWz4AAIA/t21bPgAAAAAlSZI+AACAPyVJkj4AAAAAbtu2PgAAgD9u27Y+AAAAALdt2z4AAIA/t23bPgAAAAAAAAA/AACAPwAAAD8AAAAAJUkSPwAAgD8lSRI/AAAAAEmSJD8AAIA/SZIkPwAAAABu2zY/AACAP27bNj8AAAAAkiRJPwAAgD+SJEk/AAAAALdtWz8AAIA/t21bPwAAAADbtm0/AACAP9u2bT8AAAAAAACAPwAAgD8AAIA/"),
+"format": 34359742487,
+"index_count": 84,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAgADAAQAAwAFAAQABAAFAAYABQAHAAYABgAHAAgABwAJAAgACAAJAAoACQALAAoACgALAAwACwANAAwADAANAA4ADQAPAA4ADgAPABAADwARABAAEAARABIAEQATABIAEgATABQAEwAVABQAFAAVABYAFQAXABYAFgAXABgAFwAZABgAGAAZABoAGQAbABoAGgAbABwAGwAdABwA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 30,
+"vertex_data": PackedByteArray("CJEwvfZSvb3NzMw85bBpvXOT+r3NzMw8WO+5vJaoy73NzMw8IRf2vCfGBr7NzMw8nKqmujjh0L3NzMw8hJbcurE6Cr7NzMw8WJGlPA3BzL3NzMw8QCLbPMF/B77NzMw8WhInPVh3v73NzMw80h9dPUBp/b3NzMw8KeJzPVCcqb3NzMw8uWShPRB84L3NzMw8GOSaPVMqjL3NzMw8tgDNPVCDub3NzMw8xOi0PWDlUL3NzMw8T3DvPXE9ir3NzMw8DdXGPR0dAL3NzMw8hZQDPvGPKb3NzMw8o9vPPQRlJrzNzMw8lY0JPmg6XLzNzMw8H5XPPYgcOzzNzMw8614JPsOldzzNzMw8qwTGPakPBT3NzMw8ngoDPkIcMD3NzMw81pezPetjVT3NzMw8XrLtPdQ2jT3NzMw8sSGZPdoVjj3NzMw8l6zKPd0NvD3NzMw8uqJvPRoeqz3NzMw8GZWePap64j3NzMw8//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA")
+}]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_27e8y"]
+top_radius = 0.022
+bottom_radius = 0.022
+height = 0.018
+radial_segments = 14
+
+[sub_resource type="BoxMesh" id="BoxMesh_1ylbh"]
+size = Vector3(0.014, 0.126, 0.008)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4crtr"]
+size = Vector3(0.018, 0.04, 0.009)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jh0go"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_c68r8"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vmcap"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_frbub"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_x6qep"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dlkw3"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mkaml"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xnuqt"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7ilw3"]
+size = Vector3(0.006, 0.018, 0.005)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3jqlo"]
+top_radius = 0.148
+bottom_radius = 0.148
+height = 0.016
+radial_segments = 32
+
+[sub_resource type="BoxMesh" id="BoxMesh_r62fw"]
+size = Vector3(0.2, 0.05, 0.022)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pkcan"]
+size = Vector3(0.324, 0.05, 0.022)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ccghq"]
+size = Vector3(0.2, 0.05, 0.022)
+
+[sub_resource type="BoxMesh" id="BoxMesh_iawn3"]
+size = Vector3(0.54, 0.35, 0.045)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lbdno"]
+size = Vector3(0.48, 0.28, 0.02)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rd0u0"]
+size = Vector3(0.252, 0.05, 0.022)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hq3ba"]
+size = Vector3(0.216, 0.05, 0.022)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_knrwq"]
+cull_mode = 2
+albedo_color = Color(0.38, 0.28, 0.14, 1)
+metallic = 0.3
+roughness = 0.68
+
+[sub_resource type="BoxMesh" id="BoxMesh_rgf34"]
+size = Vector3(1.124, 0.065, 0.025)
+
+[sub_resource type="BoxMesh" id="BoxMesh_k21d7"]
+size = Vector3(1.144, 0.006, 0.028)
+
+[sub_resource type="BoxMesh" id="BoxMesh_v4p4l"]
+size = Vector3(1.144, 0.006, 0.028)
 
 [node name="Cabin" type="Node3D" unique_id=34274795]
 
 [node name="SteamRegulator" parent="." unique_id=1464090233 instance=ExtResource("1_regulator")]
-transform = Transform3D(1, 0, 0, 0, 0.9702957, 0.2419219, 0, -0.2419219, 0.9702957, -0.85, 0.88, -1.52)
+transform = Transform3D(1, 0, 0, 0, 0.8571673, -0.5150381, 0, 0.5150381, 0.8571673, -0.85, 0.765, -1.135)
 
 [node name="BrakeLever" parent="." unique_id=837533855 instance=ExtResource("2_brake")]
-transform = Transform3D(1, 0, 0, 0, 0.9702957, 0.2419219, 0, -0.2419219, 0.9702957, 0.85, 0.88, -1.52)
+transform = Transform3D(1, 0, 0, 0, 0.9612617, -0.27563733, 0, 0.27563733, 0.9612617, 0.85, 0.71, -1.13)
 
 [node name="Whistle" parent="." unique_id=22734417 instance=ExtResource("3_whistle")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 2.85, -1.2)
@@ -22,8 +775,1016 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 2.85, -1.2)
 transform = Transform3D(0.46, 0, 0, 0, 0.3769127, 0.2631871, 0, -0.2631871, 0.3769127, 1.58, 1.45, -1.6)
 
 [node name="XROrigin" parent="." unique_id=1541377148 instance=ExtResource("4_xr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0.22)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.285, -0.635)
 visible = false
 
 [node name="CabinInteriorPolish" type="Node3D" parent="." unique_id=780808253]
 script = ExtResource("5_polish")
+
+[node name="WarmCabinLight" type="OmniLight3D" parent="CabinInteriorPolish" unique_id=1226394776]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.85, 0)
+light_color = Color(1, 0.88, 0.72, 1)
+light_energy = 2.5
+omni_range = 7.0
+
+[node name="PanelAccentLight" type="OmniLight3D" parent="CabinInteriorPolish" unique_id=41288545]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45, -1.25)
+light_color = Color(1, 0.9, 0.75, 1)
+light_energy = 0.85
+omni_range = 2.5
+
+[node name="CabinOilLampLeft" type="Node3D" parent="CabinInteriorPolish" unique_id=2018291556]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.05, 1.55, -2.58)
+
+[node name="Bracket" type="MeshInstance3D" parent="CabinInteriorPolish/CabinOilLampLeft" unique_id=1876114686]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08, 0.12)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("BoxMesh_i7gfx")
+
+[node name="@MeshInstance3D@54446" type="MeshInstance3D" parent="CabinInteriorPolish/CabinOilLampLeft" unique_id=970399119]
+material_override = ExtResource("7_75g50")
+mesh = SubResource("CylinderMesh_5jds3")
+
+[node name="@MeshInstance3D@54447" type="MeshInstance3D" parent="CabinInteriorPolish/CabinOilLampLeft" unique_id=1921135191]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 0)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("CylinderMesh_juj0c")
+
+[node name="@MeshInstance3D@54448" type="MeshInstance3D" parent="CabinInteriorPolish/CabinOilLampLeft" unique_id=845860190]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+material_override = SubResource("StandardMaterial3D_x68jf")
+mesh = SubResource("CylinderMesh_utxl8")
+
+[node name="@MeshInstance3D@54449" type="MeshInstance3D" parent="CabinInteriorPolish/CabinOilLampLeft" unique_id=1522573773]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.34, 0)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("CylinderMesh_4553b")
+
+[node name="@MeshInstance3D@54450" type="MeshInstance3D" parent="CabinInteriorPolish/CabinOilLampLeft" unique_id=994893176]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, 0)
+mesh = SubResource("SphereMesh_kv8et")
+
+[node name="@OmniLight3D@54451" type="OmniLight3D" parent="CabinInteriorPolish/CabinOilLampLeft" unique_id=219527902]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, 0)
+light_color = Color(1, 0.66, 0.32, 1)
+light_energy = 1.2
+omni_range = 2.0
+
+[node name="CabinOilLampRight" type="Node3D" parent="CabinInteriorPolish" unique_id=1278478512]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.05, 1.55, -2.58)
+
+[node name="Bracket" type="MeshInstance3D" parent="CabinInteriorPolish/CabinOilLampRight" unique_id=1979966209]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08, 0.12)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("BoxMesh_045ye")
+
+[node name="@MeshInstance3D@54452" type="MeshInstance3D" parent="CabinInteriorPolish/CabinOilLampRight" unique_id=1124649805]
+material_override = ExtResource("7_75g50")
+mesh = SubResource("CylinderMesh_laq47")
+
+[node name="@MeshInstance3D@54453" type="MeshInstance3D" parent="CabinInteriorPolish/CabinOilLampRight" unique_id=1483904144]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 0)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("CylinderMesh_5qykx")
+
+[node name="@MeshInstance3D@54454" type="MeshInstance3D" parent="CabinInteriorPolish/CabinOilLampRight" unique_id=115415127]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+material_override = SubResource("StandardMaterial3D_x68jf")
+mesh = SubResource("CylinderMesh_wwgtx")
+
+[node name="@MeshInstance3D@54455" type="MeshInstance3D" parent="CabinInteriorPolish/CabinOilLampRight" unique_id=1137146470]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.34, 0)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("CylinderMesh_r3uop")
+
+[node name="@MeshInstance3D@54456" type="MeshInstance3D" parent="CabinInteriorPolish/CabinOilLampRight" unique_id=1055395311]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, 0)
+mesh = SubResource("SphereMesh_jn0gp")
+
+[node name="@OmniLight3D@54457" type="OmniLight3D" parent="CabinInteriorPolish/CabinOilLampRight" unique_id=655547131]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, 0)
+light_color = Color(1, 0.66, 0.32, 1)
+light_energy = 1.2
+omni_range = 2.0
+
+[node name="HeroInstrumentPanel" type="Node3D" parent="CabinInteriorPolish" unique_id=2082776955]
+transform = Transform3D(1, 0, 0, 0, 0.9702957, 0.2419219, 0, -0.2419219, 0.9702957, 0, 1.02, -1.64)
+metadata/layout_version = 5
+
+[node name="MainWoodPanel" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=618701408]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27999997, 0)
+material_override = ExtResource("8_3rovn")
+mesh = SubResource("BoxMesh_torhm")
+
+[node name="TrimTop" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=574341228]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.785, 0.018)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("BoxMesh_uvhrr")
+
+[node name="TrimBottom" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1298701855]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.225, 0.018)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("BoxMesh_avqlq")
+
+[node name="TrimLeft" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1682190597]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.055, 0.28, 0.018)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("BoxMesh_slxxr")
+
+[node name="TrimRight" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1474784507]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.055, 0.28, 0.018)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("BoxMesh_trigv")
+
+[node name="DividerStrip" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=129177887]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.075, 0.06)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("BoxMesh_w8jtx")
+
+[node name="GaugeNameRail" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1247472767]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0, 0.062)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("BoxMesh_w4hay")
+
+[node name="Grime" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=886402426]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.72, 0.6, 0.057)
+material_override = SubResource("StandardMaterial3D_p1wao")
+mesh = SubResource("BoxMesh_iibyb")
+
+[node name="@MeshInstance3D@54458" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1516835079]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.88, 0.18, 0.058)
+material_override = SubResource("StandardMaterial3D_p1wao")
+mesh = SubResource("BoxMesh_wr225")
+
+[node name="@MeshInstance3D@54459" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=728095071]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18, 0.69, 0.059)
+material_override = SubResource("StandardMaterial3D_p1wao")
+mesh = SubResource("BoxMesh_ynade")
+
+[node name="@MeshInstance3D@54460" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1320509751]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.66, -0.055, 0.06)
+material_override = SubResource("StandardMaterial3D_p1wao")
+mesh = SubResource("BoxMesh_m8eq4")
+
+[node name="@MeshInstance3D@54461" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1004811536]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.48, 0.2, 0.061)
+material_override = SubResource("StandardMaterial3D_p1wao")
+mesh = SubResource("BoxMesh_mdar4")
+
+[node name="Rivet" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1927474389]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.86, 0.735, 0.078)
+mesh = SubResource("SphereMesh_va8ik")
+
+[node name="@MeshInstance3D@54462" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1052754657]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.86, -0.175, 0.078)
+mesh = SubResource("SphereMesh_abrhd")
+
+[node name="@MeshInstance3D@54463" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1016075297]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58, 0.735, 0.078)
+mesh = SubResource("SphereMesh_ybgcr")
+
+[node name="@MeshInstance3D@54464" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1434666366]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58, -0.175, 0.078)
+mesh = SubResource("SphereMesh_4p46e")
+
+[node name="@MeshInstance3D@54465" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1493857901]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3, 0.735, 0.078)
+mesh = SubResource("SphereMesh_gcnyi")
+
+[node name="@MeshInstance3D@54466" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1010771273]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3, -0.175, 0.078)
+mesh = SubResource("SphereMesh_mstm4")
+
+[node name="@MeshInstance3D@54467" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1382748950]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.02, 0.735, 0.078)
+mesh = SubResource("SphereMesh_s0g4u")
+
+[node name="@MeshInstance3D@54468" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=333222013]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.02, -0.175, 0.078)
+mesh = SubResource("SphereMesh_hvns5")
+
+[node name="@MeshInstance3D@54469" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1791520512]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.74, 0.735, 0.078)
+mesh = SubResource("SphereMesh_m4e0o")
+
+[node name="@MeshInstance3D@54470" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1072556195]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.74, -0.175, 0.078)
+mesh = SubResource("SphereMesh_u2164")
+
+[node name="@MeshInstance3D@54471" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=805735894]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.46, 0.735, 0.078)
+mesh = SubResource("SphereMesh_ftiqe")
+
+[node name="@MeshInstance3D@54472" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=2017992054]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.46, -0.175, 0.078)
+mesh = SubResource("SphereMesh_jrxqy")
+
+[node name="@MeshInstance3D@54473" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=279321427]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18, 0.735, 0.078)
+mesh = SubResource("SphereMesh_cqcbe")
+
+[node name="@MeshInstance3D@54474" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=657594803]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18, -0.175, 0.078)
+mesh = SubResource("SphereMesh_c8o1n")
+
+[node name="@MeshInstance3D@54475" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1782710973]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.735, 0.078)
+mesh = SubResource("SphereMesh_dw3fw")
+
+[node name="@MeshInstance3D@54476" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=2103133930]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, -0.175, 0.078)
+mesh = SubResource("SphereMesh_g087h")
+
+[node name="@MeshInstance3D@54477" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=122355851]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38, 0.735, 0.078)
+mesh = SubResource("SphereMesh_jfuvb")
+
+[node name="@MeshInstance3D@54478" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1882421412]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38, -0.175, 0.078)
+mesh = SubResource("SphereMesh_m67t8")
+
+[node name="@MeshInstance3D@54479" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=587771736]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.66, 0.735, 0.078)
+mesh = SubResource("SphereMesh_gop4e")
+
+[node name="@MeshInstance3D@54480" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1620011360]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.66, -0.175, 0.078)
+mesh = SubResource("SphereMesh_pgk6e")
+
+[node name="@MeshInstance3D@54481" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1982807414]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.94, 0.735, 0.078)
+mesh = SubResource("SphereMesh_0w5q6")
+
+[node name="@MeshInstance3D@54482" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1485418485]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.94, -0.175, 0.078)
+mesh = SubResource("SphereMesh_4uct6")
+
+[node name="@MeshInstance3D@54483" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1188852327]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.22, 0.735, 0.078)
+mesh = SubResource("SphereMesh_6ypwf")
+
+[node name="@MeshInstance3D@54484" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=355266280]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.22, -0.175, 0.078)
+mesh = SubResource("SphereMesh_euc7q")
+
+[node name="@MeshInstance3D@54485" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=840781007]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.735, 0.078)
+mesh = SubResource("SphereMesh_cnfa6")
+
+[node name="@MeshInstance3D@54486" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=2122862807]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -0.175, 0.078)
+mesh = SubResource("SphereMesh_wrmym")
+
+[node name="@MeshInstance3D@54487" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1832326189]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.78, 0.735, 0.078)
+mesh = SubResource("SphereMesh_0ieww")
+
+[node name="@MeshInstance3D@54488" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1366341188]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.78, -0.175, 0.078)
+mesh = SubResource("SphereMesh_yu5hg")
+
+[node name="@MeshInstance3D@54489" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1505869024]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.96, -0.05, 0.08)
+mesh = SubResource("SphereMesh_auebn")
+
+[node name="@MeshInstance3D@54490" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1975061236]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.96, -0.05, 0.08)
+mesh = SubResource("SphereMesh_63abr")
+
+[node name="@MeshInstance3D@54491" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=470924834]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.96, 0.18, 0.08)
+mesh = SubResource("SphereMesh_a0o1d")
+
+[node name="@MeshInstance3D@54492" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=317062935]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.96, 0.18, 0.08)
+mesh = SubResource("SphereMesh_uvgm2")
+
+[node name="@MeshInstance3D@54493" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1021704184]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.96, 0.41, 0.08)
+mesh = SubResource("SphereMesh_082rk")
+
+[node name="@MeshInstance3D@54494" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1141487128]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.96, 0.41, 0.08)
+mesh = SubResource("SphereMesh_61mp6")
+
+[node name="@MeshInstance3D@54495" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1851688420]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.96, 0.64, 0.08)
+mesh = SubResource("SphereMesh_iu2qi")
+
+[node name="@MeshInstance3D@54496" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=172720731]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.96, 0.64, 0.08)
+mesh = SubResource("SphereMesh_5tm68")
+
+[node name="LowerConsole" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1699759365]
+transform = Transform3D(1, 0, 0, 0, 0.8642748, -0.5030199, 0, 0.5030199, 0.8642748, 0, -0.54, 0.38)
+material_override = ExtResource("8_3rovn")
+mesh = SubResource("BoxMesh_hey5v")
+
+[node name="LowerConsoleTrim" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=330154772]
+transform = Transform3D(1, 0, 0, 0, 0.8642748, -0.5030199, 0, 0.5030199, 0.8642748, 0, -0.45499998, 0.37999994)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("BoxMesh_yw3qa")
+
+[node name="CERRADOPlate" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/LowerConsoleTrim" unique_id=1786718216]
+transform = Transform3D(1.3199999, 0, 0, 0, 0.07138416, 1.3180683, 0, -1.3180683, 0.07138416, 1.19, 0.025, 0.14)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("BoxMesh_qljpj")
+
+[node name="CERRADOLbl" type="Label3D" parent="CabinInteriorPolish/HeroInstrumentPanel/LowerConsoleTrim" unique_id=1769590067]
+transform = Transform3D(1, 0, 0, 0, 0.054078847, 0.99853677, 0, -0.99853677, 0.054078847, 1.19, 0.07000002, 0.13999999)
+pixel_size = 0.0019
+render_priority = 6
+outline_render_priority = 7
+modulate = Color(0.14, 0.1, 0.06, 1)
+outline_modulate = Color(0, 0, 0, 0.54901963)
+text = "APLICADO"
+font_size = 20
+outline_size = 1
+
+[node name="ABIERTOPlate" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/LowerConsoleTrim" unique_id=1304872282]
+transform = Transform3D(0.88, 0, 0, 0, 0.07219526, 1.3330464, 0, -1.3330464, 0.07219526, 0.62, 0.015, -0.177)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("BoxMesh_wwcnw")
+
+[node name="ABIERTOLbl" type="Label3D" parent="CabinInteriorPolish/HeroInstrumentPanel/LowerConsoleTrim" unique_id=332724824]
+transform = Transform3D(1, 0, 0, 0, 0.054078843, 0.99853665, 0, -0.99853665, 0.054078843, 0.62, 0.04, -0.177)
+pixel_size = 0.0019
+render_priority = 6
+outline_render_priority = 7
+modulate = Color(0.14, 0.1, 0.06, 1)
+outline_modulate = Color(0, 0, 0, 0.54901963)
+text = "LIBERADO"
+font_size = 24
+outline_size = 1
+
+[node name="VAPORGauge" type="Node3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1016289405]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.34, 0.43, 0.07)
+
+[node name="Bezel" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VAPORGauge" unique_id=1567518578]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.02)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("TorusMesh_5qp84")
+
+[node name="Face" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VAPORGauge" unique_id=625081094]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.015)
+material_override = SubResource("StandardMaterial3D_hp8ju")
+mesh = SubResource("CylinderMesh_6vsc3")
+
+[node name="SafeBand" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VAPORGauge" unique_id=973806294]
+material_override = SubResource("StandardMaterial3D_us64q")
+mesh = SubResource("ArrayMesh_k2g52")
+
+[node name="Cap" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VAPORGauge" unique_id=1521347195]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.035)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("CylinderMesh_idm7g")
+
+[node name="NeedlePivot" type="Node3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VAPORGauge" unique_id=1335299339]
+transform = Transform3D(-0.42261833, 0.90630776, 0, -0.90630776, -0.42261833, 0, 0, 0, 1, 0, 0, 0.038)
+
+[node name="Needle" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VAPORGauge/NeedlePivot" unique_id=1697860234]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.063, 0)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_b5rog")
+
+[node name="Counterweight" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VAPORGauge/NeedlePivot" unique_id=318460136]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02, 0)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_3kdjr")
+
+[node name="Tick0" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VAPORGauge" unique_id=385850410]
+transform = Transform3D(-0.9063078, -0.42261827, 0, 0.42261827, -0.9063078, 0, 0, 0, 1, -0.05071419, -0.10875694, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_by6tw")
+
+[node name="Tick1" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VAPORGauge" unique_id=1153886033]
+transform = Transform3D(-0.99785894, -0.06540308, 0, 0.06540308, -0.99785894, 0, 0, 0, 1, -0.0078483755, -0.11974307, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_83hnu")
+
+[node name="Tick2" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VAPORGauge" unique_id=2104074274]
+transform = Transform3D(-0.95371693, 0.30070588, 0, -0.30070588, -0.95371693, 0, 0, 0, 1, 0.036084697, -0.11444604, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_e214p")
+
+[node name="Tick3" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VAPORGauge" unique_id=382879179]
+transform = Transform3D(-0.7798844, 0.6259236, 0, -0.6259236, -0.7798844, 0, 0, 0, 1, 0.075110815, -0.09358614, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_yjtwd")
+
+[node name="Tick4" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VAPORGauge" unique_id=59122601]
+transform = Transform3D(-0.50000006, 0.8660254, 0, -0.8660254, -0.50000006, 0, 0, 0, 1, 0.103923045, -0.06, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_xb340")
+
+[node name="Tick5" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VAPORGauge" unique_id=1225997365]
+transform = Transform3D(-0.1521234, 0.98836154, 0, -0.98836154, -0.1521234, 0, 0, 0, 1, 0.11860338, -0.018254807, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_lf6ms")
+
+[node name="Tick6" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VAPORGauge" unique_id=1408609819]
+transform = Transform3D(0.21643965, 0.976296, 0, -0.976296, 0.21643965, 0, 0, 0, 1, 0.11715552, 0.025972754, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_en3y2")
+
+[node name="Tick7" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VAPORGauge" unique_id=197713057]
+transform = Transform3D(0.55557024, 0.8314696, 0, -0.8314696, 0.55557024, 0, 0, 0, 1, 0.09977635, 0.06666843, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_3uo0i")
+
+[node name="Tick8" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VAPORGauge" unique_id=2140751853]
+transform = Transform3D(0.81915206, 0.57357645, 0, -0.57357645, 0.81915206, 0, 0, 0, 1, 0.06882917, 0.098298244, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_0uprm")
+
+[node name="Dial0" type="Label3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VAPORGauge" unique_id=1102812736]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.037190408, -0.07975508, 0.053)
+pixel_size = 0.00145
+modulate = Color(0.12, 0.09, 0.055, 1)
+text = "0"
+font_size = 11
+outline_size = 0
+
+[node name="Dial50" type="Label3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VAPORGauge" unique_id=802515316]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.081406385, -0.047, 0.053)
+pixel_size = 0.00145
+modulate = Color(0.12, 0.09, 0.055, 1)
+text = "50"
+font_size = 11
+outline_size = 0
+
+[node name="Dial100" type="Label3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VAPORGauge" unique_id=1239950141]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.050474726, 0.07208538, 0.053)
+pixel_size = 0.00145
+modulate = Color(0.12, 0.09, 0.055, 1)
+text = "100"
+font_size = 11
+outline_size = 0
+
+[node name="FaceLabel" type="Label3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VAPORGauge" unique_id=1769798965]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.082, 0.053)
+pixel_size = 0.00155
+modulate = Color(0.12, 0.09, 0.055, 1)
+text = "VAPOR"
+font_size = 12
+outline_size = 0
+
+[node name="Glass" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VAPORGauge" unique_id=889971251]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.048)
+material_override = SubResource("StandardMaterial3D_x68jf")
+mesh = SubResource("CylinderMesh_voxes")
+
+[node name="VAPORPlate" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=104702236]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.34, 0.19500001, 0.120000005)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("BoxMesh_sthig")
+
+[node name="VAPORLbl" type="Label3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=490041194]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.34, 0.19500001, 0.13800001)
+pixel_size = 0.0027
+render_priority = 6
+outline_render_priority = 7
+modulate = Color(0.14, 0.1, 0.06, 1)
+outline_modulate = Color(0.9, 0.78, 0.46, 0.55)
+text = "VAPOR"
+font_size = 14
+outline_size = 1
+
+[node name="PRESIONGauge" type="Node3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=277741630]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.54, 0.43, 0.07)
+
+[node name="Bezel" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/PRESIONGauge" unique_id=532097672]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.02)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("TorusMesh_roq1o")
+
+[node name="Face" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/PRESIONGauge" unique_id=79322246]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.015)
+material_override = SubResource("StandardMaterial3D_hp8ju")
+mesh = SubResource("CylinderMesh_o1mfx")
+
+[node name="SafeBand" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/PRESIONGauge" unique_id=1453712603]
+material_override = SubResource("StandardMaterial3D_us64q")
+mesh = SubResource("ArrayMesh_t5ik6")
+
+[node name="RedHighBand" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/PRESIONGauge" unique_id=1195918708]
+material_override = SubResource("StandardMaterial3D_rtr40")
+mesh = SubResource("ArrayMesh_mdlqp")
+
+[node name="Cap" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/PRESIONGauge" unique_id=685525056]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.035)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("CylinderMesh_626if")
+
+[node name="NeedlePivot" type="Node3D" parent="CabinInteriorPolish/HeroInstrumentPanel/PRESIONGauge" unique_id=617532900]
+transform = Transform3D(0.57357645, 0.81915206, 0, -0.81915206, 0.57357645, 0, 0, 0, 1, 0, 0, 0.038)
+
+[node name="Needle" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/PRESIONGauge/NeedlePivot" unique_id=277173649]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.063, 0)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_ly0nl")
+
+[node name="Counterweight" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/PRESIONGauge/NeedlePivot" unique_id=486443700]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02, 0)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_xphwd")
+
+[node name="Tick0" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/PRESIONGauge" unique_id=740267144]
+transform = Transform3D(-0.9063078, -0.42261827, 0, 0.42261827, -0.9063078, 0, 0, 0, 1, -0.05071419, -0.10875694, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_o1q8o")
+
+[node name="Tick1" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/PRESIONGauge" unique_id=2036157470]
+transform = Transform3D(-0.99785894, -0.06540308, 0, 0.06540308, -0.99785894, 0, 0, 0, 1, -0.0078483755, -0.11974307, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_2exu4")
+
+[node name="Tick2" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/PRESIONGauge" unique_id=1924813989]
+transform = Transform3D(-0.95371693, 0.30070588, 0, -0.30070588, -0.95371693, 0, 0, 0, 1, 0.036084697, -0.11444604, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_ebraa")
+
+[node name="Tick3" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/PRESIONGauge" unique_id=2077838975]
+transform = Transform3D(-0.7798844, 0.6259236, 0, -0.6259236, -0.7798844, 0, 0, 0, 1, 0.075110815, -0.09358614, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_07k2t")
+
+[node name="Tick4" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/PRESIONGauge" unique_id=1569932450]
+transform = Transform3D(-0.50000006, 0.8660254, 0, -0.8660254, -0.50000006, 0, 0, 0, 1, 0.103923045, -0.06, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_75fut")
+
+[node name="Tick5" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/PRESIONGauge" unique_id=398020222]
+transform = Transform3D(-0.1521234, 0.98836154, 0, -0.98836154, -0.1521234, 0, 0, 0, 1, 0.11860338, -0.018254807, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_n0iwx")
+
+[node name="Tick6" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/PRESIONGauge" unique_id=297265751]
+transform = Transform3D(0.21643965, 0.976296, 0, -0.976296, 0.21643965, 0, 0, 0, 1, 0.11715552, 0.025972754, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_q8dka")
+
+[node name="Tick7" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/PRESIONGauge" unique_id=696160662]
+transform = Transform3D(0.55557024, 0.8314696, 0, -0.8314696, 0.55557024, 0, 0, 0, 1, 0.09977635, 0.06666843, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_seuyb")
+
+[node name="Tick8" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/PRESIONGauge" unique_id=1555179656]
+transform = Transform3D(0.81915206, 0.57357645, 0, -0.57357645, 0.81915206, 0, 0, 0, 1, 0.06882917, 0.098298244, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_c84xs")
+
+[node name="Dial0" type="Label3D" parent="CabinInteriorPolish/HeroInstrumentPanel/PRESIONGauge" unique_id=1017855474]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.037190408, -0.07975508, 0.053)
+pixel_size = 0.00145
+modulate = Color(0.12, 0.09, 0.055, 1)
+text = "0"
+font_size = 11
+outline_size = 0
+
+[node name="Dial50" type="Label3D" parent="CabinInteriorPolish/HeroInstrumentPanel/PRESIONGauge" unique_id=1703675357]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.081406385, -0.047, 0.053)
+pixel_size = 0.00145
+modulate = Color(0.12, 0.09, 0.055, 1)
+text = "50"
+font_size = 11
+outline_size = 0
+
+[node name="Dial100" type="Label3D" parent="CabinInteriorPolish/HeroInstrumentPanel/PRESIONGauge" unique_id=209230929]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.050474726, 0.07208538, 0.053)
+pixel_size = 0.00145
+modulate = Color(0.12, 0.09, 0.055, 1)
+text = "100"
+font_size = 11
+outline_size = 0
+
+[node name="FaceLabel" type="Label3D" parent="CabinInteriorPolish/HeroInstrumentPanel/PRESIONGauge" unique_id=754572285]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.082, 0.053)
+pixel_size = 0.00155
+modulate = Color(0.12, 0.09, 0.055, 1)
+text = "PRESIÓN"
+font_size = 12
+outline_size = 0
+
+[node name="Glass" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/PRESIONGauge" unique_id=1831492338]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.048)
+material_override = SubResource("StandardMaterial3D_x68jf")
+mesh = SubResource("CylinderMesh_488ir")
+
+[node name="PRESIONPlate" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=698839716]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.54, 0.19500001, 0.120000005)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("BoxMesh_0divb")
+
+[node name="PRESIONLbl" type="Label3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=464705565]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.54, 0.19500001, 0.13800001)
+pixel_size = 0.0027
+render_priority = 6
+outline_render_priority = 7
+modulate = Color(0.14, 0.1, 0.06, 1)
+outline_modulate = Color(0.9, 0.78, 0.46, 0.55)
+text = "PRESIÓN"
+font_size = 14
+outline_size = 1
+
+[node name="CARBONGauge" type="Node3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=477869199]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26, 0.43, 0.07)
+
+[node name="Bezel" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/CARBONGauge" unique_id=1635474421]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.02)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("TorusMesh_acmid")
+
+[node name="Face" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/CARBONGauge" unique_id=1460317159]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.015)
+material_override = SubResource("StandardMaterial3D_hp8ju")
+mesh = SubResource("CylinderMesh_5rxsi")
+
+[node name="RedLowBand" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/CARBONGauge" unique_id=879142162]
+material_override = SubResource("StandardMaterial3D_rtr40")
+mesh = SubResource("ArrayMesh_o772d")
+
+[node name="SafeBand" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/CARBONGauge" unique_id=619619587]
+material_override = SubResource("StandardMaterial3D_us64q")
+mesh = SubResource("ArrayMesh_tvlix")
+
+[node name="Cap" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/CARBONGauge" unique_id=544199104]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.035)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("CylinderMesh_gk018")
+
+[node name="NeedlePivot" type="Node3D" parent="CabinInteriorPolish/HeroInstrumentPanel/CARBONGauge" unique_id=2033851023]
+transform = Transform3D(0.57357645, -0.81915206, 0, 0.81915206, 0.57357645, 0, 0, 0, 1, 0, 0, 0.038)
+
+[node name="Needle" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/CARBONGauge/NeedlePivot" unique_id=831721238]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.063, 0)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_ohw8g")
+
+[node name="Counterweight" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/CARBONGauge/NeedlePivot" unique_id=1429312900]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02, 0)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_pwsp0")
+
+[node name="Tick0" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/CARBONGauge" unique_id=36420156]
+transform = Transform3D(-0.9063078, -0.42261827, 0, 0.42261827, -0.9063078, 0, 0, 0, 1, -0.05071419, -0.10875694, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_1w4k3")
+
+[node name="Tick1" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/CARBONGauge" unique_id=961192935]
+transform = Transform3D(-0.99785894, -0.06540308, 0, 0.06540308, -0.99785894, 0, 0, 0, 1, -0.0078483755, -0.11974307, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_csvp6")
+
+[node name="Tick2" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/CARBONGauge" unique_id=635699000]
+transform = Transform3D(-0.95371693, 0.30070588, 0, -0.30070588, -0.95371693, 0, 0, 0, 1, 0.036084697, -0.11444604, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_hljs2")
+
+[node name="Tick3" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/CARBONGauge" unique_id=2009559236]
+transform = Transform3D(-0.7798844, 0.6259236, 0, -0.6259236, -0.7798844, 0, 0, 0, 1, 0.075110815, -0.09358614, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_vffa3")
+
+[node name="Tick4" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/CARBONGauge" unique_id=1319792775]
+transform = Transform3D(-0.50000006, 0.8660254, 0, -0.8660254, -0.50000006, 0, 0, 0, 1, 0.103923045, -0.06, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_stqey")
+
+[node name="Tick5" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/CARBONGauge" unique_id=1795432510]
+transform = Transform3D(-0.1521234, 0.98836154, 0, -0.98836154, -0.1521234, 0, 0, 0, 1, 0.11860338, -0.018254807, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_ydur7")
+
+[node name="Tick6" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/CARBONGauge" unique_id=1213925126]
+transform = Transform3D(0.21643965, 0.976296, 0, -0.976296, 0.21643965, 0, 0, 0, 1, 0.11715552, 0.025972754, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_03s4q")
+
+[node name="Tick7" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/CARBONGauge" unique_id=300839718]
+transform = Transform3D(0.55557024, 0.8314696, 0, -0.8314696, 0.55557024, 0, 0, 0, 1, 0.09977635, 0.06666843, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_n38sy")
+
+[node name="Tick8" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/CARBONGauge" unique_id=680853481]
+transform = Transform3D(0.81915206, 0.57357645, 0, -0.57357645, 0.81915206, 0, 0, 0, 1, 0.06882917, 0.098298244, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_kbfxu")
+
+[node name="Dial0" type="Label3D" parent="CabinInteriorPolish/HeroInstrumentPanel/CARBONGauge" unique_id=1073467331]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.037190408, -0.07975508, 0.053)
+pixel_size = 0.00145
+modulate = Color(0.12, 0.09, 0.055, 1)
+text = "0"
+font_size = 11
+outline_size = 0
+
+[node name="Dial50" type="Label3D" parent="CabinInteriorPolish/HeroInstrumentPanel/CARBONGauge" unique_id=1775890674]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.081406385, -0.047, 0.053)
+pixel_size = 0.00145
+modulate = Color(0.12, 0.09, 0.055, 1)
+text = "50"
+font_size = 11
+outline_size = 0
+
+[node name="Dial100" type="Label3D" parent="CabinInteriorPolish/HeroInstrumentPanel/CARBONGauge" unique_id=288860206]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.050474726, 0.07208538, 0.053)
+pixel_size = 0.00145
+modulate = Color(0.12, 0.09, 0.055, 1)
+text = "100"
+font_size = 11
+outline_size = 0
+
+[node name="FaceLabel" type="Label3D" parent="CabinInteriorPolish/HeroInstrumentPanel/CARBONGauge" unique_id=671972556]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.082, 0.053)
+pixel_size = 0.00155
+modulate = Color(0.12, 0.09, 0.055, 1)
+text = "CARBÓN"
+font_size = 12
+outline_size = 0
+
+[node name="Glass" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/CARBONGauge" unique_id=156767640]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.048)
+material_override = SubResource("StandardMaterial3D_x68jf")
+mesh = SubResource("CylinderMesh_7v1cu")
+
+[node name="CARBONPlate" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1544198010]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26, 0.19500001, 0.120000005)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("BoxMesh_li32b")
+
+[node name="CARBONLbl" type="Label3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1336020545]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26, 0.19500001, 0.13800001)
+pixel_size = 0.0027
+render_priority = 6
+outline_render_priority = 7
+modulate = Color(0.14, 0.1, 0.06, 1)
+outline_modulate = Color(0.9, 0.78, 0.46, 0.55)
+text = "CARBÓN"
+font_size = 14
+outline_size = 1
+
+[node name="VELGauge" type="Node3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=12722902]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02, 0.43, 0.07)
+
+[node name="Bezel" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VELGauge" unique_id=648925051]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.02)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("TorusMesh_4g3fe")
+
+[node name="Face" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VELGauge" unique_id=47447969]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.015)
+material_override = SubResource("StandardMaterial3D_hp8ju")
+mesh = SubResource("CylinderMesh_5bfdb")
+
+[node name="SafeBand" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VELGauge" unique_id=589881113]
+material_override = SubResource("StandardMaterial3D_us64q")
+mesh = SubResource("ArrayMesh_6wotq")
+
+[node name="Cap" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VELGauge" unique_id=1053311924]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.035)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("CylinderMesh_27e8y")
+
+[node name="NeedlePivot" type="Node3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VELGauge" unique_id=1536514816]
+transform = Transform3D(-0.42261833, 0.90630776, 0, -0.90630776, -0.42261833, 0, 0, 0, 1, 0, 0, 0.038)
+
+[node name="Needle" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VELGauge/NeedlePivot" unique_id=127925275]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.063, 0)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_1ylbh")
+
+[node name="Counterweight" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VELGauge/NeedlePivot" unique_id=250259128]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02, 0)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_4crtr")
+
+[node name="Tick0" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VELGauge" unique_id=914051251]
+transform = Transform3D(-0.9063078, -0.42261827, 0, 0.42261827, -0.9063078, 0, 0, 0, 1, -0.05071419, -0.10875694, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_jh0go")
+
+[node name="Tick1" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VELGauge" unique_id=1300327457]
+transform = Transform3D(-0.99785894, -0.06540308, 0, 0.06540308, -0.99785894, 0, 0, 0, 1, -0.0078483755, -0.11974307, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_c68r8")
+
+[node name="Tick2" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VELGauge" unique_id=2002010136]
+transform = Transform3D(-0.95371693, 0.30070588, 0, -0.30070588, -0.95371693, 0, 0, 0, 1, 0.036084697, -0.11444604, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_vmcap")
+
+[node name="Tick3" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VELGauge" unique_id=1681904684]
+transform = Transform3D(-0.7798844, 0.6259236, 0, -0.6259236, -0.7798844, 0, 0, 0, 1, 0.075110815, -0.09358614, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_frbub")
+
+[node name="Tick4" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VELGauge" unique_id=870135284]
+transform = Transform3D(-0.50000006, 0.8660254, 0, -0.8660254, -0.50000006, 0, 0, 0, 1, 0.103923045, -0.06, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_x6qep")
+
+[node name="Tick5" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VELGauge" unique_id=1528060555]
+transform = Transform3D(-0.1521234, 0.98836154, 0, -0.98836154, -0.1521234, 0, 0, 0, 1, 0.11860338, -0.018254807, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_dlkw3")
+
+[node name="Tick6" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VELGauge" unique_id=1991510774]
+transform = Transform3D(0.21643965, 0.976296, 0, -0.976296, 0.21643965, 0, 0, 0, 1, 0.11715552, 0.025972754, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_mkaml")
+
+[node name="Tick7" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VELGauge" unique_id=840172421]
+transform = Transform3D(0.55557024, 0.8314696, 0, -0.8314696, 0.55557024, 0, 0, 0, 1, 0.09977635, 0.06666843, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_xnuqt")
+
+[node name="Tick8" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VELGauge" unique_id=1679998799]
+transform = Transform3D(0.81915206, 0.57357645, 0, -0.57357645, 0.81915206, 0, 0, 0, 1, 0.06882917, 0.098298244, 0.028)
+material_override = ExtResource("9_anrue")
+mesh = SubResource("BoxMesh_7ilw3")
+
+[node name="Dial0" type="Label3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VELGauge" unique_id=1789214532]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.037190408, -0.07975508, 0.053)
+pixel_size = 0.00145
+modulate = Color(0.12, 0.09, 0.055, 1)
+text = "0"
+font_size = 11
+outline_size = 0
+
+[node name="Dial20" type="Label3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VELGauge" unique_id=291196928]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.081406385, -0.047, 0.053)
+pixel_size = 0.00145
+modulate = Color(0.12, 0.09, 0.055, 1)
+text = "20"
+font_size = 11
+outline_size = 0
+
+[node name="Dial40" type="Label3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VELGauge" unique_id=1760807422]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.050474726, 0.07208538, 0.053)
+pixel_size = 0.00145
+modulate = Color(0.12, 0.09, 0.055, 1)
+text = "40"
+font_size = 11
+outline_size = 0
+
+[node name="FaceLabel" type="Label3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VELGauge" unique_id=744588529]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.082, 0.053)
+pixel_size = 0.00155
+modulate = Color(0.12, 0.09, 0.055, 1)
+text = "VEL"
+font_size = 12
+outline_size = 0
+
+[node name="Glass" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel/VELGauge" unique_id=1650931825]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.048)
+material_override = SubResource("StandardMaterial3D_x68jf")
+mesh = SubResource("CylinderMesh_3jqlo")
+
+[node name="VELPlate" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=966309707]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02, 0.19500001, 0.120000005)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("BoxMesh_r62fw")
+
+[node name="VELLbl" type="Label3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=498158365]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02, 0.19500001, 0.13800001)
+pixel_size = 0.0027
+render_priority = 6
+outline_render_priority = 7
+modulate = Color(0.14, 0.1, 0.06, 1)
+outline_modulate = Color(0.9, 0.78, 0.46, 0.55)
+text = "VEL"
+font_size = 14
+outline_size = 1
+
+[node name="ABIERTOPlate" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=344746945]
+transform = Transform3D(0.88, 0, 0, 0, 1.0633675, 0.8071399, 0, -0.8071399, 1.0633675, -1.12, -0.395, 0.3679999)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("BoxMesh_wwcnw")
+
+[node name="ABIERTOLbl" type="Label3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1140420457]
+transform = Transform3D(1, 0, 0, 0, 0.7965299, 0.6045992, 0, -0.6045992, 0.7965299, -1.12, -0.38999987, 0.3929999)
+pixel_size = 0.0019
+render_priority = 6
+outline_render_priority = 7
+modulate = Color(0.14, 0.1, 0.06, 1)
+outline_modulate = Color(0, 0, 0, 0.54901963)
+text = "CERRADO"
+font_size = 24
+outline_size = 1
+
+[node name="CERRADOPlate" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=958946334]
+transform = Transform3D(1.32, 0, 0, 0, 0.85376257, 1.0067223, 0, -1.0067223, 0.85376257, -0.53, -0.485, 0.525)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("BoxMesh_qljpj")
+
+[node name="CERRADOLbl" type="Label3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1289462888]
+transform = Transform3D(1, 0, 0, 0, 0.6467897, 0.7626684, 0, -0.7626684, 0.6467897, -0.535, -0.465, 0.558)
+pixel_size = 0.0019
+render_priority = 6
+outline_render_priority = 7
+modulate = Color(0.14, 0.1, 0.06, 1)
+outline_modulate = Color(0, 0, 0, 0.54901963)
+text = "ABIERTO"
+font_size = 20
+outline_size = 1
+
+[node name="REGULADORPlate" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1962633679]
+transform = Transform3D(0.91, 0, 0, 0, 0.9285542, 0.78225344, 0, -1.1970848, 0.60677797, -0.85, -0.555, 0.613)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("BoxMesh_pkcan")
+
+[node name="REGULADORLbl" type="Label3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=595059840]
+transform = Transform3D(1, 0, 0, 0, 0.6467898, 0.7626684, 0, -0.7626684, 0.6467898, -0.855, -0.54, 0.633)
+pixel_size = 0.0031
+render_priority = 6
+outline_render_priority = 7
+modulate = Color(0.14, 0.1, 0.06, 1)
+outline_modulate = Color(0, 0, 0, 0.54901963)
+text = "REGULADOR"
+font_size = 14
+outline_size = 1
+
+[node name="FRENOPlate" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=2139734157]
+transform = Transform3D(1.665, 0, 0, 0, 0.7816702, 1.4701077, 0, -1.4701077, 0.7816702, 0.85, -0.585, 0.633)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("BoxMesh_ccghq")
+
+[node name="FRENOLbl" type="Label3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=863937082]
+transform = Transform3D(1, 0, 0, 0, 0.6467898, 0.7626684, 0, -0.7626684, 0.6467898, 0.85, -0.57, 0.658)
+pixel_size = 0.0031
+render_priority = 6
+outline_render_priority = 7
+modulate = Color(0.14, 0.1, 0.06, 1)
+outline_modulate = Color(0, 0, 0, 0.54901963)
+text = "FRENO"
+font_size = 21
+outline_size = 6
+
+[node name="SupplyBG" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=2120845090]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58, 0.42, 0.08)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("BoxMesh_iawn3")
+
+[node name="SupplyInset" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=404156841]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58, 0.42, 0.11)
+material_override = ExtResource("10_pxued")
+mesh = SubResource("BoxMesh_lbdno")
+
+[node name="COMPRARPlate" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1197286798]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58, 0.495, 0.13499999)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("BoxMesh_rd0u0")
+
+[node name="COMPRARLbl" type="Label3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=2066945402]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58, 0.495, 0.153)
+pixel_size = 0.0022
+render_priority = 6
+outline_render_priority = 7
+modulate = Color(0.14, 0.1, 0.06, 1)
+outline_modulate = Color(0.9, 0.78, 0.46, 0.55)
+text = "COMPRAR"
+font_size = 14
+outline_size = 1
+
+[node name="@MeshInstance3D@54501" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=337544492]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58, 0.33499998, 0.13499999)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("BoxMesh_hq3ba")
+
+[node name="@Label3D@54502" type="Label3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1919239935]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58, 0.33499998, 0.153)
+pixel_size = 0.0022
+render_priority = 6
+outline_render_priority = 7
+modulate = Color(0.14, 0.1, 0.06, 1)
+outline_modulate = Color(0.9, 0.78, 0.46, 0.55)
+text = "CARBÓN"
+font_size = 14
+outline_size = 1
+
+[node name="PlaqueBG" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=911957493]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14, 0.07)
+material_override = SubResource("StandardMaterial3D_knrwq")
+mesh = SubResource("BoxMesh_rgf34")
+
+[node name="PlaqueEdgeTop" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1478795871]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.105000004, 0.075)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("BoxMesh_k21d7")
+
+[node name="PlaqueEdgeBot" type="MeshInstance3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1698223857]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.175, 0.075)
+material_override = ExtResource("7_75g50")
+mesh = SubResource("BoxMesh_v4p4l")
+
+[node name="PlaqueLabel" type="Label3D" parent="CabinInteriorPolish/HeroInstrumentPanel" unique_id=1165692685]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14, 0.095)
+pixel_size = 0.0024
+render_priority = 6
+outline_render_priority = 7
+modulate = Color(0.92, 0.78, 0.42, 1)
+outline_modulate = Color(0.02, 0.015, 0.01, 1)
+text = "CABINA DE LOCOMOTORA - VAPOR"
+font_size = 12
+outline_size = 1
