@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+
+[ext_resource type="Shader" path="res://assets/shaders/train_weathered_surface.gdshader" id="1_shader"]
+
+[resource]
+shader = ExtResource("1_shader")
+shader_parameter/base_color = Color(0.24, 0.255, 0.25, 1)
+shader_parameter/wear_color = Color(0.48, 0.50, 0.47, 1)
+shader_parameter/grime_color = Color(0.035, 0.038, 0.036, 1)
+shader_parameter/noise_scale = 18.0
+shader_parameter/wear_strength = 0.30
+shader_parameter/grime_strength = 0.26
+shader_parameter/streak_strength = 0.10
+shader_parameter/scratch_strength = 0.10
+shader_parameter/metallic = 0.58
+shader_parameter/roughness = 0.82
